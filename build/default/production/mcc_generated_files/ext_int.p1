@@ -13,7 +13,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _INTCONbits `VS25 ~T0 @X0 0 e@11 ]
 "296 mcc_generated_files/ext_int.h
 [v _INT_CallBack `(v ~T0 @X0 0 ef ]
-"29 mcc_generated_files/ext_int.c
+"32 mcc_generated_files/ext_int.c
 [v _gInterruptFlag `Vuc ~T0 @X0 0 e ]
 "2057 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic16f1619.h
 [s S105 :3 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -26,10 +26,19 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S104 . . . ]
 "2074
 [v _OPTION_REGbits `VS104 ~T0 @X0 0 e@149 ]
-"30 mcc_generated_files/ext_int.c
-[v _gEnterFlag `Vuc ~T0 @X0 0 e ]
-"31
-[v _gExitFlag `Vuc ~T0 @X0 0 e ]
+"433
+[s S29 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S29 . RA0 RA1 RA2 RA3 RA4 RA5 ]
+"432
+[u S28 `S29 1 ]
+[n S28 . . ]
+"442
+[v _PORTAbits `VS28 ~T0 @X0 0 e@12 ]
+"24 mcc_generated_files/../bsp_counter.h
+[s S1211 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `ul 1 `ui 1 `ui 1 `ui 1 ]
+[n S1211 . TimeCntStartFlag TimeCntEndFlag AlarmFlag JamFlag DisplayReflashFlag SingleTimeCnt SmallBoxCnt MiddleBoxCnt LargeBoxCnt ]
+"31 mcc_generated_files/ext_int.c
+[v _gBoxCntStruct `S1211 ~T0 @X0 0 e ]
 [v F11964 `(v ~T0 @X0 0 tf ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
@@ -10797,142 +10806,228 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ext_int.h: 319: void INT_SetInterruptHandler(void (* InterruptHandler)(void));
 [; ;ext_int.h: 343: extern void (*INT_InterruptHandler)(void);
 [; ;ext_int.h: 367: void INT_DefaultInterruptHandler(void);
-[; ;ext_int.c: 29: extern volatile unsigned char gInterruptFlag;
-[; ;ext_int.c: 30: extern volatile unsigned char gEnterFlag;
-[; ;ext_int.c: 31: extern volatile unsigned char gExitFlag;
-"32 mcc_generated_files/ext_int.c
+[; ;pin_manager.h: 335: void PIN_MANAGER_Initialize (void);
+[; ;pin_manager.h: 347: void PIN_MANAGER_IOC(void);
+[; ;stdint.h: 13: typedef signed char int8_t;
+[; ;stdint.h: 20: typedef signed int int16_t;
+[; ;stdint.h: 28: typedef signed short long int int24_t;
+[; ;stdint.h: 36: typedef signed long int int32_t;
+[; ;stdint.h: 43: typedef unsigned char uint8_t;
+[; ;stdint.h: 49: typedef unsigned int uint16_t;
+[; ;stdint.h: 56: typedef unsigned short long int uint24_t;
+[; ;stdint.h: 63: typedef unsigned long int uint32_t;
+[; ;stdint.h: 71: typedef signed char int_least8_t;
+[; ;stdint.h: 78: typedef signed int int_least16_t;
+[; ;stdint.h: 90: typedef signed short long int int_least24_t;
+[; ;stdint.h: 98: typedef signed long int int_least32_t;
+[; ;stdint.h: 105: typedef unsigned char uint_least8_t;
+[; ;stdint.h: 111: typedef unsigned int uint_least16_t;
+[; ;stdint.h: 121: typedef unsigned short long int uint_least24_t;
+[; ;stdint.h: 128: typedef unsigned long int uint_least32_t;
+[; ;stdint.h: 137: typedef signed char int_fast8_t;
+[; ;stdint.h: 144: typedef signed int int_fast16_t;
+[; ;stdint.h: 156: typedef signed short long int int_fast24_t;
+[; ;stdint.h: 164: typedef signed long int int_fast32_t;
+[; ;stdint.h: 171: typedef unsigned char uint_fast8_t;
+[; ;stdint.h: 177: typedef unsigned int uint_fast16_t;
+[; ;stdint.h: 187: typedef unsigned short long int uint_fast24_t;
+[; ;stdint.h: 194: typedef unsigned long int uint_fast32_t;
+[; ;stdint.h: 200: typedef int32_t intmax_t;
+[; ;stdint.h: 205: typedef uint32_t uintmax_t;
+[; ;stdint.h: 210: typedef int16_t intptr_t;
+[; ;stdint.h: 215: typedef uint16_t uintptr_t;
+[; ;stdbool.h: 12: typedef unsigned char bool;
+[; ;interrupt_manager.h: 109: void interrupt INTERRUPT_InterruptManager(void);
+[; ;tmr3.h: 101: void TMR3_Initialize(void);
+[; ;tmr3.h: 130: void TMR3_StartTimer(void);
+[; ;tmr3.h: 162: void TMR3_StopTimer(void);
+[; ;tmr3.h: 197: uint16_t TMR3_ReadTimer(void);
+[; ;tmr3.h: 236: void TMR3_WriteTimer(uint16_t timerVal);
+[; ;tmr3.h: 272: void TMR3_Reload(void);
+[; ;tmr3.h: 311: void TMR3_StartSinglePulseAcquisition(void);
+[; ;tmr3.h: 350: uint8_t TMR3_CheckGateValueStatus(void);
+[; ;tmr3.h: 368: void TMR3_ISR(void);
+[; ;tmr3.h: 385: void TMR3_CallBack(void);
+[; ;tmr3.h: 403: void TMR3_SetInterruptHandler(void (* InterruptHandler)(void));
+[; ;tmr3.h: 421: extern void (*TMR3_InterruptHandler)(void);
+[; ;tmr3.h: 439: void TMR3_DefaultInterruptHandler(void);
+[; ;tmr1.h: 101: void TMR1_Initialize(void);
+[; ;tmr1.h: 130: void TMR1_StartTimer(void);
+[; ;tmr1.h: 162: void TMR1_StopTimer(void);
+[; ;tmr1.h: 197: uint16_t TMR1_ReadTimer(void);
+[; ;tmr1.h: 236: void TMR1_WriteTimer(uint16_t timerVal);
+[; ;tmr1.h: 272: void TMR1_Reload(void);
+[; ;tmr1.h: 311: void TMR1_StartSinglePulseAcquisition(void);
+[; ;tmr1.h: 350: uint8_t TMR1_CheckGateValueStatus(void);
+[; ;tmr1.h: 368: void TMR1_ISR(void);
+[; ;tmr1.h: 385: void TMR1_CallBack(void);
+[; ;tmr1.h: 403: void TMR1_SetInterruptHandler(void (* InterruptHandler)(void));
+[; ;tmr1.h: 421: extern void (*TMR1_InterruptHandler)(void);
+[; ;tmr1.h: 439: void TMR1_DefaultInterruptHandler(void);
+[; ;tmr0.h: 104: void TMR0_Initialize(void);
+[; ;tmr0.h: 135: uint8_t TMR0_ReadTimer(void);
+[; ;tmr0.h: 174: void TMR0_WriteTimer(uint8_t timerVal);
+[; ;tmr0.h: 210: void TMR0_Reload(void);
+[; ;tmr0.h: 225: void TMR0_ISR(void);
+[; ;tmr0.h: 243: void TMR0_CallBack(void);
+[; ;tmr0.h: 261: void TMR0_SetInterruptHandler(void (* InterruptHandler)(void));
+[; ;tmr0.h: 279: extern void (*TMR0_InterruptHandler)(void);
+[; ;tmr0.h: 297: void TMR0_DefaultInterruptHandler(void);
+[; ;mcc.h: 73: void SYSTEM_Initialize(void);
+[; ;mcc.h: 86: void OSCILLATOR_Initialize(void);
+[; ;bsp_counter.h: 24: typedef struct{
+[; ;bsp_counter.h: 25: unsigned char TimeCntStartFlag;
+[; ;bsp_counter.h: 26: unsigned char TimeCntEndFlag;
+[; ;bsp_counter.h: 27: unsigned char AlarmFlag;
+[; ;bsp_counter.h: 28: unsigned char JamFlag;
+[; ;bsp_counter.h: 29: unsigned char DisplayReflashFlag;
+[; ;bsp_counter.h: 30: unsigned long SingleTimeCnt;
+[; ;bsp_counter.h: 31: unsigned int SmallBoxCnt;
+[; ;bsp_counter.h: 32: unsigned int MiddleBoxCnt;
+[; ;bsp_counter.h: 33: unsigned int LargeBoxCnt;
+[; ;bsp_counter.h: 34: }BoxCntStruct;
+[; ;bsp_counter.h: 37: void bsp_CounterInit(void);
+[; ;bsp_counter.h: 38: void bsp_RA2InterruptISRCallback(void);
+[; ;bsp_counter.h: 39: void bsp_TimerInterruptISRCallback(void);
+[; ;ext_int.c: 31: extern BoxCntStruct gBoxCntStruct;
+[; ;ext_int.c: 32: extern volatile unsigned char gInterruptFlag;
+[; ;ext_int.c: 33: extern volatile unsigned char gEnterFlag;
+[; ;ext_int.c: 34: extern volatile unsigned char gExitFlag;
+"35 mcc_generated_files/ext_int.c
 [v _INT_InterruptHandler `*F11967 ~T0 @X0 1 e ]
-[; ;ext_int.c: 32: void (*INT_InterruptHandler)(void);
-"34
+[; ;ext_int.c: 35: void (*INT_InterruptHandler)(void);
+"37
 [v _INT_ISR `(v ~T0 @X0 1 ef ]
-"35
+"38
 {
-[; ;ext_int.c: 34: void INT_ISR(void)
-[; ;ext_int.c: 35: {
+[; ;ext_int.c: 37: void INT_ISR(void)
+[; ;ext_int.c: 38: {
 [e :U _INT_ISR ]
 [f ]
-[; ;ext_int.c: 36: (INTCONbits.INTF = 0);
-"36
-[e = . . _INTCONbits 0 1 -> -> 0 `i `uc ]
-[; ;ext_int.c: 39: INT_CallBack();
+[; ;ext_int.c: 39: (INTCONbits.INTF = 0);
 "39
+[e = . . _INTCONbits 0 1 -> -> 0 `i `uc ]
+[; ;ext_int.c: 42: INT_CallBack();
+"42
 [e ( _INT_CallBack ..  ]
-[; ;ext_int.c: 40: }
-"40
-[e :UE 1211 ]
-}
+[; ;ext_int.c: 43: }
 "43
-[v _INT_CallBack `(v ~T0 @X0 1 ef ]
-"44
-{
-[; ;ext_int.c: 43: void INT_CallBack(void)
-[; ;ext_int.c: 44: {
-[e :U _INT_CallBack ]
-[f ]
-[; ;ext_int.c: 46: gInterruptFlag = 1;
-"46
-[e = _gInterruptFlag -> -> 1 `i `uc ]
-[; ;ext_int.c: 47: if(1 == OPTION_REGbits.INTEDG)
-"47
-[e $ ! == -> 1 `i -> . . _OPTION_REGbits 0 4 `i 1213  ]
-[; ;ext_int.c: 48: {
-"48
-{
-[; ;ext_int.c: 49: gEnterFlag = 1;
-"49
-[e = _gEnterFlag -> -> 1 `i `uc ]
-[; ;ext_int.c: 50: gExitFlag = 0;
-"50
-[e = _gExitFlag -> -> 0 `i `uc ]
-[; ;ext_int.c: 51: (OPTION_REGbits.INTEDG = 0);
-"51
-[e = . . _OPTION_REGbits 0 4 -> -> 0 `i `uc ]
-"52
-}
-[; ;ext_int.c: 52: }
-[e $U 1214  ]
-"53
-[e :U 1213 ]
-[; ;ext_int.c: 53: else
-[; ;ext_int.c: 54: {
-"54
-{
-[; ;ext_int.c: 55: gEnterFlag = 0;
-"55
-[e = _gEnterFlag -> -> 0 `i `uc ]
-[; ;ext_int.c: 56: gExitFlag = 1;
-"56
-[e = _gExitFlag -> -> 1 `i `uc ]
-[; ;ext_int.c: 57: (OPTION_REGbits.INTEDG = 1);
-"57
-[e = . . _OPTION_REGbits 0 4 -> -> 1 `i `uc ]
-"58
-}
-[e :U 1214 ]
-[; ;ext_int.c: 58: }
-[; ;ext_int.c: 59: if(INT_InterruptHandler)
-"59
-[e $ ! != _INT_InterruptHandler -> -> 0 `i `*F11967 1215  ]
-[; ;ext_int.c: 60: {
-"60
-{
-[; ;ext_int.c: 61: INT_InterruptHandler();
-"61
-[e ( *U _INT_InterruptHandler ..  ]
-"62
-}
-[e :U 1215 ]
-[; ;ext_int.c: 62: }
-[; ;ext_int.c: 63: }
-"63
 [e :UE 1212 ]
 }
-"65
-[v _INT_SetInterruptHandler `(v ~T0 @X0 1 ef1`*F11964 ]
+"46
+[v _INT_CallBack `(v ~T0 @X0 1 ef ]
+"47
 {
-[; ;ext_int.c: 65: void INT_SetInterruptHandler(void (* InterruptHandler)(void)){
-[e :U _INT_SetInterruptHandler ]
-[v F11979 `(v ~T0 @X0 0 tf ]
-[v _InterruptHandler `*F11979 ~T0 @X0 1 r1 ]
+[; ;ext_int.c: 46: void INT_CallBack(void)
+[; ;ext_int.c: 47: {
+[e :U _INT_CallBack ]
 [f ]
-[; ;ext_int.c: 66: INT_InterruptHandler = InterruptHandler;
+[; ;ext_int.c: 49: gInterruptFlag = 1;
+"49
+[e = _gInterruptFlag -> -> 1 `i `uc ]
+[; ;ext_int.c: 50: if(1 == OPTION_REGbits.INTEDG && 1 == PORTAbits.RA2)
+"50
+[e $ ! && == -> 1 `i -> . . _OPTION_REGbits 0 4 `i == -> 1 `i -> . . _PORTAbits 0 2 `i 1214  ]
+[; ;ext_int.c: 51: {
+"51
+{
+[; ;ext_int.c: 52: gBoxCntStruct.TimeCntStartFlag = 1;
+"52
+[e = . _gBoxCntStruct 0 -> -> 1 `i `uc ]
+[; ;ext_int.c: 53: gBoxCntStruct.TimeCntEndFlag = 0;
+"53
+[e = . _gBoxCntStruct 1 -> -> 0 `i `uc ]
+[; ;ext_int.c: 55: (OPTION_REGbits.INTEDG = 0);
+"55
+[e = . . _OPTION_REGbits 0 4 -> -> 0 `i `uc ]
+"56
+}
+[; ;ext_int.c: 56: }
+[e $U 1215  ]
+"57
+[e :U 1214 ]
+[; ;ext_int.c: 57: else if(0 == OPTION_REGbits.INTEDG && 0 == PORTAbits.RA2 )
+[e $ ! && == -> 0 `i -> . . _OPTION_REGbits 0 4 `i == -> 0 `i -> . . _PORTAbits 0 2 `i 1216  ]
+[; ;ext_int.c: 58: {
+"58
+{
+[; ;ext_int.c: 59: gBoxCntStruct.TimeCntStartFlag = 0;
+"59
+[e = . _gBoxCntStruct 0 -> -> 0 `i `uc ]
+[; ;ext_int.c: 60: gBoxCntStruct.TimeCntEndFlag = 1;
+"60
+[e = . _gBoxCntStruct 1 -> -> 1 `i `uc ]
+[; ;ext_int.c: 61: (OPTION_REGbits.INTEDG = 1);
+"61
+[e = . . _OPTION_REGbits 0 4 -> -> 1 `i `uc ]
+"62
+}
+[e :U 1216 ]
+"63
+[e :U 1215 ]
+[; ;ext_int.c: 62: }
+[; ;ext_int.c: 63: if(INT_InterruptHandler)
+[e $ ! != _INT_InterruptHandler -> -> 0 `i `*F11967 1217  ]
+[; ;ext_int.c: 64: {
+"64
+{
+[; ;ext_int.c: 65: INT_InterruptHandler();
+"65
+[e ( *U _INT_InterruptHandler ..  ]
 "66
-[e = _INT_InterruptHandler _InterruptHandler ]
+}
+[e :U 1217 ]
+[; ;ext_int.c: 66: }
 [; ;ext_int.c: 67: }
 "67
-[e :UE 1216 ]
+[e :UE 1213 ]
 }
 "69
+[v _INT_SetInterruptHandler `(v ~T0 @X0 1 ef1`*F11964 ]
+{
+[; ;ext_int.c: 69: void INT_SetInterruptHandler(void (* InterruptHandler)(void)){
+[e :U _INT_SetInterruptHandler ]
+[v F12116 `(v ~T0 @X0 0 tf ]
+[v _InterruptHandler `*F12116 ~T0 @X0 1 r1 ]
+[f ]
+[; ;ext_int.c: 70: INT_InterruptHandler = InterruptHandler;
+"70
+[e = _INT_InterruptHandler _InterruptHandler ]
+[; ;ext_int.c: 71: }
+"71
+[e :UE 1218 ]
+}
+"73
 [v _INT_DefaultInterruptHandler `(v ~T0 @X0 1 ef ]
 {
-[; ;ext_int.c: 69: void INT_DefaultInterruptHandler(void){
+[; ;ext_int.c: 73: void INT_DefaultInterruptHandler(void){
 [e :U _INT_DefaultInterruptHandler ]
 [f ]
-[; ;ext_int.c: 72: }
-"72
-[e :UE 1217 ]
+[; ;ext_int.c: 76: }
+"76
+[e :UE 1219 ]
 }
-"74
+"78
 [v _EXT_INT_Initialize `(v ~T0 @X0 1 ef ]
-"75
+"79
 {
-[; ;ext_int.c: 74: void EXT_INT_Initialize(void)
-[; ;ext_int.c: 75: {
+[; ;ext_int.c: 78: void EXT_INT_Initialize(void)
+[; ;ext_int.c: 79: {
 [e :U _EXT_INT_Initialize ]
 [f ]
-[; ;ext_int.c: 79: (INTCONbits.INTF = 0);
-"79
-[e = . . _INTCONbits 0 1 -> -> 0 `i `uc ]
-[; ;ext_int.c: 80: (OPTION_REGbits.INTEDG = 1);
-"80
-[e = . . _OPTION_REGbits 0 4 -> -> 1 `i `uc ]
-[; ;ext_int.c: 82: INT_SetInterruptHandler(INT_DefaultInterruptHandler);
-"82
-[e ( _INT_SetInterruptHandler (1 &U _INT_DefaultInterruptHandler ]
-[; ;ext_int.c: 83: (INTCONbits.INTE = 1);
+[; ;ext_int.c: 83: (INTCONbits.INTF = 0);
 "83
+[e = . . _INTCONbits 0 1 -> -> 0 `i `uc ]
+[; ;ext_int.c: 84: (OPTION_REGbits.INTEDG = 1);
+"84
+[e = . . _OPTION_REGbits 0 4 -> -> 1 `i `uc ]
+[; ;ext_int.c: 86: INT_SetInterruptHandler(INT_DefaultInterruptHandler);
+"86
+[e ( _INT_SetInterruptHandler (1 &U _INT_DefaultInterruptHandler ]
+[; ;ext_int.c: 87: (INTCONbits.INTE = 1);
+"87
 [e = . . _INTCONbits 0 4 -> -> 1 `i `uc ]
-[; ;ext_int.c: 85: }
-"85
-[e :UE 1218 ]
+[; ;ext_int.c: 89: }
+"89
+[e :UE 1220 ]
 }

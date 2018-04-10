@@ -55,14 +55,100 @@ volatile unsigned char  gTimer0NormalFalshCnt;
 volatile unsigned char  gTimer0NormalFlashFlag;
 volatile unsigned char  gTimer0AlarmFlashFlag;
 
+volatile unsigned char  gTimer3Flag;
+
 BoxCntStruct gBoxCntStruct;
 
+void LCDSendData(int RS, uint8_t value)
+{
+    D0_LAT = value & 1;
+    D1_LAT = (value & 2) >> 1;
+    D2_LAT = (value & 4) >> 2;
+    D3_LAT = (value & 8) >> 3;
+    D4_LAT = (value & 16) >> 4;
+    D5_LAT = (value & 32) >> 5;
+    D6_LAT = (value & 64) >> 6;
+    D7_LAT = (value & 128) >> 7; 
+    if(RS > 0)
+    {
+        RS_LAT = 1;
+    }
+    else
+    {
+        RS_LAT = 0;
+    }
+    EN_SetHigh();
+    __delay_ms(1);
+    EN_SetLow();
+    __delay_ms(10); 
+}
+
+void LCDInit()
+{
+    EN_LAT = 0;
+    RS_LAT = 0;
+    D0_LAT = 0;
+    D1_LAT = 0;
+    D2_LAT = 0;
+    D3_LAT = 0;
+    D4_LAT = 0;
+    D5_LAT = 0;
+    D6_LAT = 0;
+    D7_LAT = 0; 
+
+    __delay_ms(50);
+    LCDSendData(0, 0b00111000);
+    
+    // Send second init command as per data sheet instructions (Function Set)
+    __delay_ms(50);
+    LCDSendData(0, 0b00111000);
+    
+    // Send third init command as per data sheet instructions (Function Set)
+    __delay_ms(50);
+    LCDSendData(0, 0b00111000);
+    
+   // Send fourth init package as per data sheet instructions 
+    __delay_ms(50);
+    LCDSendData(0, 0b00111000); //Function Set
+    LCDSendData(0, 0b00001111); //Display Off
+    LCDSendData(0, 0b00000001); //Display Clear
+    LCDSendData(0, 0b00000110); //Entry Mode Set
+}
+uint8_t display_data_1[]={"S:   M:   L:   "};
+uint8_t display_data_2[]={"State:Safe"};
+uint8_t display_data_2_alarm[] = {"State:Alarm"};
+uint8_t display_data_2_jam[] = {"State:Jam & Alarm"};
+void Print(uint8_t *str)
+{
+    while(*str !='\0')
+    {
+        LCDSendData(1,*str);
+        str++;
+        __delay_ms(1);
+    }
+}
+
+void Data_Toseg()
+{
+    display_data_1[2] = (gBoxCntStruct.SmallBoxCnt%1000/100)+0x30;
+    display_data_1[3] = (gBoxCntStruct.SmallBoxCnt%100/10)+0x30;
+    display_data_1[4] = (gBoxCntStruct.SmallBoxCnt%10)+0x30;
+    
+    display_data_1[7] = (gBoxCntStruct.MiddleBoxCnt%1000/100)+0x30;
+    display_data_1[8] = (gBoxCntStruct.MiddleBoxCnt%100/10)+0x30;
+    display_data_1[9] = (gBoxCntStruct.MiddleBoxCnt%10)+0x30;
+    
+    display_data_1[12] = (gBoxCntStruct.LargeBoxCnt%1000/100)+0x30;
+    display_data_1[13] = (gBoxCntStruct.LargeBoxCnt%100/10)+0x30;
+    display_data_1[14] = (gBoxCntStruct.LargeBoxCnt%10)+0x30;
+}
 
 void main(void)
 {
     // initialize the device
     SYSTEM_Initialize();
-
+    bsp_CounterInit();
+    LCDInit();
     // When using interrupts, you need to set the Global and Peripheral Interrupt Enable bits
     // Use the following macros to:
 
@@ -77,20 +163,79 @@ void main(void)
 
     // Disable the Peripheral Interrupts
     //INTERRUPT_PeripheralInterruptDisable();
+    
+        LCDSendData(0, 0b10000000); //set cursor to start of 1nd line
+        Print(display_data_1);
+        __delay_ms(1000);
+        LCDSendData(0, 0b11000000); //set cursor to start of 2nd line
+         Print(display_data_2);
+         Key_SetDigitalInput();
 
     while (1)
     {
         // Add your application code
         if(gInterruptFlag)
        {
-             LED1_Toggle();
-            gInterruptFlag = 0;
+            //LED1_Toggle();
+            gInterruptFlag = 0;  
+        }
+        
+        if(0 == Key_LAT)
+        {
+            __delay_ms(5);
+            if(0 == Key_LAT)
+            {
+                gBoxCntStruct.AlarmFlag = 0;
+                gBoxCntStruct.JamFlag = 0;
+            }
         }
         
         if(gTimer0NormalFlashFlag)
         {
             gTimer0NormalFlashFlag = 0;
-            LED2_Toggle();
+            
+             LED1_Toggle();
+             if(0 == gBoxCntStruct.AlarmFlag)
+             {
+                LED2_LAT = ~LED1_LAT; 
+             }
+        }
+        if(1 == gTimer0AlarmFlashFlag)
+        {
+            gTimer0AlarmFlashFlag = 0;
+            if(1 == gBoxCntStruct.AlarmFlag)
+            {
+               LED2_LAT = ~LED2_LAT;
+            }
+        }
+        
+//        bsp_RA2InterruptISRCallback();    
+//        if(gTimer3Flag)
+//        {
+//            gTimer3Flag = 0;
+//            bsp_TimerInterruptISRCallback();
+//        }
+        
+        if(gBoxCntStruct.DisplayReflashFlag)
+        {
+            //LED2_Toggle();
+            gBoxCntStruct.DisplayReflashFlag = 0;
+            Data_Toseg();
+            LCDSendData(0, 0b10000000); //set cursor to start of 1nd line
+            Print(display_data_1);
+            LCDSendData(0, 0b11000000); //set cursor to start of 2nd line
+            if(0 == gBoxCntStruct.AlarmFlag && 0 == gBoxCntStruct.JamFlag)
+            {
+                Print(display_data_2);
+            }
+            if(1 == gBoxCntStruct.AlarmFlag && 0 == gBoxCntStruct.JamFlag)
+            {
+                Print(display_data_2_alarm);
+            }
+            if(1 == gBoxCntStruct.JamFlag)
+            {
+                Print(display_data_2_jam);
+            }
         }
         
     }

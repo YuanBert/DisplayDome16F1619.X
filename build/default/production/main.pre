@@ -14848,6 +14848,7 @@ unsigned char TimeCntStartFlag;
 unsigned char TimeCntEndFlag;
 unsigned char AlarmFlag;
 unsigned char JamFlag;
+unsigned char DisplayReflashFlag;
 unsigned long SingleTimeCnt;
 unsigned int SmallBoxCnt;
 unsigned int MiddleBoxCnt;
@@ -14868,34 +14869,176 @@ volatile unsigned char gTimer0NormalFalshCnt;
 volatile unsigned char gTimer0NormalFlashFlag;
 volatile unsigned char gTimer0AlarmFlashFlag;
 
+volatile unsigned char gTimer3Flag;
+
 BoxCntStruct gBoxCntStruct;
 
+void LCDSendData(int RS, uint8_t value)
+{
+LATBbits.LATB5 = value & 1;
+LATCbits.LATC1 = (value & 2) >> 1;
+LATCbits.LATC2 = (value & 4) >> 2;
+LATCbits.LATC3 = (value & 8) >> 3;
+LATCbits.LATC4 = (value & 16) >> 4;
+LATCbits.LATC5 = (value & 32) >> 5;
+LATCbits.LATC6 = (value & 64) >> 6;
+LATCbits.LATC7 = (value & 128) >> 7;
+if(RS > 0)
+{
+LATBbits.LATB7 = 1;
+}
+else
+{
+LATBbits.LATB7 = 0;
+}
+do { LATBbits.LATB6 = 1; } while(0);
+_delay((unsigned long)((1)*(2000000/4000.0)));
+do { LATBbits.LATB6 = 0; } while(0);
+_delay((unsigned long)((10)*(2000000/4000.0)));
+}
+
+void LCDInit()
+{
+LATBbits.LATB6 = 0;
+LATBbits.LATB7 = 0;
+LATBbits.LATB5 = 0;
+LATCbits.LATC1 = 0;
+LATCbits.LATC2 = 0;
+LATCbits.LATC3 = 0;
+LATCbits.LATC4 = 0;
+LATCbits.LATC5 = 0;
+LATCbits.LATC6 = 0;
+LATCbits.LATC7 = 0;
+
+_delay((unsigned long)((50)*(2000000/4000.0)));
+LCDSendData(0, 0b00111000);
+
+
+_delay((unsigned long)((50)*(2000000/4000.0)));
+LCDSendData(0, 0b00111000);
+
+
+_delay((unsigned long)((50)*(2000000/4000.0)));
+LCDSendData(0, 0b00111000);
+
+
+_delay((unsigned long)((50)*(2000000/4000.0)));
+LCDSendData(0, 0b00111000);
+LCDSendData(0, 0b00001111);
+LCDSendData(0, 0b00000001);
+LCDSendData(0, 0b00000110);
+}
+uint8_t display_data_1[]={"S:   M:   L:   "};
+uint8_t display_data_2[]={"State:Safe"};
+uint8_t display_data_2_alarm[] = {"State:Alarm"};
+uint8_t display_data_2_jam[] = {"State:Jam & Alarm"};
+void Print(uint8_t *str)
+{
+while(*str !='\0')
+{
+LCDSendData(1,*str);
+str++;
+_delay((unsigned long)((1)*(2000000/4000.0)));
+}
+}
+
+void Data_Toseg()
+{
+display_data_1[2] = (gBoxCntStruct.SmallBoxCnt%1000/100)+0x30;
+display_data_1[3] = (gBoxCntStruct.SmallBoxCnt%100/10)+0x30;
+display_data_1[4] = (gBoxCntStruct.SmallBoxCnt%10)+0x30;
+
+display_data_1[7] = (gBoxCntStruct.MiddleBoxCnt%1000/100)+0x30;
+display_data_1[8] = (gBoxCntStruct.MiddleBoxCnt%100/10)+0x30;
+display_data_1[9] = (gBoxCntStruct.MiddleBoxCnt%10)+0x30;
+
+display_data_1[12] = (gBoxCntStruct.LargeBoxCnt%1000/100)+0x30;
+display_data_1[13] = (gBoxCntStruct.LargeBoxCnt%100/10)+0x30;
+display_data_1[14] = (gBoxCntStruct.LargeBoxCnt%10)+0x30;
+}
 
 void main(void)
 {
 
 SYSTEM_Initialize();
+bsp_CounterInit();
+LCDInit();
 
-# 70
+
+
+
 (INTCONbits.GIE = 1);
 
 
 (INTCONbits.PEIE = 1);
 
-# 81
+# 167
+LCDSendData(0, 0b10000000);
+Print(display_data_1);
+_delay((unsigned long)((1000)*(2000000/4000.0)));
+LCDSendData(0, 0b11000000);
+Print(display_data_2);
+do { TRISAbits.TRISA1 = 1; } while(0);
+
 while (1)
 {
 
 if(gInterruptFlag)
 {
-do { LATAbits.LATA4 = ~LATAbits.LATA4; } while(0);
+
 gInterruptFlag = 0;
+}
+
+if(0 == LATAbits.LATA1)
+{
+_delay((unsigned long)((5)*(2000000/4000.0)));
+if(0 == LATAbits.LATA1)
+{
+gBoxCntStruct.AlarmFlag = 0;
+gBoxCntStruct.JamFlag = 0;
+}
 }
 
 if(gTimer0NormalFlashFlag)
 {
 gTimer0NormalFlashFlag = 0;
-do { LATAbits.LATA5 = ~LATAbits.LATA5; } while(0);
+
+do { LATAbits.LATA4 = ~LATAbits.LATA4; } while(0);
+if(0 == gBoxCntStruct.AlarmFlag)
+{
+LATAbits.LATA5 = ~LATAbits.LATA4;
+}
+}
+if(1 == gTimer0AlarmFlashFlag)
+{
+gTimer0AlarmFlashFlag = 0;
+if(1 == gBoxCntStruct.AlarmFlag)
+{
+LATAbits.LATA5 = ~LATAbits.LATA5;
+}
+}
+
+# 219
+if(gBoxCntStruct.DisplayReflashFlag)
+{
+
+gBoxCntStruct.DisplayReflashFlag = 0;
+Data_Toseg();
+LCDSendData(0, 0b10000000);
+Print(display_data_1);
+LCDSendData(0, 0b11000000);
+if(0 == gBoxCntStruct.AlarmFlag && 0 == gBoxCntStruct.JamFlag)
+{
+Print(display_data_2);
+}
+if(1 == gBoxCntStruct.AlarmFlag && 0 == gBoxCntStruct.JamFlag)
+{
+Print(display_data_2_alarm);
+}
+if(1 == gBoxCntStruct.JamFlag)
+{
+Print(display_data_2_jam);
+}
 }
 
 }

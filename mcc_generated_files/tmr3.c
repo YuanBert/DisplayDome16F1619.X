@@ -50,10 +50,13 @@
 
 #include <xc.h>
 #include "tmr3.h"
+#include "../../DisplayDome16F1619.X/bsp_counter.h"
 
 /**
   Section: Global Variables Definitions
 */
+extern BoxCntStruct gBoxCntStruct;
+extern volatile unsigned char  gTimer3Flag;
 volatile uint16_t timer3ReloadVal;
 void (*TMR3_InterruptHandler)(void);
 
@@ -169,6 +172,7 @@ void TMR3_ISR(void)
 void TMR3_CallBack(void)
 {
     // Add your custom callback code here
+    bsp_TimerInterruptISRCallback();
     if(TMR3_InterruptHandler)
     {
         TMR3_InterruptHandler();

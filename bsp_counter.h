@@ -15,17 +15,18 @@ extern "C" {
 #include "mcc_generated_files/mcc.h"
     
     
-#define     SMALLBOXSIZE        1000
-#define     MIDDLEBOXSIZE       1500
-#define     LARGEBOXSIZE        2000
-#define     ALARMBOXSIZE        2500
-#define     JAMSIZE             3000
+#define     SMALLBOXSIZE        500
+#define     MIDDLEBOXSIZE       1050
+#define     LARGEBOXSIZE        1500
+#define     ALARMBOXSIZE        2000
+#define     JAMSIZE             8500
 
     typedef struct{
         unsigned char TimeCntStartFlag;
         unsigned char TimeCntEndFlag;
         unsigned char AlarmFlag;
         unsigned char JamFlag;
+        unsigned char DisplayReflashFlag;
         unsigned long SingleTimeCnt;
         unsigned int  SmallBoxCnt;
         unsigned int  MiddleBoxCnt;

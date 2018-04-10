@@ -26,6 +26,9 @@
  */
 #include <xc.h>
 #include "ext_int.h"
+#include"../bsp_counter.h"
+
+extern BoxCntStruct gBoxCntStruct;
 extern volatile unsigned char gInterruptFlag;
 extern volatile unsigned char gEnterFlag;
 extern volatile unsigned char gExitFlag;
@@ -44,16 +47,17 @@ void INT_CallBack(void)
 {
     // Add your custom callback code here
     gInterruptFlag = 1;
-    if(1 == OPTION_REGbits.INTEDG)
-    {
-        gEnterFlag = 1;
-        gExitFlag = 0;
+    if(1 == OPTION_REGbits.INTEDG && 1 == PORTAbits.RA2)
+    {   
+        gBoxCntStruct.TimeCntStartFlag = 1;
+        gBoxCntStruct.TimeCntEndFlag = 0;
+        
         EXT_INT_fallingEdgeSet();
     }
-    else
+    else if(0 == OPTION_REGbits.INTEDG && 0 == PORTAbits.RA2 )
     {
-        gEnterFlag = 0;
-        gExitFlag = 1;
+        gBoxCntStruct.TimeCntStartFlag = 0;
+        gBoxCntStruct.TimeCntEndFlag = 1;
         EXT_INT_risingEdgeSet();
     }
     if(INT_InterruptHandler)
