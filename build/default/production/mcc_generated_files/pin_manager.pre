@@ -14630,7 +14630,7 @@ LATB = 0xE0;
 LATC = 0xFE;
 
 # 69
-TRISA = 0x07;
+TRISA = 0x05;
 TRISB = 0x10;
 TRISC = 0x01;
 
@@ -14650,7 +14650,10 @@ ODCONA = 0x00;
 ODCONB = 0x00;
 ODCONC = 0x00;
 
-# 102
+# 101
+INTCONbits.IOCIE = 1;
+
+
 INTPPS = 0x02;
 }
 

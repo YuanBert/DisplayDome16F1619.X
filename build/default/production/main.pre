@@ -14752,6 +14752,24 @@ extern void (*TMR3_InterruptHandler)(void);
 # 439
 void TMR3_DefaultInterruptHandler(void);
 
+# 250 "mcc_generated_files/ext_int.h"
+void EXT_INT_Initialize(void);
+
+# 272
+void INT_ISR(void);
+
+# 296
+void INT_CallBack(void);
+
+# 319
+void INT_SetInterruptHandler(void (* InterruptHandler)(void));
+
+# 343
+extern void (*INT_InterruptHandler)(void);
+
+# 367
+void INT_DefaultInterruptHandler(void);
+
 # 101 "mcc_generated_files/tmr1.h"
 void TMR1_Initialize(void);
 
@@ -14790,24 +14808,6 @@ extern void (*TMR1_InterruptHandler)(void);
 
 # 439
 void TMR1_DefaultInterruptHandler(void);
-
-# 250 "mcc_generated_files/ext_int.h"
-void EXT_INT_Initialize(void);
-
-# 272
-void INT_ISR(void);
-
-# 296
-void INT_CallBack(void);
-
-# 319
-void INT_SetInterruptHandler(void (* InterruptHandler)(void));
-
-# 343
-extern void (*INT_InterruptHandler)(void);
-
-# 367
-void INT_DefaultInterruptHandler(void);
 
 # 104 "mcc_generated_files/tmr0.h"
 void TMR0_Initialize(void);
@@ -14853,6 +14853,8 @@ unsigned long SingleTimeCnt;
 unsigned int SmallBoxCnt;
 unsigned int MiddleBoxCnt;
 unsigned int LargeBoxCnt;
+unsigned int JamCnt;
+unsigned long BoxSum;
 }BoxCntStruct;
 
 
@@ -14928,10 +14930,10 @@ LCDSendData(0, 0b00001111);
 LCDSendData(0, 0b00000001);
 LCDSendData(0, 0b00000110);
 }
-uint8_t display_data_1[]={"S:   M:   L:   "};
-uint8_t display_data_2[]={"State:Safe"};
-uint8_t display_data_2_alarm[] = {"State:Alarm"};
-uint8_t display_data_2_jam[] = {"State:Jam & Alarm"};
+uint8_t display_data_1[]={"S:000M:000L:000"};
+uint8_t display_data_2[]={"Z:000G:000"};
+
+
 void Print(uint8_t *str)
 {
 while(*str !='\0')
@@ -14955,6 +14957,14 @@ display_data_1[9] = (gBoxCntStruct.MiddleBoxCnt%10)+0x30;
 display_data_1[12] = (gBoxCntStruct.LargeBoxCnt%1000/100)+0x30;
 display_data_1[13] = (gBoxCntStruct.LargeBoxCnt%100/10)+0x30;
 display_data_1[14] = (gBoxCntStruct.LargeBoxCnt%10)+0x30;
+
+display_data_2[2] = (gBoxCntStruct.BoxSum%1000/100)+0x30;
+display_data_2[3] = (gBoxCntStruct.BoxSum%100/10)+0x30;
+display_data_2[4] = (gBoxCntStruct.BoxSum%10)+0x30;
+
+display_data_2[7] = (gBoxCntStruct.JamCnt%1000/100)+0x30;
+display_data_2[8] = (gBoxCntStruct.JamCnt%100/10)+0x30;
+display_data_2[9] = (gBoxCntStruct.JamCnt%10)+0x30;
 }
 
 void main(void)
@@ -14972,13 +14982,12 @@ LCDInit();
 
 (INTCONbits.PEIE = 1);
 
-# 167
+# 175
 LCDSendData(0, 0b10000000);
 Print(display_data_1);
 _delay((unsigned long)((1000)*(2000000/4000.0)));
 LCDSendData(0, 0b11000000);
 Print(display_data_2);
-do { TRISAbits.TRISA1 = 1; } while(0);
 
 while (1)
 {
@@ -14989,10 +14998,10 @@ if(gInterruptFlag)
 gInterruptFlag = 0;
 }
 
-if(0 == LATAbits.LATA1)
+if(0 == PORTAbits.RA1 )
 {
 _delay((unsigned long)((5)*(2000000/4000.0)));
-if(0 == LATAbits.LATA1)
+if(0 == PORTAbits.RA1 )
 {
 gBoxCntStruct.AlarmFlag = 0;
 gBoxCntStruct.JamFlag = 0;
@@ -15018,7 +15027,7 @@ LATAbits.LATA5 = ~LATAbits.LATA5;
 }
 }
 
-# 219
+# 226
 if(gBoxCntStruct.DisplayReflashFlag)
 {
 
@@ -15027,18 +15036,11 @@ Data_Toseg();
 LCDSendData(0, 0b10000000);
 Print(display_data_1);
 LCDSendData(0, 0b11000000);
-if(0 == gBoxCntStruct.AlarmFlag && 0 == gBoxCntStruct.JamFlag)
-{
+
+
 Print(display_data_2);
-}
-if(1 == gBoxCntStruct.AlarmFlag && 0 == gBoxCntStruct.JamFlag)
-{
-Print(display_data_2_alarm);
-}
-if(1 == gBoxCntStruct.JamFlag)
-{
-Print(display_data_2_jam);
-}
+
+# 246
 }
 
 }

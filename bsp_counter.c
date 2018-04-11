@@ -10,6 +10,7 @@ void bsp_CounterInit(void)
     gBoxCntStruct.LargeBoxCnt = 0;
     gBoxCntStruct.MiddleBoxCnt = 0;
     gBoxCntStruct.SmallBoxCnt = 0;
+    gBoxCntStruct.BoxSum = 0;
     gBoxCntStruct.SingleTimeCnt = 0;
     gBoxCntStruct.TimeCntEndFlag = 0;
     gBoxCntStruct.TimeCntStartFlag = 0;
@@ -45,8 +46,10 @@ void bsp_TimerInterruptISRCallback(void)
         gBoxCntStruct.SingleTimeCnt++;
         if(JAMSIZE < gBoxCntStruct.SingleTimeCnt)
         {
+            
             gBoxCntStruct.JamFlag = 1;
             gBoxCntStruct.AlarmFlag = 1;
+            gBoxCntStruct.JamCnt ++;
             gBoxCntStruct.SingleTimeCnt = 0;
             gBoxCntStruct.TimeCntEndFlag = 0;
             gBoxCntStruct.TimeCntStartFlag = 0;
@@ -62,24 +65,25 @@ void bsp_TimerInterruptISRCallback(void)
         gBoxCntStruct.TimeCntEndFlag = 0;
         gBoxCntStruct.TimeCntStartFlag = 0;
         
-        if(10 > gBoxCntStruct.SingleTimeCnt)
+        if(100 > gBoxCntStruct.SingleTimeCnt)
         {
             gBoxCntStruct.SingleTimeCnt = 0;
             return;
         }
-        
         gBoxCntStruct.DisplayReflashFlag = 1;
         
-        if(LARGEBOXSIZE < gBoxCntStruct.SingleTimeCnt)
-        {
-            gBoxCntStruct.AlarmFlag = 1;
-            gBoxCntStruct.SingleTimeCnt = 0;
-            return;
-        }
+        
+//        if(LARGEBOXSIZE < gBoxCntStruct.SingleTimeCnt)
+//        {
+//            gBoxCntStruct.AlarmFlag = 1;
+//            gBoxCntStruct.SingleTimeCnt = 0;
+//            return;
+//        }
         
         if(SMALLBOXSIZE < gBoxCntStruct.SingleTimeCnt && MIDDLEBOXSIZE > gBoxCntStruct.SingleTimeCnt)
         {
             gBoxCntStruct.MiddleBoxCnt++;
+            gBoxCntStruct.BoxSum++;
             gBoxCntStruct.SingleTimeCnt = 0;
             return;
         }
@@ -87,6 +91,7 @@ void bsp_TimerInterruptISRCallback(void)
         if(MIDDLEBOXSIZE < gBoxCntStruct.SingleTimeCnt && LARGEBOXSIZE > gBoxCntStruct.SingleTimeCnt)
         {
             gBoxCntStruct.LargeBoxCnt++;
+            gBoxCntStruct.BoxSum++;
             gBoxCntStruct.SingleTimeCnt = 0;
             return ;
         }
@@ -94,6 +99,7 @@ void bsp_TimerInterruptISRCallback(void)
         if(SMALLBOXSIZE > gBoxCntStruct.SingleTimeCnt)
         {
             gBoxCntStruct.SmallBoxCnt++;
+            gBoxCntStruct.BoxSum++;
             gBoxCntStruct.SingleTimeCnt = 0;
             return;
         } 

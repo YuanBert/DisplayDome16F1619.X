@@ -14752,6 +14752,24 @@ extern void (*TMR3_InterruptHandler)(void);
 # 439
 void TMR3_DefaultInterruptHandler(void);
 
+# 250 "mcc_generated_files/ext_int.h"
+void EXT_INT_Initialize(void);
+
+# 272
+void INT_ISR(void);
+
+# 296
+void INT_CallBack(void);
+
+# 319
+void INT_SetInterruptHandler(void (* InterruptHandler)(void));
+
+# 343
+extern void (*INT_InterruptHandler)(void);
+
+# 367
+void INT_DefaultInterruptHandler(void);
+
 # 101 "mcc_generated_files/tmr1.h"
 void TMR1_Initialize(void);
 
@@ -14790,24 +14808,6 @@ extern void (*TMR1_InterruptHandler)(void);
 
 # 439
 void TMR1_DefaultInterruptHandler(void);
-
-# 250 "mcc_generated_files/ext_int.h"
-void EXT_INT_Initialize(void);
-
-# 272
-void INT_ISR(void);
-
-# 296
-void INT_CallBack(void);
-
-# 319
-void INT_SetInterruptHandler(void (* InterruptHandler)(void));
-
-# 343
-extern void (*INT_InterruptHandler)(void);
-
-# 367
-void INT_DefaultInterruptHandler(void);
 
 # 104 "mcc_generated_files/tmr0.h"
 void TMR0_Initialize(void);
@@ -14853,6 +14853,10 @@ TMR0_ISR();
 else if(INTCONbits.INTE == 1 && INTCONbits.INTF == 1)
 {
 INT_ISR();
+}
+else if(INTCONbits.IOCIE == 1 && INTCONbits.IOCIF == 1)
+{
+PIN_MANAGER_IOC();
 }
 else if(INTCONbits.PEIE == 1)
 {

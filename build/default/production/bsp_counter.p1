@@ -1,7 +1,7 @@
 Version 3.2 HI-TECH Software Intermediate Code
 "24 bsp_counter.h
-[s S1211 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `ul 1 `ui 1 `ui 1 `ui 1 ]
-[n S1211 . TimeCntStartFlag TimeCntEndFlag AlarmFlag JamFlag DisplayReflashFlag SingleTimeCnt SmallBoxCnt MiddleBoxCnt LargeBoxCnt ]
+[s S1211 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `ul 1 `ui 1 `ui 1 `ui 1 `ui 1 `ul 1 ]
+[n S1211 . TimeCntStartFlag TimeCntEndFlag AlarmFlag JamFlag DisplayReflashFlag SingleTimeCnt SmallBoxCnt MiddleBoxCnt LargeBoxCnt JamCnt BoxSum ]
 "3 bsp_counter.c
 [v _gBoxCntStruct `S1211 ~T0 @X0 0 e ]
 "4
@@ -10813,6 +10813,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr3.h: 403: void TMR3_SetInterruptHandler(void (* InterruptHandler)(void));
 [; ;tmr3.h: 421: extern void (*TMR3_InterruptHandler)(void);
 [; ;tmr3.h: 439: void TMR3_DefaultInterruptHandler(void);
+[; ;ext_int.h: 250: void EXT_INT_Initialize(void);
+[; ;ext_int.h: 272: void INT_ISR(void);
+[; ;ext_int.h: 296: void INT_CallBack(void);
+[; ;ext_int.h: 319: void INT_SetInterruptHandler(void (* InterruptHandler)(void));
+[; ;ext_int.h: 343: extern void (*INT_InterruptHandler)(void);
+[; ;ext_int.h: 367: void INT_DefaultInterruptHandler(void);
 [; ;tmr1.h: 101: void TMR1_Initialize(void);
 [; ;tmr1.h: 130: void TMR1_StartTimer(void);
 [; ;tmr1.h: 162: void TMR1_StopTimer(void);
@@ -10826,12 +10832,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr1.h: 403: void TMR1_SetInterruptHandler(void (* InterruptHandler)(void));
 [; ;tmr1.h: 421: extern void (*TMR1_InterruptHandler)(void);
 [; ;tmr1.h: 439: void TMR1_DefaultInterruptHandler(void);
-[; ;ext_int.h: 250: void EXT_INT_Initialize(void);
-[; ;ext_int.h: 272: void INT_ISR(void);
-[; ;ext_int.h: 296: void INT_CallBack(void);
-[; ;ext_int.h: 319: void INT_SetInterruptHandler(void (* InterruptHandler)(void));
-[; ;ext_int.h: 343: extern void (*INT_InterruptHandler)(void);
-[; ;ext_int.h: 367: void INT_DefaultInterruptHandler(void);
 [; ;tmr0.h: 104: void TMR0_Initialize(void);
 [; ;tmr0.h: 135: uint8_t TMR0_ReadTimer(void);
 [; ;tmr0.h: 174: void TMR0_WriteTimer(uint8_t timerVal);
@@ -10853,10 +10853,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;bsp_counter.h: 31: unsigned int SmallBoxCnt;
 [; ;bsp_counter.h: 32: unsigned int MiddleBoxCnt;
 [; ;bsp_counter.h: 33: unsigned int LargeBoxCnt;
-[; ;bsp_counter.h: 34: }BoxCntStruct;
-[; ;bsp_counter.h: 37: void bsp_CounterInit(void);
-[; ;bsp_counter.h: 38: void bsp_RA2InterruptISRCallback(void);
-[; ;bsp_counter.h: 39: void bsp_TimerInterruptISRCallback(void);
+[; ;bsp_counter.h: 34: unsigned int JamCnt;
+[; ;bsp_counter.h: 35: unsigned long BoxSum;
+[; ;bsp_counter.h: 36: }BoxCntStruct;
+[; ;bsp_counter.h: 39: void bsp_CounterInit(void);
+[; ;bsp_counter.h: 40: void bsp_RA2InterruptISRCallback(void);
+[; ;bsp_counter.h: 41: void bsp_TimerInterruptISRCallback(void);
 [; ;bsp_counter.c: 3: extern BoxCntStruct gBoxCntStruct;
 [; ;bsp_counter.c: 4: extern volatile unsigned char gEnterFlag;
 [; ;bsp_counter.c: 5: extern volatile unsigned char gExitFlag;
@@ -10883,255 +10885,251 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;bsp_counter.c: 12: gBoxCntStruct.SmallBoxCnt = 0;
 "12
 [e = . _gBoxCntStruct 6 -> -> 0 `i `ui ]
-[; ;bsp_counter.c: 13: gBoxCntStruct.SingleTimeCnt = 0;
+[; ;bsp_counter.c: 13: gBoxCntStruct.BoxSum = 0;
 "13
-[e = . _gBoxCntStruct 5 -> -> -> 0 `i `l `ul ]
-[; ;bsp_counter.c: 14: gBoxCntStruct.TimeCntEndFlag = 0;
+[e = . _gBoxCntStruct 10 -> -> -> 0 `i `l `ul ]
+[; ;bsp_counter.c: 14: gBoxCntStruct.SingleTimeCnt = 0;
 "14
-[e = . _gBoxCntStruct 1 -> -> 0 `i `uc ]
-[; ;bsp_counter.c: 15: gBoxCntStruct.TimeCntStartFlag = 0;
+[e = . _gBoxCntStruct 5 -> -> -> 0 `i `l `ul ]
+[; ;bsp_counter.c: 15: gBoxCntStruct.TimeCntEndFlag = 0;
 "15
-[e = . _gBoxCntStruct 0 -> -> 0 `i `uc ]
-[; ;bsp_counter.c: 16: gBoxCntStruct.DisplayReflashFlag = 0;
+[e = . _gBoxCntStruct 1 -> -> 0 `i `uc ]
+[; ;bsp_counter.c: 16: gBoxCntStruct.TimeCntStartFlag = 0;
 "16
-[e = . _gBoxCntStruct 4 -> -> 0 `i `uc ]
-[; ;bsp_counter.c: 17: }
+[e = . _gBoxCntStruct 0 -> -> 0 `i `uc ]
+[; ;bsp_counter.c: 17: gBoxCntStruct.DisplayReflashFlag = 0;
 "17
+[e = . _gBoxCntStruct 4 -> -> 0 `i `uc ]
+[; ;bsp_counter.c: 18: }
+"18
 [e :UE 1212 ]
 }
-"18
-[v _bsp_RA2InterruptISRCallback `(v ~T0 @X0 1 ef ]
 "19
+[v _bsp_RA2InterruptISRCallback `(v ~T0 @X0 1 ef ]
+"20
 {
-[; ;bsp_counter.c: 18: void bsp_RA2InterruptISRCallback(void)
-[; ;bsp_counter.c: 19: {
+[; ;bsp_counter.c: 19: void bsp_RA2InterruptISRCallback(void)
+[; ;bsp_counter.c: 20: {
 [e :U _bsp_RA2InterruptISRCallback ]
 [f ]
-[; ;bsp_counter.c: 20: if(gEnterFlag && 0 == gExitFlag)
-"20
-[e $ ! && != -> _gEnterFlag `i -> -> -> 0 `i `Vuc `i == -> 0 `i -> _gExitFlag `i 1214  ]
-[; ;bsp_counter.c: 21: {
+[; ;bsp_counter.c: 21: if(gEnterFlag && 0 == gExitFlag)
 "21
-{
-[; ;bsp_counter.c: 22: gBoxCntStruct.TimeCntStartFlag = 1;
+[e $ ! && != -> _gEnterFlag `i -> -> -> 0 `i `Vuc `i == -> 0 `i -> _gExitFlag `i 1214  ]
+[; ;bsp_counter.c: 22: {
 "22
-[e = . _gBoxCntStruct 0 -> -> 1 `i `uc ]
-[; ;bsp_counter.c: 23: gBoxCntStruct.TimeCntEndFlag = 0;
+{
+[; ;bsp_counter.c: 23: gBoxCntStruct.TimeCntStartFlag = 1;
 "23
-[e = . _gBoxCntStruct 1 -> -> 0 `i `uc ]
-[; ;bsp_counter.c: 24: gEnterFlag = 0;
+[e = . _gBoxCntStruct 0 -> -> 1 `i `uc ]
+[; ;bsp_counter.c: 24: gBoxCntStruct.TimeCntEndFlag = 0;
 "24
-[e = _gEnterFlag -> -> 0 `i `uc ]
-[; ;bsp_counter.c: 25: gExitFlag = 0;
+[e = . _gBoxCntStruct 1 -> -> 0 `i `uc ]
+[; ;bsp_counter.c: 25: gEnterFlag = 0;
 "25
-[e = _gExitFlag -> -> 0 `i `uc ]
+[e = _gEnterFlag -> -> 0 `i `uc ]
+[; ;bsp_counter.c: 26: gExitFlag = 0;
 "26
+[e = _gExitFlag -> -> 0 `i `uc ]
+"27
 }
 [e :U 1214 ]
-[; ;bsp_counter.c: 26: }
-[; ;bsp_counter.c: 27: if(0 == gEnterFlag && 1 == gExitFlag )
-"27
-[e $ ! && == -> 0 `i -> _gEnterFlag `i == -> 1 `i -> _gExitFlag `i 1215  ]
-[; ;bsp_counter.c: 28: {
+[; ;bsp_counter.c: 27: }
+[; ;bsp_counter.c: 28: if(0 == gEnterFlag && 1 == gExitFlag )
 "28
-{
-[; ;bsp_counter.c: 29: gBoxCntStruct.TimeCntStartFlag = 0;
+[e $ ! && == -> 0 `i -> _gEnterFlag `i == -> 1 `i -> _gExitFlag `i 1215  ]
+[; ;bsp_counter.c: 29: {
 "29
-[e = . _gBoxCntStruct 0 -> -> 0 `i `uc ]
-[; ;bsp_counter.c: 30: gBoxCntStruct.TimeCntEndFlag = 1;
+{
+[; ;bsp_counter.c: 30: gBoxCntStruct.TimeCntStartFlag = 0;
 "30
-[e = . _gBoxCntStruct 1 -> -> 1 `i `uc ]
-[; ;bsp_counter.c: 31: gEnterFlag = 0;
+[e = . _gBoxCntStruct 0 -> -> 0 `i `uc ]
+[; ;bsp_counter.c: 31: gBoxCntStruct.TimeCntEndFlag = 1;
 "31
-[e = _gEnterFlag -> -> 0 `i `uc ]
-[; ;bsp_counter.c: 32: gExitFlag = 0;
+[e = . _gBoxCntStruct 1 -> -> 1 `i `uc ]
+[; ;bsp_counter.c: 32: gEnterFlag = 0;
 "32
-[e = _gExitFlag -> -> 0 `i `uc ]
+[e = _gEnterFlag -> -> 0 `i `uc ]
+[; ;bsp_counter.c: 33: gExitFlag = 0;
 "33
+[e = _gExitFlag -> -> 0 `i `uc ]
+"34
 }
 [e :U 1215 ]
-[; ;bsp_counter.c: 33: }
 [; ;bsp_counter.c: 34: }
-"34
+[; ;bsp_counter.c: 35: }
+"35
 [e :UE 1213 ]
 }
-"36
-[v _bsp_TimerInterruptISRCallback `(v ~T0 @X0 1 ef ]
 "37
+[v _bsp_TimerInterruptISRCallback `(v ~T0 @X0 1 ef ]
+"38
 {
-[; ;bsp_counter.c: 36: void bsp_TimerInterruptISRCallback(void)
-[; ;bsp_counter.c: 37: {
+[; ;bsp_counter.c: 37: void bsp_TimerInterruptISRCallback(void)
+[; ;bsp_counter.c: 38: {
 [e :U _bsp_TimerInterruptISRCallback ]
 [f ]
-[; ;bsp_counter.c: 38: if(0 == gBoxCntStruct.TimeCntStartFlag && 0 == gBoxCntStruct.TimeCntEndFlag)
-"38
-[e $ ! && == -> 0 `i -> . _gBoxCntStruct 0 `i == -> 0 `i -> . _gBoxCntStruct 1 `i 1217  ]
-[; ;bsp_counter.c: 39: {
+[; ;bsp_counter.c: 39: if(0 == gBoxCntStruct.TimeCntStartFlag && 0 == gBoxCntStruct.TimeCntEndFlag)
 "39
-{
-[; ;bsp_counter.c: 40: return;
+[e $ ! && == -> 0 `i -> . _gBoxCntStruct 0 `i == -> 0 `i -> . _gBoxCntStruct 1 `i 1217  ]
+[; ;bsp_counter.c: 40: {
 "40
-[e $UE 1216  ]
+{
+[; ;bsp_counter.c: 41: return;
 "41
+[e $UE 1216  ]
+"42
 }
 [e :U 1217 ]
-[; ;bsp_counter.c: 41: }
-[; ;bsp_counter.c: 43: if(1 == gBoxCntStruct.TimeCntStartFlag)
-"43
-[e $ ! == -> 1 `i -> . _gBoxCntStruct 0 `i 1218  ]
-[; ;bsp_counter.c: 44: {
+[; ;bsp_counter.c: 42: }
+[; ;bsp_counter.c: 44: if(1 == gBoxCntStruct.TimeCntStartFlag)
 "44
-{
-[; ;bsp_counter.c: 45: gBoxCntStruct.SingleTimeCnt++;
+[e $ ! == -> 1 `i -> . _gBoxCntStruct 0 `i 1218  ]
+[; ;bsp_counter.c: 45: {
 "45
-[e ++ . _gBoxCntStruct 5 -> -> -> 1 `i `l `ul ]
-[; ;bsp_counter.c: 46: if(8500 < gBoxCntStruct.SingleTimeCnt)
-"46
-[e $ ! < -> -> -> 8500 `i `l `ul . _gBoxCntStruct 5 1219  ]
-[; ;bsp_counter.c: 47: {
-"47
 {
-[; ;bsp_counter.c: 48: gBoxCntStruct.JamFlag = 1;
+[; ;bsp_counter.c: 46: gBoxCntStruct.SingleTimeCnt++;
+"46
+[e ++ . _gBoxCntStruct 5 -> -> -> 1 `i `l `ul ]
+[; ;bsp_counter.c: 47: if(500 < gBoxCntStruct.SingleTimeCnt)
+"47
+[e $ ! < -> -> -> 500 `i `l `ul . _gBoxCntStruct 5 1219  ]
+[; ;bsp_counter.c: 48: {
 "48
-[e = . _gBoxCntStruct 3 -> -> 1 `i `uc ]
-[; ;bsp_counter.c: 49: gBoxCntStruct.AlarmFlag = 1;
-"49
-[e = . _gBoxCntStruct 2 -> -> 1 `i `uc ]
-[; ;bsp_counter.c: 50: gBoxCntStruct.SingleTimeCnt = 0;
+{
+[; ;bsp_counter.c: 50: gBoxCntStruct.JamFlag = 1;
 "50
-[e = . _gBoxCntStruct 5 -> -> -> 0 `i `l `ul ]
-[; ;bsp_counter.c: 51: gBoxCntStruct.TimeCntEndFlag = 0;
+[e = . _gBoxCntStruct 3 -> -> 1 `i `uc ]
+[; ;bsp_counter.c: 51: gBoxCntStruct.AlarmFlag = 1;
 "51
-[e = . _gBoxCntStruct 1 -> -> 0 `i `uc ]
-[; ;bsp_counter.c: 52: gBoxCntStruct.TimeCntStartFlag = 0;
+[e = . _gBoxCntStruct 2 -> -> 1 `i `uc ]
+[; ;bsp_counter.c: 52: gBoxCntStruct.JamCnt ++;
 "52
-[e = . _gBoxCntStruct 0 -> -> 0 `i `uc ]
-[; ;bsp_counter.c: 53: gBoxCntStruct.DisplayReflashFlag = 1;
+[e ++ . _gBoxCntStruct 9 -> -> 1 `i `ui ]
+[; ;bsp_counter.c: 53: gBoxCntStruct.SingleTimeCnt = 0;
 "53
-[e = . _gBoxCntStruct 4 -> -> 1 `i `uc ]
+[e = . _gBoxCntStruct 5 -> -> -> 0 `i `l `ul ]
+[; ;bsp_counter.c: 54: gBoxCntStruct.TimeCntEndFlag = 0;
 "54
+[e = . _gBoxCntStruct 1 -> -> 0 `i `uc ]
+[; ;bsp_counter.c: 55: gBoxCntStruct.TimeCntStartFlag = 0;
+"55
+[e = . _gBoxCntStruct 0 -> -> 0 `i `uc ]
+[; ;bsp_counter.c: 56: gBoxCntStruct.DisplayReflashFlag = 1;
+"56
+[e = . _gBoxCntStruct 4 -> -> 1 `i `uc ]
+"57
 }
 [e :U 1219 ]
-[; ;bsp_counter.c: 54: }
-[; ;bsp_counter.c: 55: return;
-"55
+[; ;bsp_counter.c: 57: }
+[; ;bsp_counter.c: 58: return;
+"58
 [e $UE 1216  ]
-"56
+"59
 }
 [e :U 1218 ]
-[; ;bsp_counter.c: 56: }
-[; ;bsp_counter.c: 60: if(1 == gBoxCntStruct.TimeCntEndFlag)
-"60
-[e $ ! == -> 1 `i -> . _gBoxCntStruct 1 `i 1220  ]
-[; ;bsp_counter.c: 61: {
-"61
-{
-[; ;bsp_counter.c: 62: gBoxCntStruct.TimeCntEndFlag = 0;
-"62
-[e = . _gBoxCntStruct 1 -> -> 0 `i `uc ]
-[; ;bsp_counter.c: 63: gBoxCntStruct.TimeCntStartFlag = 0;
+[; ;bsp_counter.c: 59: }
+[; ;bsp_counter.c: 63: if(1 == gBoxCntStruct.TimeCntEndFlag)
 "63
-[e = . _gBoxCntStruct 0 -> -> 0 `i `uc ]
-[; ;bsp_counter.c: 65: if(10 > gBoxCntStruct.SingleTimeCnt)
-"65
-[e $ ! > -> -> -> 10 `i `l `ul . _gBoxCntStruct 5 1221  ]
-[; ;bsp_counter.c: 66: {
-"66
+[e $ ! == -> 1 `i -> . _gBoxCntStruct 1 `i 1220  ]
+[; ;bsp_counter.c: 64: {
+"64
 {
-[; ;bsp_counter.c: 67: gBoxCntStruct.SingleTimeCnt = 0;
-"67
-[e = . _gBoxCntStruct 5 -> -> -> 0 `i `l `ul ]
-[; ;bsp_counter.c: 68: return;
+[; ;bsp_counter.c: 65: gBoxCntStruct.TimeCntEndFlag = 0;
+"65
+[e = . _gBoxCntStruct 1 -> -> 0 `i `uc ]
+[; ;bsp_counter.c: 66: gBoxCntStruct.TimeCntStartFlag = 0;
+"66
+[e = . _gBoxCntStruct 0 -> -> 0 `i `uc ]
+[; ;bsp_counter.c: 68: if(100 > gBoxCntStruct.SingleTimeCnt)
 "68
-[e $UE 1216  ]
+[e $ ! > -> -> -> 100 `i `l `ul . _gBoxCntStruct 5 1221  ]
+[; ;bsp_counter.c: 69: {
 "69
+{
+[; ;bsp_counter.c: 70: gBoxCntStruct.SingleTimeCnt = 0;
+"70
+[e = . _gBoxCntStruct 5 -> -> -> 0 `i `l `ul ]
+[; ;bsp_counter.c: 71: return;
+"71
+[e $UE 1216  ]
+"72
 }
 [e :U 1221 ]
-[; ;bsp_counter.c: 69: }
-[; ;bsp_counter.c: 71: gBoxCntStruct.DisplayReflashFlag = 1;
-"71
-[e = . _gBoxCntStruct 4 -> -> 1 `i `uc ]
-[; ;bsp_counter.c: 73: if(1500 < gBoxCntStruct.SingleTimeCnt)
+[; ;bsp_counter.c: 72: }
+[; ;bsp_counter.c: 73: gBoxCntStruct.DisplayReflashFlag = 1;
 "73
-[e $ ! < -> -> -> 1500 `i `l `ul . _gBoxCntStruct 5 1222  ]
-[; ;bsp_counter.c: 74: {
-"74
+[e = . _gBoxCntStruct 4 -> -> 1 `i `uc ]
+[; ;bsp_counter.c: 83: if(140 < gBoxCntStruct.SingleTimeCnt && 283 > gBoxCntStruct.SingleTimeCnt)
+"83
+[e $ ! && < -> -> -> 140 `i `l `ul . _gBoxCntStruct 5 > -> -> -> 283 `i `l `ul . _gBoxCntStruct 5 1222  ]
+[; ;bsp_counter.c: 84: {
+"84
 {
-[; ;bsp_counter.c: 75: gBoxCntStruct.AlarmFlag = 1;
-"75
-[e = . _gBoxCntStruct 2 -> -> 1 `i `uc ]
-[; ;bsp_counter.c: 76: gBoxCntStruct.SingleTimeCnt = 0;
-"76
+[; ;bsp_counter.c: 85: gBoxCntStruct.MiddleBoxCnt++;
+"85
+[e ++ . _gBoxCntStruct 7 -> -> 1 `i `ui ]
+[; ;bsp_counter.c: 86: gBoxCntStruct.BoxSum++;
+"86
+[e ++ . _gBoxCntStruct 10 -> -> -> 1 `i `l `ul ]
+[; ;bsp_counter.c: 87: gBoxCntStruct.SingleTimeCnt = 0;
+"87
 [e = . _gBoxCntStruct 5 -> -> -> 0 `i `l `ul ]
-[; ;bsp_counter.c: 77: return;
-"77
+[; ;bsp_counter.c: 88: return;
+"88
 [e $UE 1216  ]
-"78
+"89
 }
 [e :U 1222 ]
-[; ;bsp_counter.c: 78: }
-[; ;bsp_counter.c: 80: if(500 < gBoxCntStruct.SingleTimeCnt && 1050 > gBoxCntStruct.SingleTimeCnt)
-"80
-[e $ ! && < -> -> -> 500 `i `l `ul . _gBoxCntStruct 5 > -> -> -> 1050 `i `l `ul . _gBoxCntStruct 5 1223  ]
-[; ;bsp_counter.c: 81: {
-"81
+[; ;bsp_counter.c: 89: }
+[; ;bsp_counter.c: 91: if(283 < gBoxCntStruct.SingleTimeCnt && 424 > gBoxCntStruct.SingleTimeCnt)
+"91
+[e $ ! && < -> -> -> 283 `i `l `ul . _gBoxCntStruct 5 > -> -> -> 424 `i `l `ul . _gBoxCntStruct 5 1223  ]
+[; ;bsp_counter.c: 92: {
+"92
 {
-[; ;bsp_counter.c: 82: gBoxCntStruct.MiddleBoxCnt++;
-"82
-[e ++ . _gBoxCntStruct 7 -> -> 1 `i `ui ]
-[; ;bsp_counter.c: 83: gBoxCntStruct.SingleTimeCnt = 0;
-"83
+[; ;bsp_counter.c: 93: gBoxCntStruct.LargeBoxCnt++;
+"93
+[e ++ . _gBoxCntStruct 8 -> -> 1 `i `ui ]
+[; ;bsp_counter.c: 94: gBoxCntStruct.BoxSum++;
+"94
+[e ++ . _gBoxCntStruct 10 -> -> -> 1 `i `l `ul ]
+[; ;bsp_counter.c: 95: gBoxCntStruct.SingleTimeCnt = 0;
+"95
 [e = . _gBoxCntStruct 5 -> -> -> 0 `i `l `ul ]
-[; ;bsp_counter.c: 84: return;
-"84
+[; ;bsp_counter.c: 96: return ;
+"96
 [e $UE 1216  ]
-"85
+"97
 }
 [e :U 1223 ]
-[; ;bsp_counter.c: 85: }
-[; ;bsp_counter.c: 87: if(1050 < gBoxCntStruct.SingleTimeCnt && 1500 > gBoxCntStruct.SingleTimeCnt)
-"87
-[e $ ! && < -> -> -> 1050 `i `l `ul . _gBoxCntStruct 5 > -> -> -> 1500 `i `l `ul . _gBoxCntStruct 5 1224  ]
-[; ;bsp_counter.c: 88: {
-"88
+[; ;bsp_counter.c: 97: }
+[; ;bsp_counter.c: 99: if(140 > gBoxCntStruct.SingleTimeCnt)
+"99
+[e $ ! > -> -> -> 140 `i `l `ul . _gBoxCntStruct 5 1224  ]
+[; ;bsp_counter.c: 100: {
+"100
 {
-[; ;bsp_counter.c: 89: gBoxCntStruct.LargeBoxCnt++;
-"89
-[e ++ . _gBoxCntStruct 8 -> -> 1 `i `ui ]
-[; ;bsp_counter.c: 90: gBoxCntStruct.SingleTimeCnt = 0;
-"90
+[; ;bsp_counter.c: 101: gBoxCntStruct.SmallBoxCnt++;
+"101
+[e ++ . _gBoxCntStruct 6 -> -> 1 `i `ui ]
+[; ;bsp_counter.c: 102: gBoxCntStruct.BoxSum++;
+"102
+[e ++ . _gBoxCntStruct 10 -> -> -> 1 `i `l `ul ]
+[; ;bsp_counter.c: 103: gBoxCntStruct.SingleTimeCnt = 0;
+"103
 [e = . _gBoxCntStruct 5 -> -> -> 0 `i `l `ul ]
-[; ;bsp_counter.c: 91: return ;
-"91
+[; ;bsp_counter.c: 104: return;
+"104
 [e $UE 1216  ]
-"92
+"105
 }
 [e :U 1224 ]
-[; ;bsp_counter.c: 92: }
-[; ;bsp_counter.c: 94: if(500 > gBoxCntStruct.SingleTimeCnt)
-"94
-[e $ ! > -> -> -> 500 `i `l `ul . _gBoxCntStruct 5 1225  ]
-[; ;bsp_counter.c: 95: {
-"95
-{
-[; ;bsp_counter.c: 96: gBoxCntStruct.SmallBoxCnt++;
-"96
-[e ++ . _gBoxCntStruct 6 -> -> 1 `i `ui ]
-[; ;bsp_counter.c: 97: gBoxCntStruct.SingleTimeCnt = 0;
-"97
-[e = . _gBoxCntStruct 5 -> -> -> 0 `i `l `ul ]
-[; ;bsp_counter.c: 98: return;
-"98
-[e $UE 1216  ]
-"99
-}
-[e :U 1225 ]
-"100
+"106
 }
 [e :U 1220 ]
-[; ;bsp_counter.c: 99: }
-[; ;bsp_counter.c: 100: }
-[; ;bsp_counter.c: 101: }
-"101
+[; ;bsp_counter.c: 105: }
+[; ;bsp_counter.c: 106: }
+[; ;bsp_counter.c: 107: }
+"107
 [e :UE 1216 ]
 }

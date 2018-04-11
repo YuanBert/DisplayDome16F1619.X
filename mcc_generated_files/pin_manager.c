@@ -66,7 +66,7 @@ void PIN_MANAGER_Initialize(void)
     /**
     TRISx registers
     */
-    TRISA = 0x07;
+    TRISA = 0x05;
     TRISB = 0x10;
     TRISC = 0x01;
 
@@ -97,6 +97,8 @@ void PIN_MANAGER_Initialize(void)
 
 
    
+    // Enable IOCI interrupt 
+    INTCONbits.IOCIE = 1; 
     
 	
     INTPPS = 0x02;   //RA2->EXT_INT:INT;    

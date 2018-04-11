@@ -40,6 +40,17 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _ODCONB `Vuc ~T0 @X0 0 e@653 ]
 "6166
 [v _ODCONC `Vuc ~T0 @X0 0 e@654 ]
+"355
+[s S26 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S26 . IOCIF INTF TMR0IF IOCIE INTE TMR0IE PEIE GIE ]
+"365
+[s S27 :2 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
+[n S27 . . T0IF . T0IE ]
+"354
+[u S25 `S26 1 `S27 1 ]
+[n S25 . . . ]
+"372
+[v _INTCONbits `VS25 ~T0 @X0 0 e@11 ]
 "21257
 [v _INTPPS `Vuc ~T0 @X0 0 e@3600 ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
@@ -10822,9 +10833,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pin_manager.c: 64: LATC = 0xFE;
 "64
 [e = _LATC -> -> 254 `i `uc ]
-[; ;pin_manager.c: 69: TRISA = 0x07;
+[; ;pin_manager.c: 69: TRISA = 0x05;
 "69
-[e = _TRISA -> -> 7 `i `uc ]
+[e = _TRISA -> -> 5 `i `uc ]
 [; ;pin_manager.c: 70: TRISB = 0x10;
 "70
 [e = _TRISB -> -> 16 `i `uc ]
@@ -10861,22 +10872,25 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pin_manager.c: 93: ODCONC = 0x00;
 "93
 [e = _ODCONC -> -> 0 `i `uc ]
-[; ;pin_manager.c: 102: INTPPS = 0x02;
-"102
+[; ;pin_manager.c: 101: INTCONbits.IOCIE = 1;
+"101
+[e = . . _INTCONbits 0 3 -> -> 1 `i `uc ]
+[; ;pin_manager.c: 104: INTPPS = 0x02;
+"104
 [e = _INTPPS -> -> 2 `i `uc ]
-[; ;pin_manager.c: 103: }
-"103
+[; ;pin_manager.c: 105: }
+"105
 [e :UE 1211 ]
 }
-"105
+"107
 [v _PIN_MANAGER_IOC `(v ~T0 @X0 1 ef ]
-"106
+"108
 {
-[; ;pin_manager.c: 105: void PIN_MANAGER_IOC(void)
-[; ;pin_manager.c: 106: {
+[; ;pin_manager.c: 107: void PIN_MANAGER_IOC(void)
+[; ;pin_manager.c: 108: {
 [e :U _PIN_MANAGER_IOC ]
 [f ]
-[; ;pin_manager.c: 107: }
-"107
+[; ;pin_manager.c: 109: }
+"109
 [e :UE 1212 ]
 }

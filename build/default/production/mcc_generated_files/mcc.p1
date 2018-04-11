@@ -5,10 +5,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _OSCILLATOR_Initialize `(v ~T0 @X0 0 ef ]
 "101 mcc_generated_files/tmr3.h
 [v _TMR3_Initialize `(v ~T0 @X0 0 ef ]
-"101 mcc_generated_files/tmr1.h
-[v _TMR1_Initialize `(v ~T0 @X0 0 ef ]
 "250 mcc_generated_files/ext_int.h
 [v _EXT_INT_Initialize `(v ~T0 @X0 0 ef ]
+"101 mcc_generated_files/tmr1.h
+[v _TMR1_Initialize `(v ~T0 @X0 0 ef ]
 "104 mcc_generated_files/tmr0.h
 [v _TMR0_Initialize `(v ~T0 @X0 0 ef ]
 "2254 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic16f1619.h
@@ -10822,6 +10822,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr3.h: 403: void TMR3_SetInterruptHandler(void (* InterruptHandler)(void));
 [; ;tmr3.h: 421: extern void (*TMR3_InterruptHandler)(void);
 [; ;tmr3.h: 439: void TMR3_DefaultInterruptHandler(void);
+[; ;ext_int.h: 250: void EXT_INT_Initialize(void);
+[; ;ext_int.h: 272: void INT_ISR(void);
+[; ;ext_int.h: 296: void INT_CallBack(void);
+[; ;ext_int.h: 319: void INT_SetInterruptHandler(void (* InterruptHandler)(void));
+[; ;ext_int.h: 343: extern void (*INT_InterruptHandler)(void);
+[; ;ext_int.h: 367: void INT_DefaultInterruptHandler(void);
 [; ;tmr1.h: 101: void TMR1_Initialize(void);
 [; ;tmr1.h: 130: void TMR1_StartTimer(void);
 [; ;tmr1.h: 162: void TMR1_StopTimer(void);
@@ -10835,12 +10841,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr1.h: 403: void TMR1_SetInterruptHandler(void (* InterruptHandler)(void));
 [; ;tmr1.h: 421: extern void (*TMR1_InterruptHandler)(void);
 [; ;tmr1.h: 439: void TMR1_DefaultInterruptHandler(void);
-[; ;ext_int.h: 250: void EXT_INT_Initialize(void);
-[; ;ext_int.h: 272: void INT_ISR(void);
-[; ;ext_int.h: 296: void INT_CallBack(void);
-[; ;ext_int.h: 319: void INT_SetInterruptHandler(void (* InterruptHandler)(void));
-[; ;ext_int.h: 343: extern void (*INT_InterruptHandler)(void);
-[; ;ext_int.h: 367: void INT_DefaultInterruptHandler(void);
 [; ;tmr0.h: 104: void TMR0_Initialize(void);
 [; ;tmr0.h: 135: uint8_t TMR0_ReadTimer(void);
 [; ;tmr0.h: 174: void TMR0_WriteTimer(uint8_t timerVal);
@@ -10869,12 +10869,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;mcc.c: 54: TMR3_Initialize();
 "54
 [e ( _TMR3_Initialize ..  ]
-[; ;mcc.c: 55: TMR1_Initialize();
+[; ;mcc.c: 55: EXT_INT_Initialize();
 "55
-[e ( _TMR1_Initialize ..  ]
-[; ;mcc.c: 56: EXT_INT_Initialize();
-"56
 [e ( _EXT_INT_Initialize ..  ]
+[; ;mcc.c: 56: TMR1_Initialize();
+"56
+[e ( _TMR1_Initialize ..  ]
 [; ;mcc.c: 57: TMR0_Initialize();
 "57
 [e ( _TMR0_Initialize ..  ]

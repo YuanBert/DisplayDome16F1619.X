@@ -60,6 +60,10 @@ void interrupt INTERRUPT_InterruptManager (void)
     {
         INT_ISR();
     }
+    else if(INTCONbits.IOCIE == 1 && INTCONbits.IOCIF == 1)
+    {
+        PIN_MANAGER_IOC();
+    }
     else if(INTCONbits.PEIE == 1)
     {
         if(PIE5bits.TMR3IE == 1 && PIR5bits.TMR3IF == 1)

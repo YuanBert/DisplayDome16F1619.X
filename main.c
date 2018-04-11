@@ -114,10 +114,10 @@ void LCDInit()
     LCDSendData(0, 0b00000001); //Display Clear
     LCDSendData(0, 0b00000110); //Entry Mode Set
 }
-uint8_t display_data_1[]={"S:   M:   L:   "};
-uint8_t display_data_2[]={"State:Safe"};
-uint8_t display_data_2_alarm[] = {"State:Alarm"};
-uint8_t display_data_2_jam[] = {"State:Jam & Alarm"};
+uint8_t display_data_1[]={"S:000M:000L:000"};
+uint8_t display_data_2[]={"Z:000G:000"};
+//uint8_t display_data_2_alarm[] = {""};
+//uint8_t display_data_2_jam[] = {""};
 void Print(uint8_t *str)
 {
     while(*str !='\0')
@@ -141,6 +141,14 @@ void Data_Toseg()
     display_data_1[12] = (gBoxCntStruct.LargeBoxCnt%1000/100)+0x30;
     display_data_1[13] = (gBoxCntStruct.LargeBoxCnt%100/10)+0x30;
     display_data_1[14] = (gBoxCntStruct.LargeBoxCnt%10)+0x30;
+    
+    display_data_2[2] = (gBoxCntStruct.BoxSum%1000/100)+0x30;
+    display_data_2[3] = (gBoxCntStruct.BoxSum%100/10)+0x30;
+    display_data_2[4] = (gBoxCntStruct.BoxSum%10)+0x30;
+    
+    display_data_2[7] = (gBoxCntStruct.JamCnt%1000/100)+0x30;
+    display_data_2[8] = (gBoxCntStruct.JamCnt%100/10)+0x30;
+    display_data_2[9] = (gBoxCntStruct.JamCnt%10)+0x30;
 }
 
 void main(void)
@@ -168,8 +176,7 @@ void main(void)
         Print(display_data_1);
         __delay_ms(1000);
         LCDSendData(0, 0b11000000); //set cursor to start of 2nd line
-         Print(display_data_2);
-         Key_SetDigitalInput();
+        Print(display_data_2);
 
     while (1)
     {
@@ -180,15 +187,15 @@ void main(void)
             gInterruptFlag = 0;  
         }
         
-        if(0 == Key_LAT)
+        if(0 == Key_GetValue() )
         {
             __delay_ms(5);
-            if(0 == Key_LAT)
+            if(0 == Key_GetValue() )
             {
                 gBoxCntStruct.AlarmFlag = 0;
                 gBoxCntStruct.JamFlag = 0;
             }
-        }
+        }        
         
         if(gTimer0NormalFlashFlag)
         {
@@ -224,18 +231,18 @@ void main(void)
             LCDSendData(0, 0b10000000); //set cursor to start of 1nd line
             Print(display_data_1);
             LCDSendData(0, 0b11000000); //set cursor to start of 2nd line
-            if(0 == gBoxCntStruct.AlarmFlag && 0 == gBoxCntStruct.JamFlag)
-            {
+            //if(0 == gBoxCntStruct.AlarmFlag && 0 == gBoxCntStruct.JamFlag)
+            //{
                 Print(display_data_2);
-            }
-            if(1 == gBoxCntStruct.AlarmFlag && 0 == gBoxCntStruct.JamFlag)
-            {
-                Print(display_data_2_alarm);
-            }
-            if(1 == gBoxCntStruct.JamFlag)
+            //}
+//            if(1 == gBoxCntStruct.AlarmFlag && 0 == gBoxCntStruct.JamFlag)
+//            {
+//                Print(display_data_2_alarm);
+//            }
+            /*if(1 == gBoxCntStruct.JamFlag)
             {
                 Print(display_data_2_jam);
-            }
+            }*/
         }
         
     }

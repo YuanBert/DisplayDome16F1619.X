@@ -53,7 +53,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _T3GCONbits `VS440 ~T0 @X0 0 e@1174 ]
 "385 mcc_generated_files/tmr3.h
 [v _TMR3_CallBack `(v ~T0 @X0 0 ef ]
-"39 mcc_generated_files/../../DisplayDome16F1619.X/bsp_counter.h
+"41 mcc_generated_files/../../DisplayDome16F1619.X/bsp_counter.h
 [v _bsp_TimerInterruptISRCallback `(v ~T0 @X0 0 ef ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
@@ -10860,6 +10860,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pin_manager.h: 335: void PIN_MANAGER_Initialize (void);
 [; ;pin_manager.h: 347: void PIN_MANAGER_IOC(void);
 [; ;interrupt_manager.h: 109: void interrupt INTERRUPT_InterruptManager(void);
+[; ;ext_int.h: 250: void EXT_INT_Initialize(void);
+[; ;ext_int.h: 272: void INT_ISR(void);
+[; ;ext_int.h: 296: void INT_CallBack(void);
+[; ;ext_int.h: 319: void INT_SetInterruptHandler(void (* InterruptHandler)(void));
+[; ;ext_int.h: 343: extern void (*INT_InterruptHandler)(void);
+[; ;ext_int.h: 367: void INT_DefaultInterruptHandler(void);
 [; ;tmr1.h: 101: void TMR1_Initialize(void);
 [; ;tmr1.h: 130: void TMR1_StartTimer(void);
 [; ;tmr1.h: 162: void TMR1_StopTimer(void);
@@ -10873,12 +10879,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr1.h: 403: void TMR1_SetInterruptHandler(void (* InterruptHandler)(void));
 [; ;tmr1.h: 421: extern void (*TMR1_InterruptHandler)(void);
 [; ;tmr1.h: 439: void TMR1_DefaultInterruptHandler(void);
-[; ;ext_int.h: 250: void EXT_INT_Initialize(void);
-[; ;ext_int.h: 272: void INT_ISR(void);
-[; ;ext_int.h: 296: void INT_CallBack(void);
-[; ;ext_int.h: 319: void INT_SetInterruptHandler(void (* InterruptHandler)(void));
-[; ;ext_int.h: 343: extern void (*INT_InterruptHandler)(void);
-[; ;ext_int.h: 367: void INT_DefaultInterruptHandler(void);
 [; ;tmr0.h: 104: void TMR0_Initialize(void);
 [; ;tmr0.h: 135: uint8_t TMR0_ReadTimer(void);
 [; ;tmr0.h: 174: void TMR0_WriteTimer(uint8_t timerVal);
@@ -10900,10 +10900,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;bsp_counter.h: 31: unsigned int SmallBoxCnt;
 [; ;bsp_counter.h: 32: unsigned int MiddleBoxCnt;
 [; ;bsp_counter.h: 33: unsigned int LargeBoxCnt;
-[; ;bsp_counter.h: 34: }BoxCntStruct;
-[; ;bsp_counter.h: 37: void bsp_CounterInit(void);
-[; ;bsp_counter.h: 38: void bsp_RA2InterruptISRCallback(void);
-[; ;bsp_counter.h: 39: void bsp_TimerInterruptISRCallback(void);
+[; ;bsp_counter.h: 34: unsigned int JamCnt;
+[; ;bsp_counter.h: 35: unsigned long BoxSum;
+[; ;bsp_counter.h: 36: }BoxCntStruct;
+[; ;bsp_counter.h: 39: void bsp_CounterInit(void);
+[; ;bsp_counter.h: 40: void bsp_RA2InterruptISRCallback(void);
+[; ;bsp_counter.h: 41: void bsp_TimerInterruptISRCallback(void);
 [; ;tmr3.c: 58: extern BoxCntStruct gBoxCntStruct;
 [; ;tmr3.c: 59: extern volatile unsigned char gTimer3Flag;
 "60 mcc_generated_files/tmr3.c
@@ -11165,8 +11167,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 {
 [; ;tmr3.c: 182: void TMR3_SetInterruptHandler(void (* InterruptHandler)(void)){
 [e :U _TMR3_SetInterruptHandler ]
-[v F12129 `(v ~T0 @X0 0 tf ]
-[v _InterruptHandler `*F12129 ~T0 @X0 1 r1 ]
+[v F12131 `(v ~T0 @X0 0 tf ]
+[v _InterruptHandler `*F12131 ~T0 @X0 1 r1 ]
 [f ]
 [; ;tmr3.c: 183: TMR3_InterruptHandler = InterruptHandler;
 "183
