@@ -43,6 +43,12 @@
 
 #include "mcc_generated_files/mcc.h"
 #include "bsp_counter.h"
+#include "FLash.h"
+#include "HEFLash.h"
+#include <assert.h>
+#include <string.h>
+
+#pragma __IDLOC( 4D8A );
 
 /*
                          Main application
@@ -58,6 +64,16 @@ volatile unsigned char  gTimer0AlarmFlashFlag;
 volatile unsigned char  gTimer3Flag;
 
 BoxCntStruct gBoxCntStruct;
+
+
+unsigned char HEFBufferData[FLASH_ROWSIZE];
+
+void _fassert(int line, const char *file, const char *expr)
+{
+    TRISC = 0xf0;
+    PORTC = PORTC;
+}
+
 
 void LCDSendData(int RS, uint8_t value)
 {
@@ -118,6 +134,7 @@ uint8_t display_data_1[]={"S:000M:000L:000"};
 uint8_t display_data_2[]={"Z:000G:000"};
 //uint8_t display_data_2_alarm[] = {""};
 //uint8_t display_data_2_jam[] = {""};
+
 void Print(uint8_t *str)
 {
     while(*str !='\0')
@@ -134,6 +151,7 @@ void Data_Toseg()
     display_data_1[3] = (gBoxCntStruct.SmallBoxCnt%100/10)+0x30;
     display_data_1[4] = (gBoxCntStruct.SmallBoxCnt%10)+0x30;
     
+    
     display_data_1[7] = (gBoxCntStruct.MiddleBoxCnt%1000/100)+0x30;
     display_data_1[8] = (gBoxCntStruct.MiddleBoxCnt%100/10)+0x30;
     display_data_1[9] = (gBoxCntStruct.MiddleBoxCnt%10)+0x30;
@@ -149,17 +167,98 @@ void Data_Toseg()
     display_data_2[7] = (gBoxCntStruct.JamCnt%1000/100)+0x30;
     display_data_2[8] = (gBoxCntStruct.JamCnt%100/10)+0x30;
     display_data_2[9] = (gBoxCntStruct.JamCnt%10)+0x30;
+    
+    //HEFBufferData[2] = (unsigned char)(gBoxCntStruct.SmallBoxCnt >> 16);
+    HEFBufferData[3] = (unsigned char)(gBoxCntStruct.SmallBoxCnt >> 8);
+    HEFBufferData[4] = (unsigned char)(gBoxCntStruct.SmallBoxCnt);
+            
+    //HEFBufferData[6] = (unsigned char)(gBoxCntStruct.MiddleBoxCnt >> 16);
+    HEFBufferData[7] = (unsigned char)(gBoxCntStruct.MiddleBoxCnt >> 8);
+    HEFBufferData[8] = (unsigned char)(gBoxCntStruct.MiddleBoxCnt);
+            
+    //HEFBufferData[10] = (unsigned char)(gBoxCntStruct.LargeBoxCnt >> 16);
+    HEFBufferData[11] = (unsigned char)(gBoxCntStruct.LargeBoxCnt >> 8);
+    HEFBufferData[12] = (unsigned char)(gBoxCntStruct.LargeBoxCnt );
+            
+    //HEFBufferData[14] = (unsigned char)(gBoxCntStruct.BoxSum >> 16);
+    HEFBufferData[15] = (unsigned char)(gBoxCntStruct.BoxSum >> 8);
+    HEFBufferData[16] = (unsigned char)(gBoxCntStruct.BoxSum );
+         
+    //HEFBufferData[18] = (unsigned char)(gBoxCntStruct.JamCnt >> 16);
+    HEFBufferData[19] = (unsigned char)(gBoxCntStruct.JamCnt >> 8);
+    HEFBufferData[20] = (unsigned char)(gBoxCntStruct.JamCnt );
+    
+    INTERRUPT_GlobalInterruptDisable();
+    HEFLASH_writeBlock(0, (void*)&HEFBufferData,sizeof(HEFBufferData));
+    INTERRUPT_GlobalInterruptEnable();
+}
+
+void HEFLASH_checkData(void)
+{
+    unsigned r;
+__delay_ms(200);
+    r = HEFLASH_readBlock(HEFBufferData, 0, FLASH_ROWSIZE);
+    assert(0 == r);
+    if(0xAA == HEFBufferData[0])
+    {
+        gBoxCntStruct.SmallBoxCnt = (unsigned int)((HEFBufferData[3] << 8) + (HEFBufferData[4]));
+        
+        gBoxCntStruct.MiddleBoxCnt = (unsigned int)((HEFBufferData[7] << 8) + (HEFBufferData[8]));
+        
+        gBoxCntStruct.LargeBoxCnt = (unsigned int)((HEFBufferData[11] << 8) + (HEFBufferData[12]));
+        
+        gBoxCntStruct.BoxSum = (HEFBufferData[13] << 24) + (HEFBufferData[14] << 16) + \
+                                    (HEFBufferData[15] << 8) + (HEFBufferData[16]);
+        
+        gBoxCntStruct.JamCnt = (unsigned int)((HEFBufferData[19] << 8) + (HEFBufferData[20]));
+        
+        display_data_1[2] = (gBoxCntStruct.SmallBoxCnt%1000/100)+0x30;
+        display_data_1[3] = (gBoxCntStruct.SmallBoxCnt%100/10)+0x30;
+        display_data_1[4] = (gBoxCntStruct.SmallBoxCnt%10)+0x30;
+    
+    
+        display_data_1[7] = (gBoxCntStruct.MiddleBoxCnt%1000/100)+0x30;
+        display_data_1[8] = (gBoxCntStruct.MiddleBoxCnt%100/10)+0x30;
+        display_data_1[9] = (gBoxCntStruct.MiddleBoxCnt%10)+0x30;
+    
+        display_data_1[12] = (gBoxCntStruct.LargeBoxCnt%1000/100)+0x30;
+        display_data_1[13] = (gBoxCntStruct.LargeBoxCnt%100/10)+0x30;
+        display_data_1[14] = (gBoxCntStruct.LargeBoxCnt%10)+0x30;
+    
+        display_data_2[2] = (gBoxCntStruct.BoxSum%1000/100)+0x30;
+        display_data_2[3] = (gBoxCntStruct.BoxSum%100/10)+0x30;
+        display_data_2[4] = (gBoxCntStruct.BoxSum%10)+0x30;
+    
+        display_data_2[7] = (gBoxCntStruct.JamCnt%1000/100)+0x30;
+        display_data_2[8] = (gBoxCntStruct.JamCnt%100/10)+0x30;
+        display_data_2[9] = (gBoxCntStruct.JamCnt%10)+0x30;        
+    }
+    else
+    {
+        memset(&HEFBufferData, 0, sizeof(HEFBufferData));
+        HEFBufferData[0] = 0xAA;
+        r == HEFLASH_writeBlock(0, (void*)&HEFBufferData,sizeof(HEFBufferData));
+        assert (0 == r);
+    }
 }
 
 void main(void)
 {
+    
     // initialize the device
     SYSTEM_Initialize();
     bsp_CounterInit();
     LCDInit();
     // When using interrupts, you need to set the Global and Peripheral Interrupt Enable bits
     // Use the following macros to:
-
+    
+    HEFLASH_checkData();
+    
+    LCDSendData(0, 0b10000000); //set cursor to start of 1nd line
+    Print(display_data_1);
+    __delay_ms(200);
+    LCDSendData(0, 0b11000000); //set cursor to start of 2nd line
+    Print(display_data_2);
     // Enable the Global Interrupts
     INTERRUPT_GlobalInterruptEnable();
 
@@ -171,12 +270,7 @@ void main(void)
 
     // Disable the Peripheral Interrupts
     //INTERRUPT_PeripheralInterruptDisable();
-    
-        LCDSendData(0, 0b10000000); //set cursor to start of 1nd line
-        Print(display_data_1);
-        __delay_ms(1000);
-        LCDSendData(0, 0b11000000); //set cursor to start of 2nd line
-        Print(display_data_2);
+
 
     while (1)
     {
@@ -243,6 +337,8 @@ void main(void)
             {
                 Print(display_data_2_jam);
             }*/
+                
+            
         }
         
     }

@@ -19,15 +19,33 @@
 [v ___lwdiv __lwdiv `(ui  1 e 2 0 ]
 "6 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\lwmod.c
 [v ___lwmod __lwmod `(ui  1 e 2 0 ]
-"62 E:\Users\bertz\Documents\GitHub\DisplayDome16F1619.X\main.c
+"8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\memset.c
+[v _memset memset `(*.4v  1 e 1 0 ]
+"31 E:\Users\bertz\Documents\GitHub\DisplayDome16F1619.X\Flash.c
+[v _FLASH_read FLASH_read `(ui  1 e 2 0 ]
+"58
+[v __unlock _unlock `(v  1 e 1 0 ]
+"73
+[v _FLASH_write FLASH_write `(v  1 e 1 0 ]
+"97
+[v _FLASH_erase FLASH_erase `(v  1 e 1 0 ]
+"17 E:\Users\bertz\Documents\GitHub\DisplayDome16F1619.X\HEFlash.c
+[v _HEFLASH_writeBlock HEFLASH_writeBlock `(uc  1 e 1 0 ]
+"49
+[v _HEFLASH_readBlock HEFLASH_readBlock `(uc  1 e 1 0 ]
+"71 E:\Users\bertz\Documents\GitHub\DisplayDome16F1619.X\main.c
+[v __fassert _fassert `(v  1 e 1 0 ]
+"78
 [v _LCDSendData LCDSendData `(v  1 e 1 0 ]
-"86
+"102
 [v _LCDInit LCDInit `(v  1 e 1 0 ]
-"121
+"138
 [v _Print Print `(v  1 e 1 0 ]
-"131
+"148
 [v _Data_Toseg Data_Toseg `(v  1 e 1 0 ]
-"154
+"196
+[v _HEFLASH_checkData HEFLASH_checkData `(v  1 e 1 0 ]
+"245
 [v _main main `(v  1 e 1 0 ]
 "37 E:\Users\bertz\Documents\GitHub\DisplayDome16F1619.X\mcc_generated_files/ext_int.c
 [v _INT_ISR INT_ISR `(v  1 e 1 0 ]
@@ -110,6 +128,8 @@
 "442
 [u S674 . 1 `S667 1 . 1 0 ]
 [v _PORTAbits PORTAbits `VES674  1 e 1 @12 ]
+"516
+[v _PORTC PORTC `VEuc  1 e 1 @14 ]
 [s S102 . 1 `uc 1 TMR1IF 1 0 :1:0 
 `uc 1 TMR2IF 1 0 :1:1 
 `uc 1 CCP1IF 1 0 :1:2 
@@ -229,7 +249,7 @@
 [v _OSCCON OSCCON `VEuc  1 e 1 @153 ]
 "2623
 [v _LATA LATA `VEuc  1 e 1 @268 ]
-[s S812 . 1 `uc 1 LATA0 1 0 :1:0 
+[s S835 . 1 `uc 1 LATA0 1 0 :1:0 
 `uc 1 LATA1 1 0 :1:1 
 `uc 1 LATA2 1 0 :1:2 
 `uc 1 LATA3 1 0 :1:3 
@@ -237,22 +257,22 @@
 `uc 1 LATA5 1 0 :1:5 
 ]
 "2638
-[u S819 . 1 `S812 1 . 1 0 ]
-[v _LATAbits LATAbits `VES819  1 e 1 @268 ]
+[u S842 . 1 `S835 1 . 1 0 ]
+[v _LATAbits LATAbits `VES842  1 e 1 @268 ]
 "2673
 [v _LATB LATB `VEuc  1 e 1 @269 ]
-[s S737 . 1 `uc 1 . 1 0 :4:0 
+[s S739 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 LATB4 1 0 :1:4 
 `uc 1 LATB5 1 0 :1:5 
 `uc 1 LATB6 1 0 :1:6 
 `uc 1 LATB7 1 0 :1:7 
 ]
 "2687
-[u S743 . 1 `S737 1 . 1 0 ]
-[v _LATBbits LATBbits `VES743  1 e 1 @269 ]
+[u S745 . 1 `S739 1 . 1 0 ]
+[v _LATBbits LATBbits `VES745  1 e 1 @269 ]
 "2712
 [v _LATC LATC `VEuc  1 e 1 @270 ]
-[s S752 . 1 `uc 1 LATC0 1 0 :1:0 
+[s S754 . 1 `uc 1 LATC0 1 0 :1:0 
 `uc 1 LATC1 1 0 :1:1 
 `uc 1 LATC2 1 0 :1:2 
 `uc 1 LATC3 1 0 :1:3 
@@ -262,8 +282,8 @@
 `uc 1 LATC7 1 0 :1:7 
 ]
 "2729
-[u S761 . 1 `S752 1 . 1 0 ]
-[v _LATCbits LATCbits `VES761  1 e 1 @270 ]
+[u S763 . 1 `S754 1 . 1 0 ]
+[v _LATCbits LATCbits `VES763  1 e 1 @270 ]
 "3048
 [v _BORCON BORCON `VEuc  1 e 1 @278 ]
 "3323
@@ -272,6 +292,21 @@
 [v _ANSELB ANSELB `VEuc  1 e 1 @397 ]
 "3409
 [v _ANSELC ANSELC `VEuc  1 e 1 @398 ]
+"3468
+[v _PMADR PMADR `VEus  1 e 2 @401 ]
+"3515
+[v _PMDAT PMDAT `VEus  1 e 2 @403 ]
+[s S930 . 1 `uc 1 RD 1 0 :1:0 
+`uc 1 WR 1 0 :1:1 
+`uc 1 WREN 1 0 :1:2 
+`uc 1 WRERR 1 0 :1:3 
+`uc 1 FREE 1 0 :1:4 
+`uc 1 LWLO 1 0 :1:5 
+`uc 1 CFGS 1 0 :1:6 
+]
+"3578
+[u S938 . 1 `S930 1 . 1 0 ]
+[v _PMCON1bits PMCON1bits `VES938  1 e 1 @405 ]
 "4517
 [v _WPUA WPUA `VEuc  1 e 1 @524 ]
 "4575
@@ -324,26 +359,28 @@
 [v _T3GCONbits T3GCONbits `VES567  1 e 1 @1174 ]
 "21257
 [v _INTPPS INTPPS `VEuc  1 e 1 @3600 ]
-"50 E:\Users\bertz\Documents\GitHub\DisplayDome16F1619.X\main.c
+"56 E:\Users\bertz\Documents\GitHub\DisplayDome16F1619.X\main.c
 [v _gInterruptFlag gInterruptFlag `VEuc  1 e 1 0 ]
-"51
+"57
 [v _gEnterFlag gEnterFlag `VEuc  1 e 1 0 ]
-"52
-[v _gExitFlag gExitFlag `VEuc  1 e 1 0 ]
-"54
-[v _gTimer0NormalFalshCnt gTimer0NormalFalshCnt `VEuc  1 e 1 0 ]
-"55
-[v _gTimer0NormalFlashFlag gTimer0NormalFlashFlag `VEuc  1 e 1 0 ]
-"56
-[v _gTimer0AlarmFlashFlag gTimer0AlarmFlashFlag `VEuc  1 e 1 0 ]
 "58
+[v _gExitFlag gExitFlag `VEuc  1 e 1 0 ]
+"60
+[v _gTimer0NormalFalshCnt gTimer0NormalFalshCnt `VEuc  1 e 1 0 ]
+"61
+[v _gTimer0NormalFlashFlag gTimer0NormalFlashFlag `VEuc  1 e 1 0 ]
+"62
+[v _gTimer0AlarmFlashFlag gTimer0AlarmFlashFlag `VEuc  1 e 1 0 ]
+"64
 [v _gTimer3Flag gTimer3Flag `VEuc  1 e 1 0 ]
 [s S684 . 21 `uc 1 TimeCntStartFlag 1 0 `uc 1 TimeCntEndFlag 1 1 `uc 1 AlarmFlag 1 2 `uc 1 JamFlag 1 3 `uc 1 DisplayReflashFlag 1 4 `ul 1 SingleTimeCnt 4 5 `ui 1 SmallBoxCnt 2 9 `ui 1 MiddleBoxCnt 2 11 `ui 1 LargeBoxCnt 2 13 `ui 1 JamCnt 2 15 `ul 1 BoxSum 4 17 ]
-"60
+"66
 [v _gBoxCntStruct gBoxCntStruct `S684  1 e 21 0 ]
-"117
+"69
+[v _HEFBufferData HEFBufferData `[32]uc  1 e 32 0 ]
+"133
 [v _display_data_1 display_data_1 `[16]uc  1 e 16 0 ]
-"118
+"134
 [v _display_data_2 display_data_2 `[11]uc  1 e 11 0 ]
 "35 E:\Users\bertz\Documents\GitHub\DisplayDome16F1619.X\mcc_generated_files/ext_int.c
 [v _INT_InterruptHandler INT_InterruptHandler `*.37(v  1 e 2 0 ]
@@ -359,10 +396,10 @@
 [v _timer3ReloadVal timer3ReloadVal `VEui  1 e 2 0 ]
 "61
 [v _TMR3_InterruptHandler TMR3_InterruptHandler `*.37(v  1 e 2 0 ]
-"154 E:\Users\bertz\Documents\GitHub\DisplayDome16F1619.X\main.c
+"245 E:\Users\bertz\Documents\GitHub\DisplayDome16F1619.X\main.c
 [v _main main `(v  1 e 1 0 ]
 {
-"249
+"345
 } 0
 "6 E:\Users\bertz\Documents\GitHub\DisplayDome16F1619.X\bsp_counter.c
 [v _bsp_CounterInit bsp_CounterInit `(v  1 e 1 0 ]
@@ -428,30 +465,79 @@
 [v INT_SetInterruptHandler@InterruptHandler InterruptHandler `*.37(v  1 p 2 3 ]
 "71
 } 0
-"121 E:\Users\bertz\Documents\GitHub\DisplayDome16F1619.X\main.c
+"138 E:\Users\bertz\Documents\GitHub\DisplayDome16F1619.X\main.c
 [v _Print Print `(v  1 e 1 0 ]
 {
 [v Print@str str `*.4uc  1 a 1 wreg ]
 [v Print@str str `*.4uc  1 a 1 wreg ]
 [v Print@str str `*.4uc  1 a 1 3 ]
-"129
+"146
 } 0
-"86
+"102
 [v _LCDInit LCDInit `(v  1 e 1 0 ]
 {
-"116
+"132
 } 0
-"62
+"78
 [v _LCDSendData LCDSendData `(v  1 e 1 0 ]
 {
 [v LCDSendData@RS RS `i  1 p 2 3 ]
 [v LCDSendData@value value `uc  1 p 1 5 ]
-"84
+"100
 } 0
-"131
+"196
+[v _HEFLASH_checkData HEFLASH_checkData `(v  1 e 1 0 ]
+{
+"198
+[v HEFLASH_checkData@r r `ui  1 a 2 30 ]
+"243
+} 0
+"8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\memset.c
+[v _memset memset `(*.4v  1 e 1 0 ]
+{
+[v memset@p1 p1 `*.4v  1 a 1 wreg ]
+"15
+[v memset@p p `*.4uc  1 a 1 5 ]
+"8
+[v memset@p1 p1 `*.4v  1 a 1 wreg ]
+[v memset@c c `i  1 p 2 0 ]
+[v memset@n n `ui  1 p 2 2 ]
+"18
+[v memset@p1 p1 `*.4v  1 a 1 4 ]
+"22
+} 0
+"71 E:\Users\bertz\Documents\GitHub\DisplayDome16F1619.X\main.c
+[v __fassert _fassert `(v  1 e 1 0 ]
+{
+[v __fassert@line line `i  1 p 2 0 ]
+[v __fassert@file file `*.25DCuc  1 p 2 2 ]
+[v __fassert@expr expr `*.25DCuc  1 p 2 4 ]
+"75
+} 0
+"49 E:\Users\bertz\Documents\GitHub\DisplayDome16F1619.X\HEFlash.c
+[v _HEFLASH_readBlock HEFLASH_readBlock `(uc  1 e 1 0 ]
+{
+[v HEFLASH_readBlock@buffer buffer `*.4uc  1 a 1 wreg ]
+"52
+[v HEFLASH_readBlock@add add `ui  1 a 2 4 ]
+"49
+[v HEFLASH_readBlock@buffer buffer `*.4uc  1 a 1 wreg ]
+[v HEFLASH_readBlock@radd radd `uc  1 p 1 0 ]
+[v HEFLASH_readBlock@count count `uc  1 p 1 1 ]
+"52
+[v HEFLASH_readBlock@buffer buffer `*.4uc  1 a 1 6 ]
+"67
+} 0
+"31 E:\Users\bertz\Documents\GitHub\DisplayDome16F1619.X\Flash.c
+[v _FLASH_read FLASH_read `(ui  1 e 2 0 ]
+{
+[v FLASH_read@address address `ui  1 p 2 3 ]
+"42
+} 0
+"148 E:\Users\bertz\Documents\GitHub\DisplayDome16F1619.X\main.c
 [v _Data_Toseg Data_Toseg `(v  1 e 1 0 ]
 {
-"152
+"194
 } 0
 "6 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\lwmod.c
 [v ___lwmod __lwmod `(ui  1 e 2 0 ]
@@ -496,6 +582,45 @@
 [v ___lldiv@divisor divisor `ul  1 p 4 8 ]
 [v ___lldiv@dividend dividend `ul  1 p 4 12 ]
 "31
+} 0
+"17 E:\Users\bertz\Documents\GitHub\DisplayDome16F1619.X\HEFlash.c
+[v _HEFLASH_writeBlock HEFLASH_writeBlock `(uc  1 e 1 0 ]
+{
+[v HEFLASH_writeBlock@radd radd `uc  1 a 1 wreg ]
+"20
+[v HEFLASH_writeBlock@add add `ui  1 a 2 10 ]
+"17
+[v HEFLASH_writeBlock@radd radd `uc  1 a 1 wreg ]
+[v HEFLASH_writeBlock@data data `*.4uc  1 p 1 5 ]
+[v HEFLASH_writeBlock@count count `uc  1 p 1 6 ]
+"20
+[v HEFLASH_writeBlock@radd radd `uc  1 a 1 9 ]
+"46
+} 0
+"73 E:\Users\bertz\Documents\GitHub\DisplayDome16F1619.X\Flash.c
+[v _FLASH_write FLASH_write `(v  1 e 1 0 ]
+{
+"76
+[v FLASH_write@temp temp `uc  1 a 1 3 ]
+"73
+[v FLASH_write@address address `ui  1 p 2 0 ]
+[v FLASH_write@data data `ui  1 p 2 2 ]
+[v FLASH_write@latch latch `uc  1 p 1 4 ]
+"94
+} 0
+"97
+[v _FLASH_erase FLASH_erase `(v  1 e 1 0 ]
+{
+"100
+[v FLASH_erase@temp temp `uc  1 a 1 5 ]
+"97
+[v FLASH_erase@address address `ui  1 p 2 3 ]
+"118
+} 0
+"58
+[v __unlock _unlock `(v  1 e 1 0 ]
+{
+"70
 } 0
 "52 E:\Users\bertz\Documents\GitHub\DisplayDome16F1619.X\mcc_generated_files/interrupt_manager.c
 [v _INTERRUPT_InterruptManager INTERRUPT_InterruptManager `II(v  1 e 1 0 ]

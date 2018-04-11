@@ -16,6 +16,8 @@
         <itemPath>mcc_generated_files/ext_int.h</itemPath>
       </logicalFolder>
       <itemPath>bsp_counter.h</itemPath>
+      <itemPath>FLash.h</itemPath>
+      <itemPath>HEFLash.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -38,6 +40,8 @@
       </logicalFolder>
       <itemPath>main.c</itemPath>
       <itemPath>bsp_counter.c</itemPath>
+      <itemPath>Flash.c</itemPath>
+      <itemPath>HEFlash.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -46,6 +50,9 @@
       <itemPath>MyConfig.mc3</itemPath>
     </logicalFolder>
   </logicalFolder>
+  <sourceRootList>
+    <Elem>.</Elem>
+  </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
     <conf name="default" type="2">
@@ -150,6 +157,7 @@
         <property key="opt-xc8-linker-link_startup" value="false"/>
         <property key="opt-xc8-linker-serial" value=""/>
         <property key="program-the-device-with-default-config-words" value="true"/>
+        <appendMe value="--ROM=default,-1f80-1fff"/>
       </HI-TECH-LINK>
       <PKOBSKDEPlatformTool>
         <property key="AutoSelectMemRanges" value="auto"/>
@@ -157,7 +165,6 @@
         <property key="ToolFirmwareFilePath"
                   value="Press to browse for a specific firmware version"/>
         <property key="ToolFirmwareOption.UseLatestFirmware" value="true"/>
-        <property key="firmware.download.all" value="false"/>
         <property key="memories.configurationmemory" value="true"/>
         <property key="memories.dataflash" value="true"/>
         <property key="memories.eeprom" value="true"/>

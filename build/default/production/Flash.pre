@@ -1,5 +1,5 @@
 
-# 1 "main.c"
+# 1 "Flash.c"
 
 # 26 "C:\Program Files (x86)\Microchip\xc8\v1.45\include\htc.h"
 extern const char __xc8_OPTIM_SPEED;
@@ -14611,258 +14611,7 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 
-# 335 "mcc_generated_files/pin_manager.h"
-void PIN_MANAGER_Initialize (void);
-
-# 347
-void PIN_MANAGER_IOC(void);
-
-# 13 "C:\Program Files (x86)\Microchip\xc8\v1.45\include\stdint.h"
-typedef signed char int8_t;
-
-# 20
-typedef signed int int16_t;
-
-# 28
-typedef signed short long int int24_t;
-
-# 36
-typedef signed long int int32_t;
-
-# 43
-typedef unsigned char uint8_t;
-
-# 49
-typedef unsigned int uint16_t;
-
-# 56
-typedef unsigned short long int uint24_t;
-
-# 63
-typedef unsigned long int uint32_t;
-
-# 71
-typedef signed char int_least8_t;
-
-# 78
-typedef signed int int_least16_t;
-
-# 90
-typedef signed short long int int_least24_t;
-
-# 98
-typedef signed long int int_least32_t;
-
-# 105
-typedef unsigned char uint_least8_t;
-
-# 111
-typedef unsigned int uint_least16_t;
-
-# 121
-typedef unsigned short long int uint_least24_t;
-
-# 128
-typedef unsigned long int uint_least32_t;
-
-# 137
-typedef signed char int_fast8_t;
-
-# 144
-typedef signed int int_fast16_t;
-
-# 156
-typedef signed short long int int_fast24_t;
-
-# 164
-typedef signed long int int_fast32_t;
-
-# 171
-typedef unsigned char uint_fast8_t;
-
-# 177
-typedef unsigned int uint_fast16_t;
-
-# 187
-typedef unsigned short long int uint_fast24_t;
-
-# 194
-typedef unsigned long int uint_fast32_t;
-
-# 200
-typedef int32_t intmax_t;
-
-
-
-
-typedef uint32_t uintmax_t;
-
-
-
-
-typedef int16_t intptr_t;
-
-
-
-
-typedef uint16_t uintptr_t;
-
-# 12 "C:\Program Files (x86)\Microchip\xc8\v1.45\include\stdbool.h"
-typedef unsigned char bool;
-
-# 109 "mcc_generated_files/interrupt_manager.h"
-void interrupt INTERRUPT_InterruptManager(void);
-
-# 101 "mcc_generated_files/tmr3.h"
-void TMR3_Initialize(void);
-
-# 130
-void TMR3_StartTimer(void);
-
-# 162
-void TMR3_StopTimer(void);
-
-# 197
-uint16_t TMR3_ReadTimer(void);
-
-# 236
-void TMR3_WriteTimer(uint16_t timerVal);
-
-# 272
-void TMR3_Reload(void);
-
-# 311
-void TMR3_StartSinglePulseAcquisition(void);
-
-# 350
-uint8_t TMR3_CheckGateValueStatus(void);
-
-# 368
-void TMR3_ISR(void);
-
-# 385
-void TMR3_CallBack(void);
-
-# 403
-void TMR3_SetInterruptHandler(void (* InterruptHandler)(void));
-
-# 421
-extern void (*TMR3_InterruptHandler)(void);
-
-# 439
-void TMR3_DefaultInterruptHandler(void);
-
-# 250 "mcc_generated_files/ext_int.h"
-void EXT_INT_Initialize(void);
-
-# 272
-void INT_ISR(void);
-
-# 296
-void INT_CallBack(void);
-
-# 319
-void INT_SetInterruptHandler(void (* InterruptHandler)(void));
-
-# 343
-extern void (*INT_InterruptHandler)(void);
-
-# 367
-void INT_DefaultInterruptHandler(void);
-
-# 101 "mcc_generated_files/tmr1.h"
-void TMR1_Initialize(void);
-
-# 130
-void TMR1_StartTimer(void);
-
-# 162
-void TMR1_StopTimer(void);
-
-# 197
-uint16_t TMR1_ReadTimer(void);
-
-# 236
-void TMR1_WriteTimer(uint16_t timerVal);
-
-# 272
-void TMR1_Reload(void);
-
-# 311
-void TMR1_StartSinglePulseAcquisition(void);
-
-# 350
-uint8_t TMR1_CheckGateValueStatus(void);
-
-# 368
-void TMR1_ISR(void);
-
-# 385
-void TMR1_CallBack(void);
-
-# 403
-void TMR1_SetInterruptHandler(void (* InterruptHandler)(void));
-
-# 421
-extern void (*TMR1_InterruptHandler)(void);
-
-# 439
-void TMR1_DefaultInterruptHandler(void);
-
-# 104 "mcc_generated_files/tmr0.h"
-void TMR0_Initialize(void);
-
-# 135
-uint8_t TMR0_ReadTimer(void);
-
-# 174
-void TMR0_WriteTimer(uint8_t timerVal);
-
-# 210
-void TMR0_Reload(void);
-
-# 225
-void TMR0_ISR(void);
-
-# 243
-void TMR0_CallBack(void);
-
-# 261
-void TMR0_SetInterruptHandler(void (* InterruptHandler)(void));
-
-# 279
-extern void (*TMR0_InterruptHandler)(void);
-
-# 297
-void TMR0_DefaultInterruptHandler(void);
-
-# 73 "mcc_generated_files/mcc.h"
-void SYSTEM_Initialize(void);
-
-# 86
-void OSCILLATOR_Initialize(void);
-
-# 24 "bsp_counter.h"
-typedef struct{
-unsigned char TimeCntStartFlag;
-unsigned char TimeCntEndFlag;
-unsigned char AlarmFlag;
-unsigned char JamFlag;
-unsigned char DisplayReflashFlag;
-unsigned long SingleTimeCnt;
-unsigned int SmallBoxCnt;
-unsigned int MiddleBoxCnt;
-unsigned int LargeBoxCnt;
-unsigned int JamCnt;
-unsigned long BoxSum;
-}BoxCntStruct;
-
-
-void bsp_CounterInit(void);
-void bsp_RA2InterruptISRCallback(void);
-void bsp_TimerInterruptISRCallback(void);
-
-# 52 "FLash.h"
+# 52 "Flash.h"
 unsigned FLASH_read( unsigned address);
 
 # 61
@@ -14877,351 +14626,108 @@ void FLASH_write( unsigned address, unsigned data, char latch);
 # 89
 void FLASH_erase( unsigned address);
 
-# 52
-unsigned FLASH_read( unsigned address);
-
-# 61
-unsigned FLASH_readConfig( unsigned address);
-
-# 70
-void FLASH_readBlock( unsigned* buffer, unsigned address, char count);
-
-# 81
-void FLASH_write( unsigned address, unsigned data, char latch);
-
-# 89
-void FLASH_erase( unsigned address);
-
-# 22 "HEFLash.h"
-char HEFLASH_writeBlock( char radd, char* buffer, char count);
-
-# 33
-char HEFLASH_readBlock( char* buffer, char radd, char count);
-
-# 43
-char HEFLASH_readByte( char radd, char offset);
-
-# 18 "C:\Program Files (x86)\Microchip\xc8\v1.45\include\assert.h"
-extern void _fassert(int, const char *, const char *);
-
-
-# 24
-#pragma intrinsic(__builtin_software_breakpoint)
-extern void __builtin_software_breakpoint(void);
-
-# 4 "C:\Program Files (x86)\Microchip\xc8\v1.45\include\__size_t.h"
-typedef unsigned size_t;
-
-# 14 "C:\Program Files (x86)\Microchip\xc8\v1.45\include\string.h"
-extern void * memcpy(void *, const void *, size_t);
-extern void * memmove(void *, const void *, size_t);
-extern void * memset(void *, int, size_t);
-
-
-
-
-extern void * __builtin_memcpy(void *, const void *, size_t);
-#pragma intrinsic(__builtin_memcpy)
-
-# 36
-extern char * strcat(char *, const char *);
-extern char * strcpy(char *, const char *);
-extern char * strncat(char *, const char *, size_t);
-extern char * strncpy(char *, const char *, size_t);
-extern char * strdup(const char *);
-extern char * strtok(char *, const char *);
-
-
-extern int memcmp(const void *, const void *, size_t);
-extern int strcmp(const char *, const char *);
-extern int stricmp(const char *, const char *);
-extern int strncmp(const char *, const char *, size_t);
-extern int strnicmp(const char *, const char *, size_t);
-extern void * memchr(const void *, int, size_t);
-extern size_t strcspn(const char *, const char *);
-extern char * strpbrk(const char *, const char *);
-extern size_t strspn(const char *, const char *);
-extern char * strstr(const char *, const char *);
-extern char * stristr(const char *, const char *);
-extern char * strerror(int);
-extern size_t strlen(const char *);
-extern char * strchr(const char *, int);
-extern char * strichr(const char *, int);
-extern char * strrchr(const char *, int);
-extern char * strrichr(const char *, int);
-
-
-# 51 "main.c"
-#pragma __config("__IDLOC", "pic", "4D8A");
-
-# 56
-volatile unsigned char gInterruptFlag;
-volatile unsigned char gEnterFlag;
-volatile unsigned char gExitFlag;
-
-volatile unsigned char gTimer0NormalFalshCnt;
-volatile unsigned char gTimer0NormalFlashFlag;
-volatile unsigned char gTimer0AlarmFlashFlag;
-
-volatile unsigned char gTimer3Flag;
-
-BoxCntStruct gBoxCntStruct;
-
-
-unsigned char HEFBufferData[32];
-
-void _fassert(int line, const char *file, const char *expr)
+# 17 "Flash.c"
+unsigned FLASH_readConfig( unsigned address)
 {
-TRISC = 0xf0;
-PORTC = PORTC;
+
+PMADR = address;
+PMCON1bits.CFGS = 1;
+PMCON1bits.RD = 1;
+__nop();
+__nop();
+
+
+return PMDAT;
 }
 
 
-void LCDSendData(int RS, uint8_t value)
+unsigned FLASH_read( unsigned address)
 {
-LATBbits.LATB5 = value & 1;
-LATCbits.LATC1 = (value & 2) >> 1;
-LATCbits.LATC2 = (value & 4) >> 2;
-LATCbits.LATC3 = (value & 8) >> 3;
-LATCbits.LATC4 = (value & 16) >> 4;
-LATCbits.LATC5 = (value & 32) >> 5;
-LATCbits.LATC6 = (value & 64) >> 6;
-LATCbits.LATC7 = (value & 128) >> 7;
-if(RS > 0)
-{
-LATBbits.LATB7 = 1;
-}
-else
-{
-LATBbits.LATB7 = 0;
-}
-do { LATBbits.LATB6 = 1; } while(0);
-_delay((unsigned long)((1)*(2000000/4000.0)));
-do { LATBbits.LATB6 = 0; } while(0);
-_delay((unsigned long)((10)*(2000000/4000.0)));
+
+PMADR = address;
+PMCON1bits.CFGS = 0;
+PMCON1bits.RD = 1;
+__nop();
+__nop();
+
+
+return PMDAT;
 }
 
-void LCDInit()
+
+void FLASH_readBlock( unsigned *buffer, unsigned address, char count)
 {
-LATBbits.LATB6 = 0;
-LATBbits.LATB7 = 0;
-LATBbits.LATB5 = 0;
-LATCbits.LATC1 = 0;
-LATCbits.LATC2 = 0;
-LATCbits.LATC3 = 0;
-LATCbits.LATC4 = 0;
-LATCbits.LATC5 = 0;
-LATCbits.LATC6 = 0;
-LATCbits.LATC7 = 0;
-
-_delay((unsigned long)((50)*(2000000/4000.0)));
-LCDSendData(0, 0b00111000);
-
-
-_delay((unsigned long)((50)*(2000000/4000.0)));
-LCDSendData(0, 0b00111000);
-
-
-_delay((unsigned long)((50)*(2000000/4000.0)));
-LCDSendData(0, 0b00111000);
-
-
-_delay((unsigned long)((50)*(2000000/4000.0)));
-LCDSendData(0, 0b00111000);
-LCDSendData(0, 0b00001111);
-LCDSendData(0, 0b00000001);
-LCDSendData(0, 0b00000110);
-}
-uint8_t display_data_1[]={"S:000M:000L:000"};
-uint8_t display_data_2[]={"Z:000G:000"};
-
-
-
-void Print(uint8_t *str)
+while ( count > 0)
 {
-while(*str !='\0')
-{
-LCDSendData(1,*str);
-str++;
-_delay((unsigned long)((1)*(2000000/4000.0)));
+*buffer++ = FLASH_read( address++);
+count--;
 }
 }
 
-void Data_Toseg()
+# 58
+void _unlock( void)
 {
-display_data_1[2] = (gBoxCntStruct.SmallBoxCnt%1000/100)+0x30;
-display_data_1[3] = (gBoxCntStruct.SmallBoxCnt%100/10)+0x30;
-display_data_1[4] = (gBoxCntStruct.SmallBoxCnt%10)+0x30;
+
+# 60
+#asm
+        BANKSEL PMCON2
+        MOVLW 0x55
+        MOVWF PMCON2 & 0x7F
+        MOVLW 0xAA
+        MOVWF PMCON2 & 0x7F
+        BSF PMCON1 & 0x7F,1 ; set WR bit
+        NOP
+ NOP
+#endasm 
+# 69
+
+ }
 
 
-display_data_1[7] = (gBoxCntStruct.MiddleBoxCnt%1000/100)+0x30;
-display_data_1[8] = (gBoxCntStruct.MiddleBoxCnt%100/10)+0x30;
-display_data_1[9] = (gBoxCntStruct.MiddleBoxCnt%10)+0x30;
+void FLASH_write( unsigned address, unsigned data, char latch)
+{
 
-display_data_1[12] = (gBoxCntStruct.LargeBoxCnt%1000/100)+0x30;
-display_data_1[13] = (gBoxCntStruct.LargeBoxCnt%100/10)+0x30;
-display_data_1[14] = (gBoxCntStruct.LargeBoxCnt%10)+0x30;
-
-display_data_2[2] = (gBoxCntStruct.BoxSum%1000/100)+0x30;
-display_data_2[3] = (gBoxCntStruct.BoxSum%100/10)+0x30;
-display_data_2[4] = (gBoxCntStruct.BoxSum%10)+0x30;
-
-display_data_2[7] = (gBoxCntStruct.JamCnt%1000/100)+0x30;
-display_data_2[8] = (gBoxCntStruct.JamCnt%100/10)+0x30;
-display_data_2[9] = (gBoxCntStruct.JamCnt%10)+0x30;
+char temp = INTCONbits.GIE;
+INTCONbits.GIE = 0;
 
 
-HEFBufferData[3] = (unsigned char)(gBoxCntStruct.SmallBoxCnt >> 8);
-HEFBufferData[4] = (unsigned char)(gBoxCntStruct.SmallBoxCnt);
+PMADR = address;
+PMDAT = data;
+PMCON1bits.LWLO = latch;
+PMCON1bits.CFGS = 0;
+PMCON1bits.FREE = 0;
+PMCON1bits.WREN = 1;
 
 
-HEFBufferData[7] = (unsigned char)(gBoxCntStruct.MiddleBoxCnt >> 8);
-HEFBufferData[8] = (unsigned char)(gBoxCntStruct.MiddleBoxCnt);
+_unlock();
 
 
-HEFBufferData[11] = (unsigned char)(gBoxCntStruct.LargeBoxCnt >> 8);
-HEFBufferData[12] = (unsigned char)(gBoxCntStruct.LargeBoxCnt );
+if ( temp)
+INTCONbits.GIE = 1;
 
-
-HEFBufferData[15] = (unsigned char)(gBoxCntStruct.BoxSum >> 8);
-HEFBufferData[16] = (unsigned char)(gBoxCntStruct.BoxSum );
-
-
-HEFBufferData[19] = (unsigned char)(gBoxCntStruct.JamCnt >> 8);
-HEFBufferData[20] = (unsigned char)(gBoxCntStruct.JamCnt );
-
-(INTCONbits.GIE = 0);
-HEFLASH_writeBlock(0, (void*)&HEFBufferData,sizeof(HEFBufferData));
-(INTCONbits.GIE = 1);
 }
 
-void HEFLASH_checkData(void)
-{
-unsigned r;
-_delay((unsigned long)((200)*(2000000/4000.0)));
-r = HEFLASH_readBlock(HEFBufferData, 0, 32);
-if(!(0 == r)) {_fassert(201, "main.c", "0 == r");};
-if(0xAA == HEFBufferData[0])
-{
-gBoxCntStruct.SmallBoxCnt = (unsigned int)((HEFBufferData[3] << 8) + (HEFBufferData[4]));
 
-gBoxCntStruct.MiddleBoxCnt = (unsigned int)((HEFBufferData[7] << 8) + (HEFBufferData[8]));
-
-gBoxCntStruct.LargeBoxCnt = (unsigned int)((HEFBufferData[11] << 8) + (HEFBufferData[12]));
-
-gBoxCntStruct.BoxSum = (HEFBufferData[13] << 24) + (HEFBufferData[14] << 16) + (HEFBufferData[15] << 8) + (HEFBufferData[16]);
-
-# 213
-gBoxCntStruct.JamCnt = (unsigned int)((HEFBufferData[19] << 8) + (HEFBufferData[20]));
-
-display_data_1[2] = (gBoxCntStruct.SmallBoxCnt%1000/100)+0x30;
-display_data_1[3] = (gBoxCntStruct.SmallBoxCnt%100/10)+0x30;
-display_data_1[4] = (gBoxCntStruct.SmallBoxCnt%10)+0x30;
-
-
-display_data_1[7] = (gBoxCntStruct.MiddleBoxCnt%1000/100)+0x30;
-display_data_1[8] = (gBoxCntStruct.MiddleBoxCnt%100/10)+0x30;
-display_data_1[9] = (gBoxCntStruct.MiddleBoxCnt%10)+0x30;
-
-display_data_1[12] = (gBoxCntStruct.LargeBoxCnt%1000/100)+0x30;
-display_data_1[13] = (gBoxCntStruct.LargeBoxCnt%100/10)+0x30;
-display_data_1[14] = (gBoxCntStruct.LargeBoxCnt%10)+0x30;
-
-display_data_2[2] = (gBoxCntStruct.BoxSum%1000/100)+0x30;
-display_data_2[3] = (gBoxCntStruct.BoxSum%100/10)+0x30;
-display_data_2[4] = (gBoxCntStruct.BoxSum%10)+0x30;
-
-display_data_2[7] = (gBoxCntStruct.JamCnt%1000/100)+0x30;
-display_data_2[8] = (gBoxCntStruct.JamCnt%100/10)+0x30;
-display_data_2[9] = (gBoxCntStruct.JamCnt%10)+0x30;
-}
-else
-{
-memset(&HEFBufferData, 0, sizeof(HEFBufferData));
-HEFBufferData[0] = 0xAA;
-r == HEFLASH_writeBlock(0, (void*)&HEFBufferData,sizeof(HEFBufferData));
-if(!(0 == r)) {_fassert(241, "main.c", "0 == r");};
-}
-}
-
-void main(void)
+void FLASH_erase( unsigned address)
 {
 
-
-SYSTEM_Initialize();
-bsp_CounterInit();
-LCDInit();
+char temp = INTCONbits.GIE;
+INTCONbits.GIE = 0;
 
 
 
-HEFLASH_checkData();
-
-LCDSendData(0, 0b10000000);
-Print(display_data_1);
-_delay((unsigned long)((200)*(2000000/4000.0)));
-LCDSendData(0, 0b11000000);
-Print(display_data_2);
-
-(INTCONbits.GIE = 1);
+PMADR = address;
+PMCON1bits.CFGS = 0;
+PMCON1bits.FREE = 1;
+PMCON1bits.WREN = 1;
 
 
-(INTCONbits.PEIE = 1);
-
-# 275
-while (1)
-{
-
-if(gInterruptFlag)
-{
-
-gInterruptFlag = 0;
-}
-
-if(0 == PORTAbits.RA1 )
-{
-_delay((unsigned long)((5)*(2000000/4000.0)));
-if(0 == PORTAbits.RA1 )
-{
-gBoxCntStruct.AlarmFlag = 0;
-gBoxCntStruct.JamFlag = 0;
-}
-}
-
-if(gTimer0NormalFlashFlag)
-{
-gTimer0NormalFlashFlag = 0;
-
-do { LATAbits.LATA4 = ~LATAbits.LATA4; } while(0);
-if(0 == gBoxCntStruct.AlarmFlag)
-{
-LATAbits.LATA5 = ~LATAbits.LATA4;
-}
-}
-if(1 == gTimer0AlarmFlashFlag)
-{
-gTimer0AlarmFlashFlag = 0;
-if(1 == gBoxCntStruct.AlarmFlag)
-{
-LATAbits.LATA5 = ~LATAbits.LATA5;
-}
-}
-
-# 320
-if(gBoxCntStruct.DisplayReflashFlag)
-{
-
-gBoxCntStruct.DisplayReflashFlag = 0;
-Data_Toseg();
-LCDSendData(0, 0b10000000);
-Print(display_data_1);
-LCDSendData(0, 0b11000000);
+_unlock();
 
 
-Print(display_data_2);
+PMCON1bits.WREN = 0;
+if ( temp)
+INTCONbits.GIE = 1;
 
-# 342
-}
-
-}
 }
 

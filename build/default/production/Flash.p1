@@ -1,32 +1,20 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"24 bsp_counter.h
-[s S1211 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `ul 1 `ui 1 `ui 1 `ui 1 `ui 1 `ul 1 ]
-[n S1211 . TimeCntStartFlag TimeCntEndFlag AlarmFlag JamFlag DisplayReflashFlag SingleTimeCnt SmallBoxCnt MiddleBoxCnt LargeBoxCnt JamCnt BoxSum ]
-"1701 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic16f1619.h
-[v _TRISC `Vuc ~T0 @X0 0 e@142 ]
-"516
-[v _PORTC `Vuc ~T0 @X0 0 e@14 ]
-"2679
-[s S134 :4 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S134 . . LATB4 LATB5 LATB6 LATB7 ]
-"2678
-[u S133 `S134 1 ]
-[n S133 . . ]
-"2687
-[v _LATBbits `VS133 ~T0 @X0 0 e@269 ]
-"2718
-[s S136 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S136 . LATC0 LATC1 LATC2 LATC3 LATC4 LATC5 LATC6 LATC7 ]
-"2717
-[u S135 `S136 1 ]
-[n S135 . . ]
-"2729
-[v _LATCbits `VS135 ~T0 @X0 0 e@270 ]
-[v F11946 `(v ~T0 @X0 1 tf1`ul ]
-"153 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic.h
-[v __delay `JF11946 ~T0 @X0 0 e ]
-[p i __delay ]
-"355 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic16f1619.h
+"3468 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic16f1619.h
+[v _PMADR `Vus ~T0 @X0 0 e@401 ]
+"3568
+[s S179 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S179 . RD WR WREN WRERR FREE LWLO CFGS ]
+"3567
+[u S178 `S179 1 ]
+[n S178 . . ]
+"3578
+[v _PMCON1bits `VS178 ~T0 @X0 0 e@405 ]
+"29 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic.h
+[v ___nop `(v ~T0 @X0 0 ef ]
+[p i ___nop ]
+"3515 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic16f1619.h
+[v _PMDAT `Vus ~T0 @X0 0 e@403 ]
+"355
 [s S26 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S26 . IOCIF INTF TMR0IF IOCIE INTE TMR0IE PEIE GIE ]
 "365
@@ -37,33 +25,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S25 . . . ]
 "372
 [v _INTCONbits `VS25 ~T0 @X0 0 e@11 ]
-"22 HEFLash.h
-[v _HEFLASH_writeBlock `(uc ~T0 @X0 0 ef3`uc`*uc`uc ]
-"33
-[v _HEFLASH_readBlock `(uc ~T0 @X0 0 ef3`*uc`uc`uc ]
-"16 C:\Program Files (x86)\Microchip\xc8\v1.45\include\string.h
-[v _memset `(*v ~T0 @X0 0 ef3`*v`i`ui ]
-[p mainexit ]
-"73 mcc_generated_files/mcc.h
-[v _SYSTEM_Initialize `(v ~T0 @X0 0 ef ]
-"39 bsp_counter.h
-[v _bsp_CounterInit `(v ~T0 @X0 0 ef ]
-"433 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic16f1619.h
-[s S29 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S29 . RA0 RA1 RA2 RA3 RA4 RA5 ]
-"432
-[u S28 `S29 1 ]
-[n S28 . . ]
-"442
-[v _PORTAbits `VS28 ~T0 @X0 0 e@12 ]
-"2629
-[s S132 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S132 . LATA0 LATA1 LATA2 LATA3 LATA4 LATA5 ]
-"2628
-[u S131 `S132 1 ]
-[n S131 . . ]
-"2638
-[v _LATAbits `VS131 ~T0 @X0 0 e@268 ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -10824,839 +10785,240 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic.h: 193: extern __bank0 unsigned char __resetbits;
 [; ;pic.h: 194: extern __bank0 __bit __powerdown;
 [; ;pic.h: 195: extern __bank0 __bit __timeout;
-[; ;pin_manager.h: 335: void PIN_MANAGER_Initialize (void);
-[; ;pin_manager.h: 347: void PIN_MANAGER_IOC(void);
-[; ;stdint.h: 13: typedef signed char int8_t;
-[; ;stdint.h: 20: typedef signed int int16_t;
-[; ;stdint.h: 28: typedef signed short long int int24_t;
-[; ;stdint.h: 36: typedef signed long int int32_t;
-[; ;stdint.h: 43: typedef unsigned char uint8_t;
-[; ;stdint.h: 49: typedef unsigned int uint16_t;
-[; ;stdint.h: 56: typedef unsigned short long int uint24_t;
-[; ;stdint.h: 63: typedef unsigned long int uint32_t;
-[; ;stdint.h: 71: typedef signed char int_least8_t;
-[; ;stdint.h: 78: typedef signed int int_least16_t;
-[; ;stdint.h: 90: typedef signed short long int int_least24_t;
-[; ;stdint.h: 98: typedef signed long int int_least32_t;
-[; ;stdint.h: 105: typedef unsigned char uint_least8_t;
-[; ;stdint.h: 111: typedef unsigned int uint_least16_t;
-[; ;stdint.h: 121: typedef unsigned short long int uint_least24_t;
-[; ;stdint.h: 128: typedef unsigned long int uint_least32_t;
-[; ;stdint.h: 137: typedef signed char int_fast8_t;
-[; ;stdint.h: 144: typedef signed int int_fast16_t;
-[; ;stdint.h: 156: typedef signed short long int int_fast24_t;
-[; ;stdint.h: 164: typedef signed long int int_fast32_t;
-[; ;stdint.h: 171: typedef unsigned char uint_fast8_t;
-[; ;stdint.h: 177: typedef unsigned int uint_fast16_t;
-[; ;stdint.h: 187: typedef unsigned short long int uint_fast24_t;
-[; ;stdint.h: 194: typedef unsigned long int uint_fast32_t;
-[; ;stdint.h: 200: typedef int32_t intmax_t;
-[; ;stdint.h: 205: typedef uint32_t uintmax_t;
-[; ;stdint.h: 210: typedef int16_t intptr_t;
-[; ;stdint.h: 215: typedef uint16_t uintptr_t;
-[; ;stdbool.h: 12: typedef unsigned char bool;
-[; ;interrupt_manager.h: 109: void interrupt INTERRUPT_InterruptManager(void);
-[; ;tmr3.h: 101: void TMR3_Initialize(void);
-[; ;tmr3.h: 130: void TMR3_StartTimer(void);
-[; ;tmr3.h: 162: void TMR3_StopTimer(void);
-[; ;tmr3.h: 197: uint16_t TMR3_ReadTimer(void);
-[; ;tmr3.h: 236: void TMR3_WriteTimer(uint16_t timerVal);
-[; ;tmr3.h: 272: void TMR3_Reload(void);
-[; ;tmr3.h: 311: void TMR3_StartSinglePulseAcquisition(void);
-[; ;tmr3.h: 350: uint8_t TMR3_CheckGateValueStatus(void);
-[; ;tmr3.h: 368: void TMR3_ISR(void);
-[; ;tmr3.h: 385: void TMR3_CallBack(void);
-[; ;tmr3.h: 403: void TMR3_SetInterruptHandler(void (* InterruptHandler)(void));
-[; ;tmr3.h: 421: extern void (*TMR3_InterruptHandler)(void);
-[; ;tmr3.h: 439: void TMR3_DefaultInterruptHandler(void);
-[; ;ext_int.h: 250: void EXT_INT_Initialize(void);
-[; ;ext_int.h: 272: void INT_ISR(void);
-[; ;ext_int.h: 296: void INT_CallBack(void);
-[; ;ext_int.h: 319: void INT_SetInterruptHandler(void (* InterruptHandler)(void));
-[; ;ext_int.h: 343: extern void (*INT_InterruptHandler)(void);
-[; ;ext_int.h: 367: void INT_DefaultInterruptHandler(void);
-[; ;tmr1.h: 101: void TMR1_Initialize(void);
-[; ;tmr1.h: 130: void TMR1_StartTimer(void);
-[; ;tmr1.h: 162: void TMR1_StopTimer(void);
-[; ;tmr1.h: 197: uint16_t TMR1_ReadTimer(void);
-[; ;tmr1.h: 236: void TMR1_WriteTimer(uint16_t timerVal);
-[; ;tmr1.h: 272: void TMR1_Reload(void);
-[; ;tmr1.h: 311: void TMR1_StartSinglePulseAcquisition(void);
-[; ;tmr1.h: 350: uint8_t TMR1_CheckGateValueStatus(void);
-[; ;tmr1.h: 368: void TMR1_ISR(void);
-[; ;tmr1.h: 385: void TMR1_CallBack(void);
-[; ;tmr1.h: 403: void TMR1_SetInterruptHandler(void (* InterruptHandler)(void));
-[; ;tmr1.h: 421: extern void (*TMR1_InterruptHandler)(void);
-[; ;tmr1.h: 439: void TMR1_DefaultInterruptHandler(void);
-[; ;tmr0.h: 104: void TMR0_Initialize(void);
-[; ;tmr0.h: 135: uint8_t TMR0_ReadTimer(void);
-[; ;tmr0.h: 174: void TMR0_WriteTimer(uint8_t timerVal);
-[; ;tmr0.h: 210: void TMR0_Reload(void);
-[; ;tmr0.h: 225: void TMR0_ISR(void);
-[; ;tmr0.h: 243: void TMR0_CallBack(void);
-[; ;tmr0.h: 261: void TMR0_SetInterruptHandler(void (* InterruptHandler)(void));
-[; ;tmr0.h: 279: extern void (*TMR0_InterruptHandler)(void);
-[; ;tmr0.h: 297: void TMR0_DefaultInterruptHandler(void);
-[; ;mcc.h: 73: void SYSTEM_Initialize(void);
-[; ;mcc.h: 86: void OSCILLATOR_Initialize(void);
-[; ;bsp_counter.h: 24: typedef struct{
-[; ;bsp_counter.h: 25: unsigned char TimeCntStartFlag;
-[; ;bsp_counter.h: 26: unsigned char TimeCntEndFlag;
-[; ;bsp_counter.h: 27: unsigned char AlarmFlag;
-[; ;bsp_counter.h: 28: unsigned char JamFlag;
-[; ;bsp_counter.h: 29: unsigned char DisplayReflashFlag;
-[; ;bsp_counter.h: 30: unsigned long SingleTimeCnt;
-[; ;bsp_counter.h: 31: unsigned int SmallBoxCnt;
-[; ;bsp_counter.h: 32: unsigned int MiddleBoxCnt;
-[; ;bsp_counter.h: 33: unsigned int LargeBoxCnt;
-[; ;bsp_counter.h: 34: unsigned int JamCnt;
-[; ;bsp_counter.h: 35: unsigned long BoxSum;
-[; ;bsp_counter.h: 36: }BoxCntStruct;
-[; ;bsp_counter.h: 39: void bsp_CounterInit(void);
-[; ;bsp_counter.h: 40: void bsp_RA2InterruptISRCallback(void);
-[; ;bsp_counter.h: 41: void bsp_TimerInterruptISRCallback(void);
-[; ;FLash.h: 52: unsigned FLASH_read( unsigned address);
-[; ;FLash.h: 61: unsigned FLASH_readConfig( unsigned address);
-[; ;FLash.h: 70: void FLASH_readBlock( unsigned* buffer, unsigned address, char count);
-[; ;FLash.h: 81: void FLASH_write( unsigned address, unsigned data, char latch);
-[; ;FLash.h: 89: void FLASH_erase( unsigned address);
-[; ;FLash.h: 52: unsigned FLASH_read( unsigned address);
-[; ;FLash.h: 61: unsigned FLASH_readConfig( unsigned address);
-[; ;FLash.h: 70: void FLASH_readBlock( unsigned* buffer, unsigned address, char count);
-[; ;FLash.h: 81: void FLASH_write( unsigned address, unsigned data, char latch);
-[; ;FLash.h: 89: void FLASH_erase( unsigned address);
-[; ;HEFLash.h: 22: char HEFLASH_writeBlock( char radd, char* buffer, char count);
-[; ;HEFLash.h: 33: char HEFLASH_readBlock( char* buffer, char radd, char count);
-[; ;HEFLash.h: 43: char HEFLASH_readByte( char radd, char offset);
-[; ;assert.h: 18: extern void _fassert(int, const char *, const char *);
-[; ;assert.h: 25: extern void __builtin_software_breakpoint(void);
-[; ;__size_t.h: 4: typedef unsigned size_t;
-[; ;string.h: 14: extern void * memcpy(void *, const void *, size_t);
-[; ;string.h: 15: extern void * memmove(void *, const void *, size_t);
-[; ;string.h: 16: extern void * memset(void *, int, size_t);
-[; ;string.h: 21: extern void * __builtin_memcpy(void *, const void *, size_t);
-[; ;string.h: 36: extern char * strcat(char *, const char *);
-[; ;string.h: 37: extern char * strcpy(char *, const char *);
-[; ;string.h: 38: extern char * strncat(char *, const char *, size_t);
-[; ;string.h: 39: extern char * strncpy(char *, const char *, size_t);
-[; ;string.h: 40: extern char * strdup(const char *);
-[; ;string.h: 41: extern char * strtok(char *, const char *);
-[; ;string.h: 44: extern int memcmp(const void *, const void *, size_t);
-[; ;string.h: 45: extern int strcmp(const char *, const char *);
-[; ;string.h: 46: extern int stricmp(const char *, const char *);
-[; ;string.h: 47: extern int strncmp(const char *, const char *, size_t);
-[; ;string.h: 48: extern int strnicmp(const char *, const char *, size_t);
-[; ;string.h: 49: extern void * memchr(const void *, int, size_t);
-[; ;string.h: 50: extern size_t strcspn(const char *, const char *);
-[; ;string.h: 51: extern char * strpbrk(const char *, const char *);
-[; ;string.h: 52: extern size_t strspn(const char *, const char *);
-[; ;string.h: 53: extern char * strstr(const char *, const char *);
-[; ;string.h: 54: extern char * stristr(const char *, const char *);
-[; ;string.h: 55: extern char * strerror(int);
-[; ;string.h: 56: extern size_t strlen(const char *);
-[; ;string.h: 57: extern char * strchr(const char *, int);
-[; ;string.h: 58: extern char * strichr(const char *, int);
-[; ;string.h: 59: extern char * strrchr(const char *, int);
-[; ;string.h: 60: extern char * strrichr(const char *, int);
-"56 main.c
-[v _gInterruptFlag `Vuc ~T0 @X0 1 e ]
-[; ;main.c: 56: volatile unsigned char gInterruptFlag;
-"57
-[v _gEnterFlag `Vuc ~T0 @X0 1 e ]
-[; ;main.c: 57: volatile unsigned char gEnterFlag;
-"58
-[v _gExitFlag `Vuc ~T0 @X0 1 e ]
-[; ;main.c: 58: volatile unsigned char gExitFlag;
-"60
-[v _gTimer0NormalFalshCnt `Vuc ~T0 @X0 1 e ]
-[; ;main.c: 60: volatile unsigned char gTimer0NormalFalshCnt;
-"61
-[v _gTimer0NormalFlashFlag `Vuc ~T0 @X0 1 e ]
-[; ;main.c: 61: volatile unsigned char gTimer0NormalFlashFlag;
-"62
-[v _gTimer0AlarmFlashFlag `Vuc ~T0 @X0 1 e ]
-[; ;main.c: 62: volatile unsigned char gTimer0AlarmFlashFlag;
-"64
-[v _gTimer3Flag `Vuc ~T0 @X0 1 e ]
-[; ;main.c: 64: volatile unsigned char gTimer3Flag;
-"66
-[v _gBoxCntStruct `S1211 ~T0 @X0 1 e ]
-[; ;main.c: 66: BoxCntStruct gBoxCntStruct;
-"69
-[v _HEFBufferData `uc ~T0 @X0 -> 32 `i e ]
-[; ;main.c: 69: unsigned char HEFBufferData[32];
-"71
-[v __fassert `(v ~T0 @X0 1 ef3`i`*Cuc`*Cuc ]
-"72
+[; ;Flash.h: 52: unsigned FLASH_read( unsigned address);
+[; ;Flash.h: 61: unsigned FLASH_readConfig( unsigned address);
+[; ;Flash.h: 70: void FLASH_readBlock( unsigned* buffer, unsigned address, char count);
+[; ;Flash.h: 81: void FLASH_write( unsigned address, unsigned data, char latch);
+[; ;Flash.h: 89: void FLASH_erase( unsigned address);
+"17 Flash.c
+[v _FLASH_readConfig `(ui ~T0 @X0 1 ef1`ui ]
+"18
 {
-[; ;main.c: 71: void _fassert(int line, const char *file, const char *expr)
-[; ;main.c: 72: {
-[e :U __fassert ]
-"71
-[v _line `i ~T0 @X0 1 r1 ]
-[v _file `*Cuc ~T0 @X0 1 r2 ]
-[v _expr `*Cuc ~T0 @X0 1 r3 ]
-"72
+[; ;Flash.c: 17: unsigned FLASH_readConfig( unsigned address)
+[; ;Flash.c: 18: {
+[e :U _FLASH_readConfig ]
+"17
+[v _address `ui ~T0 @X0 1 r1 ]
+"18
 [f ]
-[; ;main.c: 73: TRISC = 0xf0;
-"73
-[e = _TRISC -> -> 240 `i `uc ]
-[; ;main.c: 74: PORTC = PORTC;
-"74
-[e = _PORTC _PORTC ]
-[; ;main.c: 75: }
-"75
+[; ;Flash.c: 20: PMADR = address;
+"20
+[e = _PMADR -> _address `us ]
+[; ;Flash.c: 21: PMCON1bits.CFGS = 1;
+"21
+[e = . . _PMCON1bits 0 6 -> -> 1 `i `uc ]
+[; ;Flash.c: 22: PMCON1bits.RD = 1;
+"22
+[e = . . _PMCON1bits 0 0 -> -> 1 `i `uc ]
+[; ;Flash.c: 23: __nop();
+"23
+[e ( ___nop ..  ]
+[; ;Flash.c: 24: __nop();
+"24
+[e ( ___nop ..  ]
+[; ;Flash.c: 27: return PMDAT;
+"27
+[e ) -> _PMDAT `ui ]
+[e $UE 1211  ]
+[; ;Flash.c: 28: }
+"28
+[e :UE 1211 ]
+}
+"31
+[v _FLASH_read `(ui ~T0 @X0 1 ef1`ui ]
+"32
+{
+[; ;Flash.c: 31: unsigned FLASH_read( unsigned address)
+[; ;Flash.c: 32: {
+[e :U _FLASH_read ]
+"31
+[v _address `ui ~T0 @X0 1 r1 ]
+"32
+[f ]
+[; ;Flash.c: 34: PMADR = address;
+"34
+[e = _PMADR -> _address `us ]
+[; ;Flash.c: 35: PMCON1bits.CFGS = 0;
+"35
+[e = . . _PMCON1bits 0 6 -> -> 0 `i `uc ]
+[; ;Flash.c: 36: PMCON1bits.RD = 1;
+"36
+[e = . . _PMCON1bits 0 0 -> -> 1 `i `uc ]
+[; ;Flash.c: 37: __nop();
+"37
+[e ( ___nop ..  ]
+[; ;Flash.c: 38: __nop();
+"38
+[e ( ___nop ..  ]
+[; ;Flash.c: 41: return PMDAT;
+"41
+[e ) -> _PMDAT `ui ]
+[e $UE 1212  ]
+[; ;Flash.c: 42: }
+"42
 [e :UE 1212 ]
 }
-"78
-[v _LCDSendData `(v ~T0 @X0 1 ef2`i`uc ]
-"79
+"45
+[v _FLASH_readBlock `(v ~T0 @X0 1 ef3`*ui`ui`uc ]
+"46
 {
-[; ;main.c: 78: void LCDSendData(int RS, uint8_t value)
-[; ;main.c: 79: {
-[e :U _LCDSendData ]
-"78
-[v _RS `i ~T0 @X0 1 r1 ]
-[v _value `uc ~T0 @X0 1 r2 ]
-"79
+[; ;Flash.c: 45: void FLASH_readBlock( unsigned *buffer, unsigned address, char count)
+[; ;Flash.c: 46: {
+[e :U _FLASH_readBlock ]
+"45
+[v _buffer `*ui ~T0 @X0 1 r1 ]
+[v _address `ui ~T0 @X0 1 r2 ]
+[v _count `uc ~T0 @X0 1 r3 ]
+"46
 [f ]
-[; ;main.c: 80: LATBbits.LATB5 = value & 1;
-"80
-[e = . . _LATBbits 0 2 -> & -> _value `i -> 1 `i `uc ]
-[; ;main.c: 81: LATCbits.LATC1 = (value & 2) >> 1;
-"81
-[e = . . _LATCbits 0 1 -> >> & -> _value `i -> 2 `i -> 1 `i `uc ]
-[; ;main.c: 82: LATCbits.LATC2 = (value & 4) >> 2;
-"82
-[e = . . _LATCbits 0 2 -> >> & -> _value `i -> 4 `i -> 2 `i `uc ]
-[; ;main.c: 83: LATCbits.LATC3 = (value & 8) >> 3;
-"83
-[e = . . _LATCbits 0 3 -> >> & -> _value `i -> 8 `i -> 3 `i `uc ]
-[; ;main.c: 84: LATCbits.LATC4 = (value & 16) >> 4;
-"84
-[e = . . _LATCbits 0 4 -> >> & -> _value `i -> 16 `i -> 4 `i `uc ]
-[; ;main.c: 85: LATCbits.LATC5 = (value & 32) >> 5;
-"85
-[e = . . _LATCbits 0 5 -> >> & -> _value `i -> 32 `i -> 5 `i `uc ]
-[; ;main.c: 86: LATCbits.LATC6 = (value & 64) >> 6;
-"86
-[e = . . _LATCbits 0 6 -> >> & -> _value `i -> 64 `i -> 6 `i `uc ]
-[; ;main.c: 87: LATCbits.LATC7 = (value & 128) >> 7;
-"87
-[e = . . _LATCbits 0 7 -> >> & -> _value `i -> 128 `i -> 7 `i `uc ]
-[; ;main.c: 88: if(RS > 0)
-"88
-[e $ ! > _RS -> 0 `i 1214  ]
-[; ;main.c: 89: {
-"89
-{
-[; ;main.c: 90: LATBbits.LATB7 = 1;
-"90
-[e = . . _LATBbits 0 4 -> -> 1 `i `uc ]
-"91
-}
-[; ;main.c: 91: }
-[e $U 1215  ]
-"92
-[e :U 1214 ]
-[; ;main.c: 92: else
-[; ;main.c: 93: {
-"93
-{
-[; ;main.c: 94: LATBbits.LATB7 = 0;
-"94
-[e = . . _LATBbits 0 4 -> -> 0 `i `uc ]
-"95
-}
+[; ;Flash.c: 47: while ( count > 0)
+"47
+[e $U 1214  ]
 [e :U 1215 ]
-[; ;main.c: 95: }
-[; ;main.c: 96: do { LATBbits.LATB6 = 1; } while(0);
-"96
-[e :U 1218 ]
+[; ;Flash.c: 48: {
+"48
 {
-[e = . . _LATBbits 0 3 -> -> 1 `i `uc ]
+[; ;Flash.c: 49: *buffer++ = FLASH_read( address++);
+"49
+[e = *U ++ _buffer * -> -> 1 `i `x -> -> # *U _buffer `i `x ( _FLASH_read (1 ++ _address -> -> 1 `i `ui ]
+[; ;Flash.c: 50: count--;
+"50
+[e -- _count -> -> 1 `i `uc ]
+"51
 }
-[e :U 1217 ]
-[; ;main.c: 97: _delay((unsigned long)((1)*(2000000/4000.0)));
-"97
-[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 2000000 `l `d .4000.0 `ul ]
-[; ;main.c: 98: do { LATBbits.LATB6 = 0; } while(0);
-"98
-[e :U 1221 ]
-{
-[e = . . _LATBbits 0 3 -> -> 0 `i `uc ]
-}
-[e :U 1220 ]
-[; ;main.c: 99: _delay((unsigned long)((10)*(2000000/4000.0)));
-"99
-[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 2000000 `l `d .4000.0 `ul ]
-[; ;main.c: 100: }
-"100
+[e :U 1214 ]
+"47
+[e $ > -> _count `i -> 0 `i 1215  ]
+[e :U 1216 ]
+[; ;Flash.c: 51: }
+[; ;Flash.c: 52: }
+"52
 [e :UE 1213 ]
 }
-"102
-[v _LCDInit `(v ~T0 @X0 1 ef ]
-"103
+"58
+[v __unlock `(v ~T0 @X0 1 ef ]
+"59
 {
-[; ;main.c: 102: void LCDInit()
-[; ;main.c: 103: {
-[e :U _LCDInit ]
+[; ;Flash.c: 58: void _unlock( void)
+[; ;Flash.c: 59: {
+[e :U __unlock ]
 [f ]
-[; ;main.c: 104: LATBbits.LATB6 = 0;
-"104
-[e = . . _LATBbits 0 3 -> -> 0 `i `uc ]
-[; ;main.c: 105: LATBbits.LATB7 = 0;
-"105
-[e = . . _LATBbits 0 4 -> -> 0 `i `uc ]
-[; ;main.c: 106: LATBbits.LATB5 = 0;
-"106
-[e = . . _LATBbits 0 2 -> -> 0 `i `uc ]
-[; ;main.c: 107: LATCbits.LATC1 = 0;
-"107
-[e = . . _LATCbits 0 1 -> -> 0 `i `uc ]
-[; ;main.c: 108: LATCbits.LATC2 = 0;
-"108
-[e = . . _LATCbits 0 2 -> -> 0 `i `uc ]
-[; ;main.c: 109: LATCbits.LATC3 = 0;
-"109
-[e = . . _LATCbits 0 3 -> -> 0 `i `uc ]
-[; ;main.c: 110: LATCbits.LATC4 = 0;
-"110
-[e = . . _LATCbits 0 4 -> -> 0 `i `uc ]
-[; ;main.c: 111: LATCbits.LATC5 = 0;
-"111
-[e = . . _LATCbits 0 5 -> -> 0 `i `uc ]
-[; ;main.c: 112: LATCbits.LATC6 = 0;
-"112
-[e = . . _LATCbits 0 6 -> -> 0 `i `uc ]
-[; ;main.c: 113: LATCbits.LATC7 = 0;
-"113
-[e = . . _LATCbits 0 7 -> -> 0 `i `uc ]
-[; ;main.c: 115: _delay((unsigned long)((50)*(2000000/4000.0)));
-"115
-[e ( __delay (1 -> * -> -> 50 `i `d / -> -> 2000000 `l `d .4000.0 `ul ]
-[; ;main.c: 116: LCDSendData(0, 0b00111000);
-"116
-[e ( _LCDSendData (2 , -> 0 `i -> -> 56 `i `uc ]
-[; ;main.c: 119: _delay((unsigned long)((50)*(2000000/4000.0)));
-"119
-[e ( __delay (1 -> * -> -> 50 `i `d / -> -> 2000000 `l `d .4000.0 `ul ]
-[; ;main.c: 120: LCDSendData(0, 0b00111000);
-"120
-[e ( _LCDSendData (2 , -> 0 `i -> -> 56 `i `uc ]
-[; ;main.c: 123: _delay((unsigned long)((50)*(2000000/4000.0)));
-"123
-[e ( __delay (1 -> * -> -> 50 `i `d / -> -> 2000000 `l `d .4000.0 `ul ]
-[; ;main.c: 124: LCDSendData(0, 0b00111000);
-"124
-[e ( _LCDSendData (2 , -> 0 `i -> -> 56 `i `uc ]
-[; ;main.c: 127: _delay((unsigned long)((50)*(2000000/4000.0)));
-"127
-[e ( __delay (1 -> * -> -> 50 `i `d / -> -> 2000000 `l `d .4000.0 `ul ]
-[; ;main.c: 128: LCDSendData(0, 0b00111000);
-"128
-[e ( _LCDSendData (2 , -> 0 `i -> -> 56 `i `uc ]
-[; ;main.c: 129: LCDSendData(0, 0b00001111);
-"129
-[e ( _LCDSendData (2 , -> 0 `i -> -> 15 `i `uc ]
-[; ;main.c: 130: LCDSendData(0, 0b00000001);
-"130
-[e ( _LCDSendData (2 , -> 0 `i -> -> 1 `i `uc ]
-[; ;main.c: 131: LCDSendData(0, 0b00000110);
-"131
-[e ( _LCDSendData (2 , -> 0 `i -> -> 6 `i `uc ]
-[; ;main.c: 132: }
-"132
-[e :UE 1222 ]
+"61
+[; <"         BANKSEL PMCON2 ;# ">
+"62
+[; <"         MOVLW 0x55 ;# ">
+"63
+[; <"         MOVWF PMCON2 & 0x7F ;# ">
+"64
+[; <"         MOVLW 0xAA ;# ">
+"65
+[; <"         MOVWF PMCON2 & 0x7F ;# ">
+"66
+[; <"         BSF PMCON1 & 0x7F,1 ; set WR bit ;# ">
+"67
+[; <"         NOP ;# ">
+"68
+[; <"  NOP ;# ">
+[; ;Flash.c: 70: }
+"70
+[e :UE 1217 ]
 }
-"133
-[v _display_data_1 `uc ~T0 @X0 -> 0 `x e ]
-[i _display_data_1
-:U ..
--> 83 `c
--> 58 `c
--> 48 `c
--> 48 `c
--> 48 `c
--> 77 `c
--> 58 `c
--> 48 `c
--> 48 `c
--> 48 `c
--> 76 `c
--> 58 `c
--> 48 `c
--> 48 `c
--> 48 `c
--> 0 `c
-..
-]
-[; ;main.c: 133: uint8_t display_data_1[]={"S:000M:000L:000"};
-"134
-[v _display_data_2 `uc ~T0 @X0 -> 0 `x e ]
-[i _display_data_2
-:U ..
--> 90 `c
--> 58 `c
--> 48 `c
--> 48 `c
--> 48 `c
--> 71 `c
--> 58 `c
--> 48 `c
--> 48 `c
--> 48 `c
--> 0 `c
-..
-]
-[; ;main.c: 134: uint8_t display_data_2[]={"Z:000G:000"};
-"138
-[v _Print `(v ~T0 @X0 1 ef1`*uc ]
-"139
+"73
+[v _FLASH_write `(v ~T0 @X0 1 ef3`ui`ui`uc ]
+"74
 {
-[; ;main.c: 138: void Print(uint8_t *str)
-[; ;main.c: 139: {
-[e :U _Print ]
-"138
-[v _str `*uc ~T0 @X0 1 r1 ]
-"139
+[; ;Flash.c: 73: void FLASH_write( unsigned address, unsigned data, char latch)
+[; ;Flash.c: 74: {
+[e :U _FLASH_write ]
+"73
+[v _address `ui ~T0 @X0 1 r1 ]
+[v _data `ui ~T0 @X0 1 r2 ]
+[v _latch `uc ~T0 @X0 1 r3 ]
+"74
 [f ]
-[; ;main.c: 140: while(*str !='\0')
-"140
-[e $U 1224  ]
-[e :U 1225 ]
-[; ;main.c: 141: {
-"141
-{
-[; ;main.c: 142: LCDSendData(1,*str);
-"142
-[e ( _LCDSendData (2 , -> 1 `i *U _str ]
-[; ;main.c: 143: str++;
-"143
-[e ++ _str * -> -> 1 `i `x -> -> # *U _str `i `x ]
-[; ;main.c: 144: _delay((unsigned long)((1)*(2000000/4000.0)));
-"144
-[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 2000000 `l `d .4000.0 `ul ]
-"145
-}
-[e :U 1224 ]
-"140
-[e $ != -> *U _str `ui -> 0 `ui 1225  ]
-[e :U 1226 ]
-[; ;main.c: 145: }
-[; ;main.c: 146: }
-"146
-[e :UE 1223 ]
-}
-"148
-[v _Data_Toseg `(v ~T0 @X0 1 ef ]
-"149
-{
-[; ;main.c: 148: void Data_Toseg()
-[; ;main.c: 149: {
-[e :U _Data_Toseg ]
-[f ]
-[; ;main.c: 150: display_data_1[2] = (gBoxCntStruct.SmallBoxCnt%1000/100)+0x30;
-"150
-[e = *U + &U _display_data_1 * -> -> -> 2 `i `ui `ux -> -> # *U &U _display_data_1 `ui `ux -> + / % . _gBoxCntStruct 6 -> -> 1000 `i `ui -> -> 100 `i `ui -> -> 48 `i `ui `uc ]
-[; ;main.c: 151: display_data_1[3] = (gBoxCntStruct.SmallBoxCnt%100/10)+0x30;
-"151
-[e = *U + &U _display_data_1 * -> -> -> 3 `i `ui `ux -> -> # *U &U _display_data_1 `ui `ux -> + / % . _gBoxCntStruct 6 -> -> 100 `i `ui -> -> 10 `i `ui -> -> 48 `i `ui `uc ]
-[; ;main.c: 152: display_data_1[4] = (gBoxCntStruct.SmallBoxCnt%10)+0x30;
-"152
-[e = *U + &U _display_data_1 * -> -> -> 4 `i `ui `ux -> -> # *U &U _display_data_1 `ui `ux -> + % . _gBoxCntStruct 6 -> -> 10 `i `ui -> -> 48 `i `ui `uc ]
-[; ;main.c: 155: display_data_1[7] = (gBoxCntStruct.MiddleBoxCnt%1000/100)+0x30;
-"155
-[e = *U + &U _display_data_1 * -> -> -> 7 `i `ui `ux -> -> # *U &U _display_data_1 `ui `ux -> + / % . _gBoxCntStruct 7 -> -> 1000 `i `ui -> -> 100 `i `ui -> -> 48 `i `ui `uc ]
-[; ;main.c: 156: display_data_1[8] = (gBoxCntStruct.MiddleBoxCnt%100/10)+0x30;
-"156
-[e = *U + &U _display_data_1 * -> -> -> 8 `i `ui `ux -> -> # *U &U _display_data_1 `ui `ux -> + / % . _gBoxCntStruct 7 -> -> 100 `i `ui -> -> 10 `i `ui -> -> 48 `i `ui `uc ]
-[; ;main.c: 157: display_data_1[9] = (gBoxCntStruct.MiddleBoxCnt%10)+0x30;
-"157
-[e = *U + &U _display_data_1 * -> -> -> 9 `i `ui `ux -> -> # *U &U _display_data_1 `ui `ux -> + % . _gBoxCntStruct 7 -> -> 10 `i `ui -> -> 48 `i `ui `uc ]
-[; ;main.c: 159: display_data_1[12] = (gBoxCntStruct.LargeBoxCnt%1000/100)+0x30;
-"159
-[e = *U + &U _display_data_1 * -> -> -> 12 `i `ui `ux -> -> # *U &U _display_data_1 `ui `ux -> + / % . _gBoxCntStruct 8 -> -> 1000 `i `ui -> -> 100 `i `ui -> -> 48 `i `ui `uc ]
-[; ;main.c: 160: display_data_1[13] = (gBoxCntStruct.LargeBoxCnt%100/10)+0x30;
-"160
-[e = *U + &U _display_data_1 * -> -> -> 13 `i `ui `ux -> -> # *U &U _display_data_1 `ui `ux -> + / % . _gBoxCntStruct 8 -> -> 100 `i `ui -> -> 10 `i `ui -> -> 48 `i `ui `uc ]
-[; ;main.c: 161: display_data_1[14] = (gBoxCntStruct.LargeBoxCnt%10)+0x30;
-"161
-[e = *U + &U _display_data_1 * -> -> -> 14 `i `ui `ux -> -> # *U &U _display_data_1 `ui `ux -> + % . _gBoxCntStruct 8 -> -> 10 `i `ui -> -> 48 `i `ui `uc ]
-[; ;main.c: 163: display_data_2[2] = (gBoxCntStruct.BoxSum%1000/100)+0x30;
-"163
-[e = *U + &U _display_data_2 * -> -> -> 2 `i `ui `ux -> -> # *U &U _display_data_2 `ui `ux -> + / % . _gBoxCntStruct 10 -> -> -> 1000 `i `l `ul -> -> -> 100 `i `l `ul -> -> -> 48 `i `l `ul `uc ]
-[; ;main.c: 164: display_data_2[3] = (gBoxCntStruct.BoxSum%100/10)+0x30;
-"164
-[e = *U + &U _display_data_2 * -> -> -> 3 `i `ui `ux -> -> # *U &U _display_data_2 `ui `ux -> + / % . _gBoxCntStruct 10 -> -> -> 100 `i `l `ul -> -> -> 10 `i `l `ul -> -> -> 48 `i `l `ul `uc ]
-[; ;main.c: 165: display_data_2[4] = (gBoxCntStruct.BoxSum%10)+0x30;
-"165
-[e = *U + &U _display_data_2 * -> -> -> 4 `i `ui `ux -> -> # *U &U _display_data_2 `ui `ux -> + % . _gBoxCntStruct 10 -> -> -> 10 `i `l `ul -> -> -> 48 `i `l `ul `uc ]
-[; ;main.c: 167: display_data_2[7] = (gBoxCntStruct.JamCnt%1000/100)+0x30;
-"167
-[e = *U + &U _display_data_2 * -> -> -> 7 `i `ui `ux -> -> # *U &U _display_data_2 `ui `ux -> + / % . _gBoxCntStruct 9 -> -> 1000 `i `ui -> -> 100 `i `ui -> -> 48 `i `ui `uc ]
-[; ;main.c: 168: display_data_2[8] = (gBoxCntStruct.JamCnt%100/10)+0x30;
-"168
-[e = *U + &U _display_data_2 * -> -> -> 8 `i `ui `ux -> -> # *U &U _display_data_2 `ui `ux -> + / % . _gBoxCntStruct 9 -> -> 100 `i `ui -> -> 10 `i `ui -> -> 48 `i `ui `uc ]
-[; ;main.c: 169: display_data_2[9] = (gBoxCntStruct.JamCnt%10)+0x30;
-"169
-[e = *U + &U _display_data_2 * -> -> -> 9 `i `ui `ux -> -> # *U &U _display_data_2 `ui `ux -> + % . _gBoxCntStruct 9 -> -> 10 `i `ui -> -> 48 `i `ui `uc ]
-[; ;main.c: 172: HEFBufferData[3] = (unsigned char)(gBoxCntStruct.SmallBoxCnt >> 8);
-"172
-[e = *U + &U _HEFBufferData * -> -> -> 3 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux -> >> . _gBoxCntStruct 6 -> 8 `i `uc ]
-[; ;main.c: 173: HEFBufferData[4] = (unsigned char)(gBoxCntStruct.SmallBoxCnt);
-"173
-[e = *U + &U _HEFBufferData * -> -> -> 4 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux -> . _gBoxCntStruct 6 `uc ]
-[; ;main.c: 176: HEFBufferData[7] = (unsigned char)(gBoxCntStruct.MiddleBoxCnt >> 8);
-"176
-[e = *U + &U _HEFBufferData * -> -> -> 7 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux -> >> . _gBoxCntStruct 7 -> 8 `i `uc ]
-[; ;main.c: 177: HEFBufferData[8] = (unsigned char)(gBoxCntStruct.MiddleBoxCnt);
-"177
-[e = *U + &U _HEFBufferData * -> -> -> 8 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux -> . _gBoxCntStruct 7 `uc ]
-[; ;main.c: 180: HEFBufferData[11] = (unsigned char)(gBoxCntStruct.LargeBoxCnt >> 8);
-"180
-[e = *U + &U _HEFBufferData * -> -> -> 11 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux -> >> . _gBoxCntStruct 8 -> 8 `i `uc ]
-[; ;main.c: 181: HEFBufferData[12] = (unsigned char)(gBoxCntStruct.LargeBoxCnt );
-"181
-[e = *U + &U _HEFBufferData * -> -> -> 12 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux -> . _gBoxCntStruct 8 `uc ]
-[; ;main.c: 184: HEFBufferData[15] = (unsigned char)(gBoxCntStruct.BoxSum >> 8);
-"184
-[e = *U + &U _HEFBufferData * -> -> -> 15 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux -> >> . _gBoxCntStruct 10 -> 8 `i `uc ]
-[; ;main.c: 185: HEFBufferData[16] = (unsigned char)(gBoxCntStruct.BoxSum );
-"185
-[e = *U + &U _HEFBufferData * -> -> -> 16 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux -> . _gBoxCntStruct 10 `uc ]
-[; ;main.c: 188: HEFBufferData[19] = (unsigned char)(gBoxCntStruct.JamCnt >> 8);
-"188
-[e = *U + &U _HEFBufferData * -> -> -> 19 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux -> >> . _gBoxCntStruct 9 -> 8 `i `uc ]
-[; ;main.c: 189: HEFBufferData[20] = (unsigned char)(gBoxCntStruct.JamCnt );
-"189
-[e = *U + &U _HEFBufferData * -> -> -> 20 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux -> . _gBoxCntStruct 9 `uc ]
-[; ;main.c: 191: (INTCONbits.GIE = 0);
-"191
+"76
+[v _temp `uc ~T0 @X0 1 a ]
+[; ;Flash.c: 76: char temp = INTCONbits.GIE;
+[e = _temp . . _INTCONbits 0 7 ]
+[; ;Flash.c: 77: INTCONbits.GIE = 0;
+"77
 [e = . . _INTCONbits 0 7 -> -> 0 `i `uc ]
-[; ;main.c: 192: HEFLASH_writeBlock(0, (void*)&HEFBufferData,sizeof(HEFBufferData));
-"192
-[e ( _HEFLASH_writeBlock (3 , , -> -> 0 `i `uc -> -> &U _HEFBufferData `*v `*uc -> -> # _HEFBufferData `ui `uc ]
-[; ;main.c: 193: (INTCONbits.GIE = 1);
-"193
+[; ;Flash.c: 80: PMADR = address;
+"80
+[e = _PMADR -> _address `us ]
+[; ;Flash.c: 81: PMDAT = data;
+"81
+[e = _PMDAT -> _data `us ]
+[; ;Flash.c: 82: PMCON1bits.LWLO = latch;
+"82
+[e = . . _PMCON1bits 0 5 _latch ]
+[; ;Flash.c: 83: PMCON1bits.CFGS = 0;
+"83
+[e = . . _PMCON1bits 0 6 -> -> 0 `i `uc ]
+[; ;Flash.c: 84: PMCON1bits.FREE = 0;
+"84
+[e = . . _PMCON1bits 0 4 -> -> 0 `i `uc ]
+[; ;Flash.c: 85: PMCON1bits.WREN = 1;
+"85
+[e = . . _PMCON1bits 0 2 -> -> 1 `i `uc ]
+[; ;Flash.c: 88: _unlock();
+"88
+[e ( __unlock ..  ]
+[; ;Flash.c: 91: if ( temp)
+"91
+[e $ ! != -> _temp `i -> -> -> 0 `i `uc `i 1219  ]
+[; ;Flash.c: 92: INTCONbits.GIE = 1;
+"92
 [e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
-[; ;main.c: 194: }
-"194
-[e :UE 1227 ]
+[e :U 1219 ]
+[; ;Flash.c: 94: }
+"94
+[e :UE 1218 ]
 }
-"196
-[v _HEFLASH_checkData `(v ~T0 @X0 1 ef ]
-"197
+"97
+[v _FLASH_erase `(v ~T0 @X0 1 ef1`ui ]
+"98
 {
-[; ;main.c: 196: void HEFLASH_checkData(void)
-[; ;main.c: 197: {
-[e :U _HEFLASH_checkData ]
+[; ;Flash.c: 97: void FLASH_erase( unsigned address)
+[; ;Flash.c: 98: {
+[e :U _FLASH_erase ]
+"97
+[v _address `ui ~T0 @X0 1 r1 ]
+"98
 [f ]
-"198
-[v _r `ui ~T0 @X0 1 a ]
-[; ;main.c: 198: unsigned r;
-[; ;main.c: 199: _delay((unsigned long)((200)*(2000000/4000.0)));
-"199
-[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 2000000 `l `d .4000.0 `ul ]
-[; ;main.c: 200: r = HEFLASH_readBlock(HEFBufferData, 0, 32);
-"200
-[e = _r -> ( _HEFLASH_readBlock (3 , , &U _HEFBufferData -> -> 0 `i `uc -> -> 32 `i `uc `ui ]
-[; ;main.c: 201: if(!(0 == r)) {_fassert(201, "main.c", "0 == r");};
-"201
-[e $ ! ! == -> -> 0 `i `ui _r 1229  ]
-{
-[e ( __fassert (3 , , -> 201 `i :s 1C :s 2C ]
-}
-[e :U 1229 ]
-[; ;main.c: 202: if(0xAA == HEFBufferData[0])
-"202
-[e $ ! == -> 170 `i -> *U + &U _HEFBufferData * -> -> -> 0 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux `i 1230  ]
-[; ;main.c: 203: {
-"203
-{
-[; ;main.c: 204: gBoxCntStruct.SmallBoxCnt = (unsigned int)((HEFBufferData[3] << 8) + (HEFBufferData[4]));
-"204
-[e = . _gBoxCntStruct 6 -> + << -> *U + &U _HEFBufferData * -> -> -> 3 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux `i -> 8 `i -> *U + &U _HEFBufferData * -> -> -> 4 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux `i `ui ]
-[; ;main.c: 206: gBoxCntStruct.MiddleBoxCnt = (unsigned int)((HEFBufferData[7] << 8) + (HEFBufferData[8]));
-"206
-[e = . _gBoxCntStruct 7 -> + << -> *U + &U _HEFBufferData * -> -> -> 7 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux `i -> 8 `i -> *U + &U _HEFBufferData * -> -> -> 8 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux `i `ui ]
-[; ;main.c: 208: gBoxCntStruct.LargeBoxCnt = (unsigned int)((HEFBufferData[11] << 8) + (HEFBufferData[12]));
-"208
-[e = . _gBoxCntStruct 8 -> + << -> *U + &U _HEFBufferData * -> -> -> 11 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux `i -> 8 `i -> *U + &U _HEFBufferData * -> -> -> 12 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux `i `ui ]
-[; ;main.c: 210: gBoxCntStruct.BoxSum = (HEFBufferData[13] << 24) + (HEFBufferData[14] << 16) + (HEFBufferData[15] << 8) + (HEFBufferData[16]);
-"210
-[e = . _gBoxCntStruct 10 -> -> + + + << -> *U + &U _HEFBufferData * -> -> -> 13 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux `i -> 24 `i << -> *U + &U _HEFBufferData * -> -> -> 14 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux `i -> 16 `i << -> *U + &U _HEFBufferData * -> -> -> 15 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux `i -> 8 `i -> *U + &U _HEFBufferData * -> -> -> 16 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux `i `l `ul ]
-[; ;main.c: 213: gBoxCntStruct.JamCnt = (unsigned int)((HEFBufferData[19] << 8) + (HEFBufferData[20]));
-"213
-[e = . _gBoxCntStruct 9 -> + << -> *U + &U _HEFBufferData * -> -> -> 19 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux `i -> 8 `i -> *U + &U _HEFBufferData * -> -> -> 20 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux `i `ui ]
-[; ;main.c: 215: display_data_1[2] = (gBoxCntStruct.SmallBoxCnt%1000/100)+0x30;
-"215
-[e = *U + &U _display_data_1 * -> -> -> 2 `i `ui `ux -> -> # *U &U _display_data_1 `ui `ux -> + / % . _gBoxCntStruct 6 -> -> 1000 `i `ui -> -> 100 `i `ui -> -> 48 `i `ui `uc ]
-[; ;main.c: 216: display_data_1[3] = (gBoxCntStruct.SmallBoxCnt%100/10)+0x30;
-"216
-[e = *U + &U _display_data_1 * -> -> -> 3 `i `ui `ux -> -> # *U &U _display_data_1 `ui `ux -> + / % . _gBoxCntStruct 6 -> -> 100 `i `ui -> -> 10 `i `ui -> -> 48 `i `ui `uc ]
-[; ;main.c: 217: display_data_1[4] = (gBoxCntStruct.SmallBoxCnt%10)+0x30;
-"217
-[e = *U + &U _display_data_1 * -> -> -> 4 `i `ui `ux -> -> # *U &U _display_data_1 `ui `ux -> + % . _gBoxCntStruct 6 -> -> 10 `i `ui -> -> 48 `i `ui `uc ]
-[; ;main.c: 220: display_data_1[7] = (gBoxCntStruct.MiddleBoxCnt%1000/100)+0x30;
-"220
-[e = *U + &U _display_data_1 * -> -> -> 7 `i `ui `ux -> -> # *U &U _display_data_1 `ui `ux -> + / % . _gBoxCntStruct 7 -> -> 1000 `i `ui -> -> 100 `i `ui -> -> 48 `i `ui `uc ]
-[; ;main.c: 221: display_data_1[8] = (gBoxCntStruct.MiddleBoxCnt%100/10)+0x30;
-"221
-[e = *U + &U _display_data_1 * -> -> -> 8 `i `ui `ux -> -> # *U &U _display_data_1 `ui `ux -> + / % . _gBoxCntStruct 7 -> -> 100 `i `ui -> -> 10 `i `ui -> -> 48 `i `ui `uc ]
-[; ;main.c: 222: display_data_1[9] = (gBoxCntStruct.MiddleBoxCnt%10)+0x30;
-"222
-[e = *U + &U _display_data_1 * -> -> -> 9 `i `ui `ux -> -> # *U &U _display_data_1 `ui `ux -> + % . _gBoxCntStruct 7 -> -> 10 `i `ui -> -> 48 `i `ui `uc ]
-[; ;main.c: 224: display_data_1[12] = (gBoxCntStruct.LargeBoxCnt%1000/100)+0x30;
-"224
-[e = *U + &U _display_data_1 * -> -> -> 12 `i `ui `ux -> -> # *U &U _display_data_1 `ui `ux -> + / % . _gBoxCntStruct 8 -> -> 1000 `i `ui -> -> 100 `i `ui -> -> 48 `i `ui `uc ]
-[; ;main.c: 225: display_data_1[13] = (gBoxCntStruct.LargeBoxCnt%100/10)+0x30;
-"225
-[e = *U + &U _display_data_1 * -> -> -> 13 `i `ui `ux -> -> # *U &U _display_data_1 `ui `ux -> + / % . _gBoxCntStruct 8 -> -> 100 `i `ui -> -> 10 `i `ui -> -> 48 `i `ui `uc ]
-[; ;main.c: 226: display_data_1[14] = (gBoxCntStruct.LargeBoxCnt%10)+0x30;
-"226
-[e = *U + &U _display_data_1 * -> -> -> 14 `i `ui `ux -> -> # *U &U _display_data_1 `ui `ux -> + % . _gBoxCntStruct 8 -> -> 10 `i `ui -> -> 48 `i `ui `uc ]
-[; ;main.c: 228: display_data_2[2] = (gBoxCntStruct.BoxSum%1000/100)+0x30;
-"228
-[e = *U + &U _display_data_2 * -> -> -> 2 `i `ui `ux -> -> # *U &U _display_data_2 `ui `ux -> + / % . _gBoxCntStruct 10 -> -> -> 1000 `i `l `ul -> -> -> 100 `i `l `ul -> -> -> 48 `i `l `ul `uc ]
-[; ;main.c: 229: display_data_2[3] = (gBoxCntStruct.BoxSum%100/10)+0x30;
-"229
-[e = *U + &U _display_data_2 * -> -> -> 3 `i `ui `ux -> -> # *U &U _display_data_2 `ui `ux -> + / % . _gBoxCntStruct 10 -> -> -> 100 `i `l `ul -> -> -> 10 `i `l `ul -> -> -> 48 `i `l `ul `uc ]
-[; ;main.c: 230: display_data_2[4] = (gBoxCntStruct.BoxSum%10)+0x30;
-"230
-[e = *U + &U _display_data_2 * -> -> -> 4 `i `ui `ux -> -> # *U &U _display_data_2 `ui `ux -> + % . _gBoxCntStruct 10 -> -> -> 10 `i `l `ul -> -> -> 48 `i `l `ul `uc ]
-[; ;main.c: 232: display_data_2[7] = (gBoxCntStruct.JamCnt%1000/100)+0x30;
-"232
-[e = *U + &U _display_data_2 * -> -> -> 7 `i `ui `ux -> -> # *U &U _display_data_2 `ui `ux -> + / % . _gBoxCntStruct 9 -> -> 1000 `i `ui -> -> 100 `i `ui -> -> 48 `i `ui `uc ]
-[; ;main.c: 233: display_data_2[8] = (gBoxCntStruct.JamCnt%100/10)+0x30;
-"233
-[e = *U + &U _display_data_2 * -> -> -> 8 `i `ui `ux -> -> # *U &U _display_data_2 `ui `ux -> + / % . _gBoxCntStruct 9 -> -> 100 `i `ui -> -> 10 `i `ui -> -> 48 `i `ui `uc ]
-[; ;main.c: 234: display_data_2[9] = (gBoxCntStruct.JamCnt%10)+0x30;
-"234
-[e = *U + &U _display_data_2 * -> -> -> 9 `i `ui `ux -> -> # *U &U _display_data_2 `ui `ux -> + % . _gBoxCntStruct 9 -> -> 10 `i `ui -> -> 48 `i `ui `uc ]
-"235
-}
-[; ;main.c: 235: }
-[e $U 1231  ]
-"236
-[e :U 1230 ]
-[; ;main.c: 236: else
-[; ;main.c: 237: {
-"237
-{
-[; ;main.c: 238: memset(&HEFBufferData, 0, sizeof(HEFBufferData));
-"238
-[e ( _memset (3 , , -> &U _HEFBufferData `*v -> 0 `i -> # _HEFBufferData `ui ]
-[; ;main.c: 239: HEFBufferData[0] = 0xAA;
-"239
-[e = *U + &U _HEFBufferData * -> -> -> 0 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux -> -> 170 `i `uc ]
-[; ;main.c: 240: r == HEFLASH_writeBlock(0, (void*)&HEFBufferData,sizeof(HEFBufferData));
-"240
-[e == _r -> ( _HEFLASH_writeBlock (3 , , -> -> 0 `i `uc -> -> &U _HEFBufferData `*v `*uc -> -> # _HEFBufferData `ui `uc `ui ]
-[; ;main.c: 241: if(!(0 == r)) {_fassert(241, "main.c", "0 == r");};
-"241
-[e $ ! ! == -> -> 0 `i `ui _r 1232  ]
-{
-[e ( __fassert (3 , , -> 241 `i :s 3C :s 4C ]
-}
-[e :U 1232 ]
-"242
-}
-[e :U 1231 ]
-[; ;main.c: 242: }
-[; ;main.c: 243: }
-"243
-[e :UE 1228 ]
-}
-[v $root$_main `(v ~T0 @X0 0 e ]
-"245
-[v _main `(v ~T0 @X0 1 ef ]
-"246
-{
-[; ;main.c: 245: void main(void)
-[; ;main.c: 246: {
-[e :U _main ]
-[f ]
-[; ;main.c: 249: SYSTEM_Initialize();
-"249
-[e ( _SYSTEM_Initialize ..  ]
-[; ;main.c: 250: bsp_CounterInit();
-"250
-[e ( _bsp_CounterInit ..  ]
-[; ;main.c: 251: LCDInit();
-"251
-[e ( _LCDInit ..  ]
-[; ;main.c: 255: HEFLASH_checkData();
-"255
-[e ( _HEFLASH_checkData ..  ]
-[; ;main.c: 257: LCDSendData(0, 0b10000000);
-"257
-[e ( _LCDSendData (2 , -> 0 `i -> -> 128 `i `uc ]
-[; ;main.c: 258: Print(display_data_1);
-"258
-[e ( _Print (1 &U _display_data_1 ]
-[; ;main.c: 259: _delay((unsigned long)((200)*(2000000/4000.0)));
-"259
-[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 2000000 `l `d .4000.0 `ul ]
-[; ;main.c: 260: LCDSendData(0, 0b11000000);
-"260
-[e ( _LCDSendData (2 , -> 0 `i -> -> 192 `i `uc ]
-[; ;main.c: 261: Print(display_data_2);
-"261
-[e ( _Print (1 &U _display_data_2 ]
-[; ;main.c: 263: (INTCONbits.GIE = 1);
-"263
+"100
+[v _temp `uc ~T0 @X0 1 a ]
+[; ;Flash.c: 100: char temp = INTCONbits.GIE;
+[e = _temp . . _INTCONbits 0 7 ]
+[; ;Flash.c: 101: INTCONbits.GIE = 0;
+"101
+[e = . . _INTCONbits 0 7 -> -> 0 `i `uc ]
+[; ;Flash.c: 105: PMADR = address;
+"105
+[e = _PMADR -> _address `us ]
+[; ;Flash.c: 106: PMCON1bits.CFGS = 0;
+"106
+[e = . . _PMCON1bits 0 6 -> -> 0 `i `uc ]
+[; ;Flash.c: 107: PMCON1bits.FREE = 1;
+"107
+[e = . . _PMCON1bits 0 4 -> -> 1 `i `uc ]
+[; ;Flash.c: 108: PMCON1bits.WREN = 1;
+"108
+[e = . . _PMCON1bits 0 2 -> -> 1 `i `uc ]
+[; ;Flash.c: 111: _unlock();
+"111
+[e ( __unlock ..  ]
+[; ;Flash.c: 114: PMCON1bits.WREN = 0;
+"114
+[e = . . _PMCON1bits 0 2 -> -> 0 `i `uc ]
+[; ;Flash.c: 115: if ( temp)
+"115
+[e $ ! != -> _temp `i -> -> -> 0 `i `uc `i 1221  ]
+[; ;Flash.c: 116: INTCONbits.GIE = 1;
+"116
 [e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
-[; ;main.c: 266: (INTCONbits.PEIE = 1);
-"266
-[e = . . _INTCONbits 0 6 -> -> 1 `i `uc ]
-[; ;main.c: 275: while (1)
-"275
-[e :U 1235 ]
-[; ;main.c: 276: {
-"276
-{
-[; ;main.c: 278: if(gInterruptFlag)
-"278
-[e $ ! != -> _gInterruptFlag `i -> -> -> 0 `i `Vuc `i 1237  ]
-[; ;main.c: 279: {
-"279
-{
-[; ;main.c: 281: gInterruptFlag = 0;
-"281
-[e = _gInterruptFlag -> -> 0 `i `uc ]
-"282
+[e :U 1221 ]
+[; ;Flash.c: 118: }
+"118
+[e :UE 1220 ]
 }
-[e :U 1237 ]
-[; ;main.c: 282: }
-[; ;main.c: 284: if(0 == PORTAbits.RA1 )
-"284
-[e $ ! == -> 0 `i -> . . _PORTAbits 0 1 `i 1238  ]
-[; ;main.c: 285: {
-"285
-{
-[; ;main.c: 286: _delay((unsigned long)((5)*(2000000/4000.0)));
-"286
-[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 2000000 `l `d .4000.0 `ul ]
-[; ;main.c: 287: if(0 == PORTAbits.RA1 )
-"287
-[e $ ! == -> 0 `i -> . . _PORTAbits 0 1 `i 1239  ]
-[; ;main.c: 288: {
-"288
-{
-[; ;main.c: 289: gBoxCntStruct.AlarmFlag = 0;
-"289
-[e = . _gBoxCntStruct 2 -> -> 0 `i `uc ]
-[; ;main.c: 290: gBoxCntStruct.JamFlag = 0;
-"290
-[e = . _gBoxCntStruct 3 -> -> 0 `i `uc ]
-"291
-}
-[e :U 1239 ]
-"292
-}
-[e :U 1238 ]
-[; ;main.c: 291: }
-[; ;main.c: 292: }
-[; ;main.c: 294: if(gTimer0NormalFlashFlag)
-"294
-[e $ ! != -> _gTimer0NormalFlashFlag `i -> -> -> 0 `i `Vuc `i 1240  ]
-[; ;main.c: 295: {
-"295
-{
-[; ;main.c: 296: gTimer0NormalFlashFlag = 0;
-"296
-[e = _gTimer0NormalFlashFlag -> -> 0 `i `uc ]
-[; ;main.c: 298: do { LATAbits.LATA4 = ~LATAbits.LATA4; } while(0);
-"298
-[e :U 1243 ]
-{
-[e = . . _LATAbits 0 4 -> ~ -> . . _LATAbits 0 4 `i `uc ]
-}
-[e :U 1242 ]
-[; ;main.c: 299: if(0 == gBoxCntStruct.AlarmFlag)
-"299
-[e $ ! == -> 0 `i -> . _gBoxCntStruct 2 `i 1244  ]
-[; ;main.c: 300: {
-"300
-{
-[; ;main.c: 301: LATAbits.LATA5 = ~LATAbits.LATA4;
-"301
-[e = . . _LATAbits 0 5 -> ~ -> . . _LATAbits 0 4 `i `uc ]
-"302
-}
-[e :U 1244 ]
-"303
-}
-[e :U 1240 ]
-[; ;main.c: 302: }
-[; ;main.c: 303: }
-[; ;main.c: 304: if(1 == gTimer0AlarmFlashFlag)
-"304
-[e $ ! == -> 1 `i -> _gTimer0AlarmFlashFlag `i 1245  ]
-[; ;main.c: 305: {
-"305
-{
-[; ;main.c: 306: gTimer0AlarmFlashFlag = 0;
-"306
-[e = _gTimer0AlarmFlashFlag -> -> 0 `i `uc ]
-[; ;main.c: 307: if(1 == gBoxCntStruct.AlarmFlag)
-"307
-[e $ ! == -> 1 `i -> . _gBoxCntStruct 2 `i 1246  ]
-[; ;main.c: 308: {
-"308
-{
-[; ;main.c: 309: LATAbits.LATA5 = ~LATAbits.LATA5;
-"309
-[e = . . _LATAbits 0 5 -> ~ -> . . _LATAbits 0 5 `i `uc ]
-"310
-}
-[e :U 1246 ]
-"311
-}
-[e :U 1245 ]
-[; ;main.c: 310: }
-[; ;main.c: 311: }
-[; ;main.c: 320: if(gBoxCntStruct.DisplayReflashFlag)
-"320
-[e $ ! != -> . _gBoxCntStruct 4 `i -> -> -> 0 `i `uc `i 1247  ]
-[; ;main.c: 321: {
-"321
-{
-[; ;main.c: 323: gBoxCntStruct.DisplayReflashFlag = 0;
-"323
-[e = . _gBoxCntStruct 4 -> -> 0 `i `uc ]
-[; ;main.c: 324: Data_Toseg();
-"324
-[e ( _Data_Toseg ..  ]
-[; ;main.c: 325: LCDSendData(0, 0b10000000);
-"325
-[e ( _LCDSendData (2 , -> 0 `i -> -> 128 `i `uc ]
-[; ;main.c: 326: Print(display_data_1);
-"326
-[e ( _Print (1 &U _display_data_1 ]
-[; ;main.c: 327: LCDSendData(0, 0b11000000);
-"327
-[e ( _LCDSendData (2 , -> 0 `i -> -> 192 `i `uc ]
-[; ;main.c: 330: Print(display_data_2);
-"330
-[e ( _Print (1 &U _display_data_2 ]
-"342
-}
-[e :U 1247 ]
-"344
-}
-[e :U 1234 ]
-"275
-[e $U 1235  ]
-[e :U 1236 ]
-[; ;main.c: 342: }
-[; ;main.c: 344: }
-[; ;main.c: 345: }
-"345
-[e :UE 1233 ]
-}
-[a 2C 48 32 61 61 32 114 0 ]
-[a 4C 48 32 61 61 32 114 0 ]
-[a 1C 109 97 105 110 46 99 0 ]
-[a 3C 109 97 105 110 46 99 0 ]

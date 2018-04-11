@@ -2,7 +2,7 @@
 # 1 "mcc_generated_files/device_config.c"
 
 
-# 50
+# 49
 #pragma config FOSC = INTOSC
 #pragma config PWRTE = OFF
 #pragma config MCLRE = ON

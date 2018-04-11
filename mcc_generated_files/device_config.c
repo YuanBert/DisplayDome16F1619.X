@@ -45,7 +45,6 @@
 */
 
 // Configuration bits: selected in the GUI
-
 // CONFIG1
 #pragma config FOSC = INTOSC    // Oscillator Selection Bits->INTOSC oscillator: I/O function on CLKIN pin
 #pragma config PWRTE = OFF    // Power-up Timer Enable->PWRT disabled
