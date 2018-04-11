@@ -10958,218 +10958,224 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;string.h: 58: extern char * strichr(const char *, int);
 [; ;string.h: 59: extern char * strrchr(const char *, int);
 [; ;string.h: 60: extern char * strrichr(const char *, int);
-"56 main.c
+"58 main.c
 [v _gInterruptFlag `Vuc ~T0 @X0 1 e ]
-[; ;main.c: 56: volatile unsigned char gInterruptFlag;
-"57
+[; ;main.c: 58: volatile unsigned char gInterruptFlag;
+"59
 [v _gEnterFlag `Vuc ~T0 @X0 1 e ]
-[; ;main.c: 57: volatile unsigned char gEnterFlag;
-"58
-[v _gExitFlag `Vuc ~T0 @X0 1 e ]
-[; ;main.c: 58: volatile unsigned char gExitFlag;
+[; ;main.c: 59: volatile unsigned char gEnterFlag;
 "60
-[v _gTimer0NormalFalshCnt `Vuc ~T0 @X0 1 e ]
-[; ;main.c: 60: volatile unsigned char gTimer0NormalFalshCnt;
-"61
-[v _gTimer0NormalFlashFlag `Vuc ~T0 @X0 1 e ]
-[; ;main.c: 61: volatile unsigned char gTimer0NormalFlashFlag;
+[v _gExitFlag `Vuc ~T0 @X0 1 e ]
+[; ;main.c: 60: volatile unsigned char gExitFlag;
 "62
-[v _gTimer0AlarmFlashFlag `Vuc ~T0 @X0 1 e ]
-[; ;main.c: 62: volatile unsigned char gTimer0AlarmFlashFlag;
+[v _gTimer0NormalFalshCnt `Vuc ~T0 @X0 1 e ]
+[; ;main.c: 62: volatile unsigned char gTimer0NormalFalshCnt;
+"63
+[v _gTimer0NormalFlashFlag `Vuc ~T0 @X0 1 e ]
+[; ;main.c: 63: volatile unsigned char gTimer0NormalFlashFlag;
 "64
-[v _gTimer3Flag `Vuc ~T0 @X0 1 e ]
-[; ;main.c: 64: volatile unsigned char gTimer3Flag;
+[v _gTimer0AlarmFlashFlag `Vuc ~T0 @X0 1 e ]
+[; ;main.c: 64: volatile unsigned char gTimer0AlarmFlashFlag;
 "66
-[v _gBoxCntStruct `S1211 ~T0 @X0 1 e ]
-[; ;main.c: 66: BoxCntStruct gBoxCntStruct;
+[v _gTimer3Flag `Vuc ~T0 @X0 1 e ]
+[; ;main.c: 66: volatile unsigned char gTimer3Flag;
+"68
+[v _KeyPushTimeCnt `Vul ~T0 @X0 1 e ]
+[; ;main.c: 68: volatile unsigned long KeyPushTimeCnt;
 "69
-[v _HEFBufferData `uc ~T0 @X0 -> 32 `i e ]
-[; ;main.c: 69: unsigned char HEFBufferData[32];
-"71
-[v __fassert `(v ~T0 @X0 1 ef3`i`*Cuc`*Cuc ]
+[v _KeyClearHEFFlag `Vuc ~T0 @X0 1 e ]
+[; ;main.c: 69: volatile unsigned char KeyClearHEFFlag;
 "72
+[v _gBoxCntStruct `S1211 ~T0 @X0 1 e ]
+[; ;main.c: 72: BoxCntStruct gBoxCntStruct;
+"75
+[v _HEFBufferData `uc ~T0 @X0 -> 32 `i e ]
+[; ;main.c: 75: unsigned char HEFBufferData[32];
+"77
+[v __fassert `(v ~T0 @X0 1 ef3`i`*Cuc`*Cuc ]
+"78
 {
-[; ;main.c: 71: void _fassert(int line, const char *file, const char *expr)
-[; ;main.c: 72: {
+[; ;main.c: 77: void _fassert(int line, const char *file, const char *expr)
+[; ;main.c: 78: {
 [e :U __fassert ]
-"71
+"77
 [v _line `i ~T0 @X0 1 r1 ]
 [v _file `*Cuc ~T0 @X0 1 r2 ]
 [v _expr `*Cuc ~T0 @X0 1 r3 ]
-"72
+"78
 [f ]
-[; ;main.c: 73: TRISC = 0xf0;
-"73
+[; ;main.c: 79: TRISC = 0xf0;
+"79
 [e = _TRISC -> -> 240 `i `uc ]
-[; ;main.c: 74: PORTC = PORTC;
-"74
+[; ;main.c: 80: PORTC = PORTC;
+"80
 [e = _PORTC _PORTC ]
-[; ;main.c: 75: }
-"75
+[; ;main.c: 81: }
+"81
 [e :UE 1212 ]
 }
-"78
+"84
 [v _LCDSendData `(v ~T0 @X0 1 ef2`i`uc ]
-"79
+"85
 {
-[; ;main.c: 78: void LCDSendData(int RS, uint8_t value)
-[; ;main.c: 79: {
+[; ;main.c: 84: void LCDSendData(int RS, uint8_t value)
+[; ;main.c: 85: {
 [e :U _LCDSendData ]
-"78
+"84
 [v _RS `i ~T0 @X0 1 r1 ]
 [v _value `uc ~T0 @X0 1 r2 ]
-"79
-[f ]
-[; ;main.c: 80: LATBbits.LATB5 = value & 1;
-"80
-[e = . . _LATBbits 0 2 -> & -> _value `i -> 1 `i `uc ]
-[; ;main.c: 81: LATCbits.LATC1 = (value & 2) >> 1;
-"81
-[e = . . _LATCbits 0 1 -> >> & -> _value `i -> 2 `i -> 1 `i `uc ]
-[; ;main.c: 82: LATCbits.LATC2 = (value & 4) >> 2;
-"82
-[e = . . _LATCbits 0 2 -> >> & -> _value `i -> 4 `i -> 2 `i `uc ]
-[; ;main.c: 83: LATCbits.LATC3 = (value & 8) >> 3;
-"83
-[e = . . _LATCbits 0 3 -> >> & -> _value `i -> 8 `i -> 3 `i `uc ]
-[; ;main.c: 84: LATCbits.LATC4 = (value & 16) >> 4;
-"84
-[e = . . _LATCbits 0 4 -> >> & -> _value `i -> 16 `i -> 4 `i `uc ]
-[; ;main.c: 85: LATCbits.LATC5 = (value & 32) >> 5;
 "85
-[e = . . _LATCbits 0 5 -> >> & -> _value `i -> 32 `i -> 5 `i `uc ]
-[; ;main.c: 86: LATCbits.LATC6 = (value & 64) >> 6;
+[f ]
+[; ;main.c: 86: LATBbits.LATB5 = value & 1;
 "86
-[e = . . _LATCbits 0 6 -> >> & -> _value `i -> 64 `i -> 6 `i `uc ]
-[; ;main.c: 87: LATCbits.LATC7 = (value & 128) >> 7;
+[e = . . _LATBbits 0 2 -> & -> _value `i -> 1 `i `uc ]
+[; ;main.c: 87: LATCbits.LATC1 = (value & 2) >> 1;
 "87
-[e = . . _LATCbits 0 7 -> >> & -> _value `i -> 128 `i -> 7 `i `uc ]
-[; ;main.c: 88: if(RS > 0)
+[e = . . _LATCbits 0 1 -> >> & -> _value `i -> 2 `i -> 1 `i `uc ]
+[; ;main.c: 88: LATCbits.LATC2 = (value & 4) >> 2;
 "88
-[e $ ! > _RS -> 0 `i 1214  ]
-[; ;main.c: 89: {
+[e = . . _LATCbits 0 2 -> >> & -> _value `i -> 4 `i -> 2 `i `uc ]
+[; ;main.c: 89: LATCbits.LATC3 = (value & 8) >> 3;
 "89
-{
-[; ;main.c: 90: LATBbits.LATB7 = 1;
+[e = . . _LATCbits 0 3 -> >> & -> _value `i -> 8 `i -> 3 `i `uc ]
+[; ;main.c: 90: LATCbits.LATC4 = (value & 16) >> 4;
 "90
-[e = . . _LATBbits 0 4 -> -> 1 `i `uc ]
+[e = . . _LATCbits 0 4 -> >> & -> _value `i -> 16 `i -> 4 `i `uc ]
+[; ;main.c: 91: LATCbits.LATC5 = (value & 32) >> 5;
 "91
-}
-[; ;main.c: 91: }
-[e $U 1215  ]
+[e = . . _LATCbits 0 5 -> >> & -> _value `i -> 32 `i -> 5 `i `uc ]
+[; ;main.c: 92: LATCbits.LATC6 = (value & 64) >> 6;
 "92
-[e :U 1214 ]
-[; ;main.c: 92: else
-[; ;main.c: 93: {
+[e = . . _LATCbits 0 6 -> >> & -> _value `i -> 64 `i -> 6 `i `uc ]
+[; ;main.c: 93: LATCbits.LATC7 = (value & 128) >> 7;
 "93
-{
-[; ;main.c: 94: LATBbits.LATB7 = 0;
+[e = . . _LATCbits 0 7 -> >> & -> _value `i -> 128 `i -> 7 `i `uc ]
+[; ;main.c: 94: if(RS > 0)
 "94
-[e = . . _LATBbits 0 4 -> -> 0 `i `uc ]
+[e $ ! > _RS -> 0 `i 1214  ]
+[; ;main.c: 95: {
 "95
+{
+[; ;main.c: 96: LATBbits.LATB7 = 1;
+"96
+[e = . . _LATBbits 0 4 -> -> 1 `i `uc ]
+"97
+}
+[; ;main.c: 97: }
+[e $U 1215  ]
+"98
+[e :U 1214 ]
+[; ;main.c: 98: else
+[; ;main.c: 99: {
+"99
+{
+[; ;main.c: 100: LATBbits.LATB7 = 0;
+"100
+[e = . . _LATBbits 0 4 -> -> 0 `i `uc ]
+"101
 }
 [e :U 1215 ]
-[; ;main.c: 95: }
-[; ;main.c: 96: do { LATBbits.LATB6 = 1; } while(0);
-"96
+[; ;main.c: 101: }
+[; ;main.c: 102: do { LATBbits.LATB6 = 1; } while(0);
+"102
 [e :U 1218 ]
 {
 [e = . . _LATBbits 0 3 -> -> 1 `i `uc ]
 }
 [e :U 1217 ]
-[; ;main.c: 97: _delay((unsigned long)((1)*(2000000/4000.0)));
-"97
+[; ;main.c: 103: _delay((unsigned long)((1)*(2000000/4000.0)));
+"103
 [e ( __delay (1 -> * -> -> 1 `i `d / -> -> 2000000 `l `d .4000.0 `ul ]
-[; ;main.c: 98: do { LATBbits.LATB6 = 0; } while(0);
-"98
+[; ;main.c: 104: do { LATBbits.LATB6 = 0; } while(0);
+"104
 [e :U 1221 ]
 {
 [e = . . _LATBbits 0 3 -> -> 0 `i `uc ]
 }
 [e :U 1220 ]
-[; ;main.c: 99: _delay((unsigned long)((10)*(2000000/4000.0)));
-"99
+[; ;main.c: 105: _delay((unsigned long)((10)*(2000000/4000.0)));
+"105
 [e ( __delay (1 -> * -> -> 10 `i `d / -> -> 2000000 `l `d .4000.0 `ul ]
-[; ;main.c: 100: }
-"100
+[; ;main.c: 106: }
+"106
 [e :UE 1213 ]
 }
-"102
+"108
 [v _LCDInit `(v ~T0 @X0 1 ef ]
-"103
+"109
 {
-[; ;main.c: 102: void LCDInit()
-[; ;main.c: 103: {
+[; ;main.c: 108: void LCDInit()
+[; ;main.c: 109: {
 [e :U _LCDInit ]
 [f ]
-[; ;main.c: 104: LATBbits.LATB6 = 0;
-"104
-[e = . . _LATBbits 0 3 -> -> 0 `i `uc ]
-[; ;main.c: 105: LATBbits.LATB7 = 0;
-"105
-[e = . . _LATBbits 0 4 -> -> 0 `i `uc ]
-[; ;main.c: 106: LATBbits.LATB5 = 0;
-"106
-[e = . . _LATBbits 0 2 -> -> 0 `i `uc ]
-[; ;main.c: 107: LATCbits.LATC1 = 0;
-"107
-[e = . . _LATCbits 0 1 -> -> 0 `i `uc ]
-[; ;main.c: 108: LATCbits.LATC2 = 0;
-"108
-[e = . . _LATCbits 0 2 -> -> 0 `i `uc ]
-[; ;main.c: 109: LATCbits.LATC3 = 0;
-"109
-[e = . . _LATCbits 0 3 -> -> 0 `i `uc ]
-[; ;main.c: 110: LATCbits.LATC4 = 0;
+[; ;main.c: 110: LATBbits.LATB6 = 0;
 "110
-[e = . . _LATCbits 0 4 -> -> 0 `i `uc ]
-[; ;main.c: 111: LATCbits.LATC5 = 0;
+[e = . . _LATBbits 0 3 -> -> 0 `i `uc ]
+[; ;main.c: 111: LATBbits.LATB7 = 0;
 "111
-[e = . . _LATCbits 0 5 -> -> 0 `i `uc ]
-[; ;main.c: 112: LATCbits.LATC6 = 0;
+[e = . . _LATBbits 0 4 -> -> 0 `i `uc ]
+[; ;main.c: 112: LATBbits.LATB5 = 0;
 "112
-[e = . . _LATCbits 0 6 -> -> 0 `i `uc ]
-[; ;main.c: 113: LATCbits.LATC7 = 0;
+[e = . . _LATBbits 0 2 -> -> 0 `i `uc ]
+[; ;main.c: 113: LATCbits.LATC1 = 0;
 "113
-[e = . . _LATCbits 0 7 -> -> 0 `i `uc ]
-[; ;main.c: 115: _delay((unsigned long)((50)*(2000000/4000.0)));
+[e = . . _LATCbits 0 1 -> -> 0 `i `uc ]
+[; ;main.c: 114: LATCbits.LATC2 = 0;
+"114
+[e = . . _LATCbits 0 2 -> -> 0 `i `uc ]
+[; ;main.c: 115: LATCbits.LATC3 = 0;
 "115
-[e ( __delay (1 -> * -> -> 50 `i `d / -> -> 2000000 `l `d .4000.0 `ul ]
-[; ;main.c: 116: LCDSendData(0, 0b00111000);
+[e = . . _LATCbits 0 3 -> -> 0 `i `uc ]
+[; ;main.c: 116: LATCbits.LATC4 = 0;
 "116
-[e ( _LCDSendData (2 , -> 0 `i -> -> 56 `i `uc ]
-[; ;main.c: 119: _delay((unsigned long)((50)*(2000000/4000.0)));
+[e = . . _LATCbits 0 4 -> -> 0 `i `uc ]
+[; ;main.c: 117: LATCbits.LATC5 = 0;
+"117
+[e = . . _LATCbits 0 5 -> -> 0 `i `uc ]
+[; ;main.c: 118: LATCbits.LATC6 = 0;
+"118
+[e = . . _LATCbits 0 6 -> -> 0 `i `uc ]
+[; ;main.c: 119: LATCbits.LATC7 = 0;
 "119
+[e = . . _LATCbits 0 7 -> -> 0 `i `uc ]
+[; ;main.c: 121: _delay((unsigned long)((50)*(2000000/4000.0)));
+"121
 [e ( __delay (1 -> * -> -> 50 `i `d / -> -> 2000000 `l `d .4000.0 `ul ]
-[; ;main.c: 120: LCDSendData(0, 0b00111000);
-"120
+[; ;main.c: 122: LCDSendData(0, 0b00111000);
+"122
 [e ( _LCDSendData (2 , -> 0 `i -> -> 56 `i `uc ]
-[; ;main.c: 123: _delay((unsigned long)((50)*(2000000/4000.0)));
-"123
+[; ;main.c: 125: _delay((unsigned long)((50)*(2000000/4000.0)));
+"125
 [e ( __delay (1 -> * -> -> 50 `i `d / -> -> 2000000 `l `d .4000.0 `ul ]
-[; ;main.c: 124: LCDSendData(0, 0b00111000);
-"124
+[; ;main.c: 126: LCDSendData(0, 0b00111000);
+"126
 [e ( _LCDSendData (2 , -> 0 `i -> -> 56 `i `uc ]
-[; ;main.c: 127: _delay((unsigned long)((50)*(2000000/4000.0)));
-"127
-[e ( __delay (1 -> * -> -> 50 `i `d / -> -> 2000000 `l `d .4000.0 `ul ]
-[; ;main.c: 128: LCDSendData(0, 0b00111000);
-"128
-[e ( _LCDSendData (2 , -> 0 `i -> -> 56 `i `uc ]
-[; ;main.c: 129: LCDSendData(0, 0b00001111);
+[; ;main.c: 129: _delay((unsigned long)((50)*(2000000/4000.0)));
 "129
-[e ( _LCDSendData (2 , -> 0 `i -> -> 15 `i `uc ]
-[; ;main.c: 130: LCDSendData(0, 0b00000001);
+[e ( __delay (1 -> * -> -> 50 `i `d / -> -> 2000000 `l `d .4000.0 `ul ]
+[; ;main.c: 130: LCDSendData(0, 0b00111000);
 "130
+[e ( _LCDSendData (2 , -> 0 `i -> -> 56 `i `uc ]
+[; ;main.c: 133: _delay((unsigned long)((50)*(2000000/4000.0)));
+"133
+[e ( __delay (1 -> * -> -> 50 `i `d / -> -> 2000000 `l `d .4000.0 `ul ]
+[; ;main.c: 134: LCDSendData(0, 0b00111000);
+"134
+[e ( _LCDSendData (2 , -> 0 `i -> -> 56 `i `uc ]
+[; ;main.c: 135: LCDSendData(0, 0b00001111);
+"135
+[e ( _LCDSendData (2 , -> 0 `i -> -> 15 `i `uc ]
+[; ;main.c: 136: LCDSendData(0, 0b00000001);
+"136
 [e ( _LCDSendData (2 , -> 0 `i -> -> 1 `i `uc ]
-[; ;main.c: 131: LCDSendData(0, 0b00000110);
-"131
+[; ;main.c: 137: LCDSendData(0, 0b00000110);
+"137
 [e ( _LCDSendData (2 , -> 0 `i -> -> 6 `i `uc ]
-[; ;main.c: 132: }
-"132
+[; ;main.c: 138: }
+"138
 [e :UE 1222 ]
 }
-"133
+"139
 [v _display_data_1 `uc ~T0 @X0 -> 0 `x e ]
 [i _display_data_1
 :U ..
@@ -11191,8 +11197,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> 0 `c
 ..
 ]
-[; ;main.c: 133: uint8_t display_data_1[]={"S:000M:000L:000"};
-"134
+[; ;main.c: 139: uint8_t display_data_1[]={"S:000M:000L:000"};
+"140
 [v _display_data_2 `uc ~T0 @X0 -> 0 `x e ]
 [i _display_data_2
 :U ..
@@ -11209,451 +11215,600 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> 0 `c
 ..
 ]
-[; ;main.c: 134: uint8_t display_data_2[]={"Z:000G:000"};
-"138
+[; ;main.c: 140: uint8_t display_data_2[]={"Z:000G:000"};
+"141
+[v _clearingData `uc ~T0 @X0 -> 0 `x e ]
+[i _clearingData
+:U ..
+-> 67 `c
+-> 108 `c
+-> 101 `c
+-> 97 `c
+-> 114 `c
+-> 105 `c
+-> 110 `c
+-> 103 `c
+-> 32 `c
+-> 68 `c
+-> 97 `c
+-> 116 `c
+-> 97 `c
+-> 32 `c
+-> 46 `c
+-> 46 `c
+-> 46 `c
+-> 0 `c
+..
+]
+[; ;main.c: 141: uint8_t clearingData[] = {"Clearing Data ..."};
+"142
+[v _clearDataOk_1 `uc ~T0 @X0 -> 0 `x e ]
+[i _clearDataOk_1
+:U ..
+-> 68 `c
+-> 97 `c
+-> 116 `c
+-> 97 `c
+-> 32 `c
+-> 99 `c
+-> 108 `c
+-> 101 `c
+-> 97 `c
+-> 114 `c
+-> 105 `c
+-> 110 `c
+-> 103 `c
+-> 32 `c
+-> 0 `c
+..
+]
+[; ;main.c: 142: uint8_t clearDataOk_1[] = {"Data clearing "};
+"143
+[v _clearDataOk_2 `uc ~T0 @X0 -> 0 `x e ]
+[i _clearDataOk_2
+:U ..
+-> 99 `c
+-> 111 `c
+-> 109 `c
+-> 112 `c
+-> 108 `c
+-> 101 `c
+-> 116 `c
+-> 101 `c
+-> 100 `c
+-> 32 `c
+-> 0 `c
+..
+]
+[; ;main.c: 143: uint8_t clearDataOk_2[] = {"completed "};
+"147
 [v _Print `(v ~T0 @X0 1 ef1`*uc ]
-"139
+"148
 {
-[; ;main.c: 138: void Print(uint8_t *str)
-[; ;main.c: 139: {
+[; ;main.c: 147: void Print(uint8_t *str)
+[; ;main.c: 148: {
 [e :U _Print ]
-"138
+"147
 [v _str `*uc ~T0 @X0 1 r1 ]
-"139
+"148
 [f ]
-[; ;main.c: 140: while(*str !='\0')
-"140
+[; ;main.c: 149: while(*str !='\0')
+"149
 [e $U 1224  ]
 [e :U 1225 ]
-[; ;main.c: 141: {
-"141
+[; ;main.c: 150: {
+"150
 {
-[; ;main.c: 142: LCDSendData(1,*str);
-"142
+[; ;main.c: 151: LCDSendData(1,*str);
+"151
 [e ( _LCDSendData (2 , -> 1 `i *U _str ]
-[; ;main.c: 143: str++;
-"143
+[; ;main.c: 152: str++;
+"152
 [e ++ _str * -> -> 1 `i `x -> -> # *U _str `i `x ]
-[; ;main.c: 144: _delay((unsigned long)((1)*(2000000/4000.0)));
-"144
+[; ;main.c: 153: _delay((unsigned long)((1)*(2000000/4000.0)));
+"153
 [e ( __delay (1 -> * -> -> 1 `i `d / -> -> 2000000 `l `d .4000.0 `ul ]
-"145
+"154
 }
 [e :U 1224 ]
-"140
+"149
 [e $ != -> *U _str `ui -> 0 `ui 1225  ]
 [e :U 1226 ]
-[; ;main.c: 145: }
-[; ;main.c: 146: }
-"146
+[; ;main.c: 154: }
+[; ;main.c: 155: }
+"155
 [e :UE 1223 ]
 }
-"148
+"157
 [v _Data_Toseg `(v ~T0 @X0 1 ef ]
-"149
+"158
 {
-[; ;main.c: 148: void Data_Toseg()
-[; ;main.c: 149: {
+[; ;main.c: 157: void Data_Toseg()
+[; ;main.c: 158: {
 [e :U _Data_Toseg ]
 [f ]
-[; ;main.c: 150: display_data_1[2] = (gBoxCntStruct.SmallBoxCnt%1000/100)+0x30;
-"150
-[e = *U + &U _display_data_1 * -> -> -> 2 `i `ui `ux -> -> # *U &U _display_data_1 `ui `ux -> + / % . _gBoxCntStruct 6 -> -> 1000 `i `ui -> -> 100 `i `ui -> -> 48 `i `ui `uc ]
-[; ;main.c: 151: display_data_1[3] = (gBoxCntStruct.SmallBoxCnt%100/10)+0x30;
-"151
-[e = *U + &U _display_data_1 * -> -> -> 3 `i `ui `ux -> -> # *U &U _display_data_1 `ui `ux -> + / % . _gBoxCntStruct 6 -> -> 100 `i `ui -> -> 10 `i `ui -> -> 48 `i `ui `uc ]
-[; ;main.c: 152: display_data_1[4] = (gBoxCntStruct.SmallBoxCnt%10)+0x30;
-"152
-[e = *U + &U _display_data_1 * -> -> -> 4 `i `ui `ux -> -> # *U &U _display_data_1 `ui `ux -> + % . _gBoxCntStruct 6 -> -> 10 `i `ui -> -> 48 `i `ui `uc ]
-[; ;main.c: 155: display_data_1[7] = (gBoxCntStruct.MiddleBoxCnt%1000/100)+0x30;
-"155
-[e = *U + &U _display_data_1 * -> -> -> 7 `i `ui `ux -> -> # *U &U _display_data_1 `ui `ux -> + / % . _gBoxCntStruct 7 -> -> 1000 `i `ui -> -> 100 `i `ui -> -> 48 `i `ui `uc ]
-[; ;main.c: 156: display_data_1[8] = (gBoxCntStruct.MiddleBoxCnt%100/10)+0x30;
-"156
-[e = *U + &U _display_data_1 * -> -> -> 8 `i `ui `ux -> -> # *U &U _display_data_1 `ui `ux -> + / % . _gBoxCntStruct 7 -> -> 100 `i `ui -> -> 10 `i `ui -> -> 48 `i `ui `uc ]
-[; ;main.c: 157: display_data_1[9] = (gBoxCntStruct.MiddleBoxCnt%10)+0x30;
-"157
-[e = *U + &U _display_data_1 * -> -> -> 9 `i `ui `ux -> -> # *U &U _display_data_1 `ui `ux -> + % . _gBoxCntStruct 7 -> -> 10 `i `ui -> -> 48 `i `ui `uc ]
-[; ;main.c: 159: display_data_1[12] = (gBoxCntStruct.LargeBoxCnt%1000/100)+0x30;
+[; ;main.c: 159: display_data_1[2] = (gBoxCntStruct.SmallBoxCnt%1000/100)+0x30;
 "159
-[e = *U + &U _display_data_1 * -> -> -> 12 `i `ui `ux -> -> # *U &U _display_data_1 `ui `ux -> + / % . _gBoxCntStruct 8 -> -> 1000 `i `ui -> -> 100 `i `ui -> -> 48 `i `ui `uc ]
-[; ;main.c: 160: display_data_1[13] = (gBoxCntStruct.LargeBoxCnt%100/10)+0x30;
+[e = *U + &U _display_data_1 * -> -> -> 2 `i `ui `ux -> -> # *U &U _display_data_1 `ui `ux -> + / % . _gBoxCntStruct 6 -> -> 1000 `i `ui -> -> 100 `i `ui -> -> 48 `i `ui `uc ]
+[; ;main.c: 160: display_data_1[3] = (gBoxCntStruct.SmallBoxCnt%100/10)+0x30;
 "160
-[e = *U + &U _display_data_1 * -> -> -> 13 `i `ui `ux -> -> # *U &U _display_data_1 `ui `ux -> + / % . _gBoxCntStruct 8 -> -> 100 `i `ui -> -> 10 `i `ui -> -> 48 `i `ui `uc ]
-[; ;main.c: 161: display_data_1[14] = (gBoxCntStruct.LargeBoxCnt%10)+0x30;
+[e = *U + &U _display_data_1 * -> -> -> 3 `i `ui `ux -> -> # *U &U _display_data_1 `ui `ux -> + / % . _gBoxCntStruct 6 -> -> 100 `i `ui -> -> 10 `i `ui -> -> 48 `i `ui `uc ]
+[; ;main.c: 161: display_data_1[4] = (gBoxCntStruct.SmallBoxCnt%10)+0x30;
 "161
-[e = *U + &U _display_data_1 * -> -> -> 14 `i `ui `ux -> -> # *U &U _display_data_1 `ui `ux -> + % . _gBoxCntStruct 8 -> -> 10 `i `ui -> -> 48 `i `ui `uc ]
-[; ;main.c: 163: display_data_2[2] = (gBoxCntStruct.BoxSum%1000/100)+0x30;
-"163
-[e = *U + &U _display_data_2 * -> -> -> 2 `i `ui `ux -> -> # *U &U _display_data_2 `ui `ux -> + / % . _gBoxCntStruct 10 -> -> -> 1000 `i `l `ul -> -> -> 100 `i `l `ul -> -> -> 48 `i `l `ul `uc ]
-[; ;main.c: 164: display_data_2[3] = (gBoxCntStruct.BoxSum%100/10)+0x30;
+[e = *U + &U _display_data_1 * -> -> -> 4 `i `ui `ux -> -> # *U &U _display_data_1 `ui `ux -> + % . _gBoxCntStruct 6 -> -> 10 `i `ui -> -> 48 `i `ui `uc ]
+[; ;main.c: 164: display_data_1[7] = (gBoxCntStruct.MiddleBoxCnt%1000/100)+0x30;
 "164
-[e = *U + &U _display_data_2 * -> -> -> 3 `i `ui `ux -> -> # *U &U _display_data_2 `ui `ux -> + / % . _gBoxCntStruct 10 -> -> -> 100 `i `l `ul -> -> -> 10 `i `l `ul -> -> -> 48 `i `l `ul `uc ]
-[; ;main.c: 165: display_data_2[4] = (gBoxCntStruct.BoxSum%10)+0x30;
+[e = *U + &U _display_data_1 * -> -> -> 7 `i `ui `ux -> -> # *U &U _display_data_1 `ui `ux -> + / % . _gBoxCntStruct 7 -> -> 1000 `i `ui -> -> 100 `i `ui -> -> 48 `i `ui `uc ]
+[; ;main.c: 165: display_data_1[8] = (gBoxCntStruct.MiddleBoxCnt%100/10)+0x30;
 "165
-[e = *U + &U _display_data_2 * -> -> -> 4 `i `ui `ux -> -> # *U &U _display_data_2 `ui `ux -> + % . _gBoxCntStruct 10 -> -> -> 10 `i `l `ul -> -> -> 48 `i `l `ul `uc ]
-[; ;main.c: 167: display_data_2[7] = (gBoxCntStruct.JamCnt%1000/100)+0x30;
-"167
-[e = *U + &U _display_data_2 * -> -> -> 7 `i `ui `ux -> -> # *U &U _display_data_2 `ui `ux -> + / % . _gBoxCntStruct 9 -> -> 1000 `i `ui -> -> 100 `i `ui -> -> 48 `i `ui `uc ]
-[; ;main.c: 168: display_data_2[8] = (gBoxCntStruct.JamCnt%100/10)+0x30;
+[e = *U + &U _display_data_1 * -> -> -> 8 `i `ui `ux -> -> # *U &U _display_data_1 `ui `ux -> + / % . _gBoxCntStruct 7 -> -> 100 `i `ui -> -> 10 `i `ui -> -> 48 `i `ui `uc ]
+[; ;main.c: 166: display_data_1[9] = (gBoxCntStruct.MiddleBoxCnt%10)+0x30;
+"166
+[e = *U + &U _display_data_1 * -> -> -> 9 `i `ui `ux -> -> # *U &U _display_data_1 `ui `ux -> + % . _gBoxCntStruct 7 -> -> 10 `i `ui -> -> 48 `i `ui `uc ]
+[; ;main.c: 168: display_data_1[12] = (gBoxCntStruct.LargeBoxCnt%1000/100)+0x30;
 "168
-[e = *U + &U _display_data_2 * -> -> -> 8 `i `ui `ux -> -> # *U &U _display_data_2 `ui `ux -> + / % . _gBoxCntStruct 9 -> -> 100 `i `ui -> -> 10 `i `ui -> -> 48 `i `ui `uc ]
-[; ;main.c: 169: display_data_2[9] = (gBoxCntStruct.JamCnt%10)+0x30;
+[e = *U + &U _display_data_1 * -> -> -> 12 `i `ui `ux -> -> # *U &U _display_data_1 `ui `ux -> + / % . _gBoxCntStruct 8 -> -> 1000 `i `ui -> -> 100 `i `ui -> -> 48 `i `ui `uc ]
+[; ;main.c: 169: display_data_1[13] = (gBoxCntStruct.LargeBoxCnt%100/10)+0x30;
 "169
-[e = *U + &U _display_data_2 * -> -> -> 9 `i `ui `ux -> -> # *U &U _display_data_2 `ui `ux -> + % . _gBoxCntStruct 9 -> -> 10 `i `ui -> -> 48 `i `ui `uc ]
-[; ;main.c: 172: HEFBufferData[3] = (unsigned char)(gBoxCntStruct.SmallBoxCnt >> 8);
+[e = *U + &U _display_data_1 * -> -> -> 13 `i `ui `ux -> -> # *U &U _display_data_1 `ui `ux -> + / % . _gBoxCntStruct 8 -> -> 100 `i `ui -> -> 10 `i `ui -> -> 48 `i `ui `uc ]
+[; ;main.c: 170: display_data_1[14] = (gBoxCntStruct.LargeBoxCnt%10)+0x30;
+"170
+[e = *U + &U _display_data_1 * -> -> -> 14 `i `ui `ux -> -> # *U &U _display_data_1 `ui `ux -> + % . _gBoxCntStruct 8 -> -> 10 `i `ui -> -> 48 `i `ui `uc ]
+[; ;main.c: 172: display_data_2[2] = (gBoxCntStruct.BoxSum%1000/100)+0x30;
 "172
-[e = *U + &U _HEFBufferData * -> -> -> 3 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux -> >> . _gBoxCntStruct 6 -> 8 `i `uc ]
-[; ;main.c: 173: HEFBufferData[4] = (unsigned char)(gBoxCntStruct.SmallBoxCnt);
+[e = *U + &U _display_data_2 * -> -> -> 2 `i `ui `ux -> -> # *U &U _display_data_2 `ui `ux -> + / % . _gBoxCntStruct 10 -> -> -> 1000 `i `l `ul -> -> -> 100 `i `l `ul -> -> -> 48 `i `l `ul `uc ]
+[; ;main.c: 173: display_data_2[3] = (gBoxCntStruct.BoxSum%100/10)+0x30;
 "173
-[e = *U + &U _HEFBufferData * -> -> -> 4 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux -> . _gBoxCntStruct 6 `uc ]
-[; ;main.c: 176: HEFBufferData[7] = (unsigned char)(gBoxCntStruct.MiddleBoxCnt >> 8);
+[e = *U + &U _display_data_2 * -> -> -> 3 `i `ui `ux -> -> # *U &U _display_data_2 `ui `ux -> + / % . _gBoxCntStruct 10 -> -> -> 100 `i `l `ul -> -> -> 10 `i `l `ul -> -> -> 48 `i `l `ul `uc ]
+[; ;main.c: 174: display_data_2[4] = (gBoxCntStruct.BoxSum%10)+0x30;
+"174
+[e = *U + &U _display_data_2 * -> -> -> 4 `i `ui `ux -> -> # *U &U _display_data_2 `ui `ux -> + % . _gBoxCntStruct 10 -> -> -> 10 `i `l `ul -> -> -> 48 `i `l `ul `uc ]
+[; ;main.c: 176: display_data_2[7] = (gBoxCntStruct.JamCnt%1000/100)+0x30;
 "176
-[e = *U + &U _HEFBufferData * -> -> -> 7 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux -> >> . _gBoxCntStruct 7 -> 8 `i `uc ]
-[; ;main.c: 177: HEFBufferData[8] = (unsigned char)(gBoxCntStruct.MiddleBoxCnt);
+[e = *U + &U _display_data_2 * -> -> -> 7 `i `ui `ux -> -> # *U &U _display_data_2 `ui `ux -> + / % . _gBoxCntStruct 9 -> -> 1000 `i `ui -> -> 100 `i `ui -> -> 48 `i `ui `uc ]
+[; ;main.c: 177: display_data_2[8] = (gBoxCntStruct.JamCnt%100/10)+0x30;
 "177
-[e = *U + &U _HEFBufferData * -> -> -> 8 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux -> . _gBoxCntStruct 7 `uc ]
-[; ;main.c: 180: HEFBufferData[11] = (unsigned char)(gBoxCntStruct.LargeBoxCnt >> 8);
-"180
-[e = *U + &U _HEFBufferData * -> -> -> 11 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux -> >> . _gBoxCntStruct 8 -> 8 `i `uc ]
-[; ;main.c: 181: HEFBufferData[12] = (unsigned char)(gBoxCntStruct.LargeBoxCnt );
+[e = *U + &U _display_data_2 * -> -> -> 8 `i `ui `ux -> -> # *U &U _display_data_2 `ui `ux -> + / % . _gBoxCntStruct 9 -> -> 100 `i `ui -> -> 10 `i `ui -> -> 48 `i `ui `uc ]
+[; ;main.c: 178: display_data_2[9] = (gBoxCntStruct.JamCnt%10)+0x30;
+"178
+[e = *U + &U _display_data_2 * -> -> -> 9 `i `ui `ux -> -> # *U &U _display_data_2 `ui `ux -> + % . _gBoxCntStruct 9 -> -> 10 `i `ui -> -> 48 `i `ui `uc ]
+[; ;main.c: 181: HEFBufferData[3] = (unsigned char)(gBoxCntStruct.SmallBoxCnt >> 8);
 "181
-[e = *U + &U _HEFBufferData * -> -> -> 12 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux -> . _gBoxCntStruct 8 `uc ]
-[; ;main.c: 184: HEFBufferData[15] = (unsigned char)(gBoxCntStruct.BoxSum >> 8);
-"184
-[e = *U + &U _HEFBufferData * -> -> -> 15 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux -> >> . _gBoxCntStruct 10 -> 8 `i `uc ]
-[; ;main.c: 185: HEFBufferData[16] = (unsigned char)(gBoxCntStruct.BoxSum );
+[e = *U + &U _HEFBufferData * -> -> -> 3 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux -> >> . _gBoxCntStruct 6 -> 8 `i `uc ]
+[; ;main.c: 182: HEFBufferData[4] = (unsigned char)(gBoxCntStruct.SmallBoxCnt);
+"182
+[e = *U + &U _HEFBufferData * -> -> -> 4 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux -> . _gBoxCntStruct 6 `uc ]
+[; ;main.c: 185: HEFBufferData[7] = (unsigned char)(gBoxCntStruct.MiddleBoxCnt >> 8);
 "185
-[e = *U + &U _HEFBufferData * -> -> -> 16 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux -> . _gBoxCntStruct 10 `uc ]
-[; ;main.c: 188: HEFBufferData[19] = (unsigned char)(gBoxCntStruct.JamCnt >> 8);
-"188
-[e = *U + &U _HEFBufferData * -> -> -> 19 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux -> >> . _gBoxCntStruct 9 -> 8 `i `uc ]
-[; ;main.c: 189: HEFBufferData[20] = (unsigned char)(gBoxCntStruct.JamCnt );
+[e = *U + &U _HEFBufferData * -> -> -> 7 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux -> >> . _gBoxCntStruct 7 -> 8 `i `uc ]
+[; ;main.c: 186: HEFBufferData[8] = (unsigned char)(gBoxCntStruct.MiddleBoxCnt);
+"186
+[e = *U + &U _HEFBufferData * -> -> -> 8 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux -> . _gBoxCntStruct 7 `uc ]
+[; ;main.c: 189: HEFBufferData[11] = (unsigned char)(gBoxCntStruct.LargeBoxCnt >> 8);
 "189
-[e = *U + &U _HEFBufferData * -> -> -> 20 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux -> . _gBoxCntStruct 9 `uc ]
-[; ;main.c: 191: (INTCONbits.GIE = 0);
-"191
-[e = . . _INTCONbits 0 7 -> -> 0 `i `uc ]
-[; ;main.c: 192: HEFLASH_writeBlock(0, (void*)&HEFBufferData,sizeof(HEFBufferData));
-"192
-[e ( _HEFLASH_writeBlock (3 , , -> -> 0 `i `uc -> -> &U _HEFBufferData `*v `*uc -> -> # _HEFBufferData `ui `uc ]
-[; ;main.c: 193: (INTCONbits.GIE = 1);
+[e = *U + &U _HEFBufferData * -> -> -> 11 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux -> >> . _gBoxCntStruct 8 -> 8 `i `uc ]
+[; ;main.c: 190: HEFBufferData[12] = (unsigned char)(gBoxCntStruct.LargeBoxCnt );
+"190
+[e = *U + &U _HEFBufferData * -> -> -> 12 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux -> . _gBoxCntStruct 8 `uc ]
+[; ;main.c: 193: HEFBufferData[15] = (unsigned char)(gBoxCntStruct.BoxSum >> 8);
 "193
-[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
-[; ;main.c: 194: }
+[e = *U + &U _HEFBufferData * -> -> -> 15 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux -> >> . _gBoxCntStruct 10 -> 8 `i `uc ]
+[; ;main.c: 194: HEFBufferData[16] = (unsigned char)(gBoxCntStruct.BoxSum );
 "194
+[e = *U + &U _HEFBufferData * -> -> -> 16 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux -> . _gBoxCntStruct 10 `uc ]
+[; ;main.c: 197: HEFBufferData[19] = (unsigned char)(gBoxCntStruct.JamCnt >> 8);
+"197
+[e = *U + &U _HEFBufferData * -> -> -> 19 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux -> >> . _gBoxCntStruct 9 -> 8 `i `uc ]
+[; ;main.c: 198: HEFBufferData[20] = (unsigned char)(gBoxCntStruct.JamCnt );
+"198
+[e = *U + &U _HEFBufferData * -> -> -> 20 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux -> . _gBoxCntStruct 9 `uc ]
+[; ;main.c: 200: (INTCONbits.GIE = 0);
+"200
+[e = . . _INTCONbits 0 7 -> -> 0 `i `uc ]
+[; ;main.c: 201: HEFLASH_writeBlock(0, (void*)&HEFBufferData,sizeof(HEFBufferData));
+"201
+[e ( _HEFLASH_writeBlock (3 , , -> -> 0 `i `uc -> -> &U _HEFBufferData `*v `*uc -> -> # _HEFBufferData `ui `uc ]
+[; ;main.c: 202: (INTCONbits.GIE = 1);
+"202
+[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
+[; ;main.c: 203: }
+"203
 [e :UE 1227 ]
 }
-"196
+"205
 [v _HEFLASH_checkData `(v ~T0 @X0 1 ef ]
-"197
+"206
 {
-[; ;main.c: 196: void HEFLASH_checkData(void)
-[; ;main.c: 197: {
+[; ;main.c: 205: void HEFLASH_checkData(void)
+[; ;main.c: 206: {
 [e :U _HEFLASH_checkData ]
 [f ]
-"198
+"207
 [v _r `ui ~T0 @X0 1 a ]
-[; ;main.c: 198: unsigned r;
-[; ;main.c: 199: _delay((unsigned long)((200)*(2000000/4000.0)));
-"199
+[; ;main.c: 207: unsigned r;
+[; ;main.c: 208: _delay((unsigned long)((200)*(2000000/4000.0)));
+"208
 [e ( __delay (1 -> * -> -> 200 `i `d / -> -> 2000000 `l `d .4000.0 `ul ]
-[; ;main.c: 200: r = HEFLASH_readBlock(HEFBufferData, 0, 32);
-"200
+[; ;main.c: 209: r = HEFLASH_readBlock(HEFBufferData, 0, 32);
+"209
 [e = _r -> ( _HEFLASH_readBlock (3 , , &U _HEFBufferData -> -> 0 `i `uc -> -> 32 `i `uc `ui ]
-[; ;main.c: 201: if(!(0 == r)) {_fassert(201, "main.c", "0 == r");};
-"201
+[; ;main.c: 210: if(!(0 == r)) {_fassert(210, "main.c", "0 == r");};
+"210
 [e $ ! ! == -> -> 0 `i `ui _r 1229  ]
 {
-[e ( __fassert (3 , , -> 201 `i :s 1C :s 2C ]
+[e ( __fassert (3 , , -> 210 `i :s 1C :s 2C ]
 }
 [e :U 1229 ]
-[; ;main.c: 202: if(0xAA == HEFBufferData[0])
-"202
+[; ;main.c: 211: if(0xAA == HEFBufferData[0])
+"211
 [e $ ! == -> 170 `i -> *U + &U _HEFBufferData * -> -> -> 0 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux `i 1230  ]
-[; ;main.c: 203: {
-"203
+[; ;main.c: 212: {
+"212
 {
-[; ;main.c: 204: gBoxCntStruct.SmallBoxCnt = (unsigned int)((HEFBufferData[3] << 8) + (HEFBufferData[4]));
-"204
-[e = . _gBoxCntStruct 6 -> + << -> *U + &U _HEFBufferData * -> -> -> 3 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux `i -> 8 `i -> *U + &U _HEFBufferData * -> -> -> 4 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux `i `ui ]
-[; ;main.c: 206: gBoxCntStruct.MiddleBoxCnt = (unsigned int)((HEFBufferData[7] << 8) + (HEFBufferData[8]));
-"206
-[e = . _gBoxCntStruct 7 -> + << -> *U + &U _HEFBufferData * -> -> -> 7 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux `i -> 8 `i -> *U + &U _HEFBufferData * -> -> -> 8 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux `i `ui ]
-[; ;main.c: 208: gBoxCntStruct.LargeBoxCnt = (unsigned int)((HEFBufferData[11] << 8) + (HEFBufferData[12]));
-"208
-[e = . _gBoxCntStruct 8 -> + << -> *U + &U _HEFBufferData * -> -> -> 11 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux `i -> 8 `i -> *U + &U _HEFBufferData * -> -> -> 12 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux `i `ui ]
-[; ;main.c: 210: gBoxCntStruct.BoxSum = (HEFBufferData[13] << 24) + (HEFBufferData[14] << 16) + (HEFBufferData[15] << 8) + (HEFBufferData[16]);
-"210
-[e = . _gBoxCntStruct 10 -> -> + + + << -> *U + &U _HEFBufferData * -> -> -> 13 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux `i -> 24 `i << -> *U + &U _HEFBufferData * -> -> -> 14 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux `i -> 16 `i << -> *U + &U _HEFBufferData * -> -> -> 15 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux `i -> 8 `i -> *U + &U _HEFBufferData * -> -> -> 16 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux `i `l `ul ]
-[; ;main.c: 213: gBoxCntStruct.JamCnt = (unsigned int)((HEFBufferData[19] << 8) + (HEFBufferData[20]));
+[; ;main.c: 213: gBoxCntStruct.SmallBoxCnt = (unsigned int)((HEFBufferData[3] << 8) + (HEFBufferData[4]));
 "213
-[e = . _gBoxCntStruct 9 -> + << -> *U + &U _HEFBufferData * -> -> -> 19 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux `i -> 8 `i -> *U + &U _HEFBufferData * -> -> -> 20 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux `i `ui ]
-[; ;main.c: 215: display_data_1[2] = (gBoxCntStruct.SmallBoxCnt%1000/100)+0x30;
+[e = . _gBoxCntStruct 6 -> + << -> *U + &U _HEFBufferData * -> -> -> 3 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux `i -> 8 `i -> *U + &U _HEFBufferData * -> -> -> 4 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux `i `ui ]
+[; ;main.c: 215: gBoxCntStruct.MiddleBoxCnt = (unsigned int)((HEFBufferData[7] << 8) + (HEFBufferData[8]));
 "215
-[e = *U + &U _display_data_1 * -> -> -> 2 `i `ui `ux -> -> # *U &U _display_data_1 `ui `ux -> + / % . _gBoxCntStruct 6 -> -> 1000 `i `ui -> -> 100 `i `ui -> -> 48 `i `ui `uc ]
-[; ;main.c: 216: display_data_1[3] = (gBoxCntStruct.SmallBoxCnt%100/10)+0x30;
-"216
-[e = *U + &U _display_data_1 * -> -> -> 3 `i `ui `ux -> -> # *U &U _display_data_1 `ui `ux -> + / % . _gBoxCntStruct 6 -> -> 100 `i `ui -> -> 10 `i `ui -> -> 48 `i `ui `uc ]
-[; ;main.c: 217: display_data_1[4] = (gBoxCntStruct.SmallBoxCnt%10)+0x30;
+[e = . _gBoxCntStruct 7 -> + << -> *U + &U _HEFBufferData * -> -> -> 7 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux `i -> 8 `i -> *U + &U _HEFBufferData * -> -> -> 8 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux `i `ui ]
+[; ;main.c: 217: gBoxCntStruct.LargeBoxCnt = (unsigned int)((HEFBufferData[11] << 8) + (HEFBufferData[12]));
 "217
-[e = *U + &U _display_data_1 * -> -> -> 4 `i `ui `ux -> -> # *U &U _display_data_1 `ui `ux -> + % . _gBoxCntStruct 6 -> -> 10 `i `ui -> -> 48 `i `ui `uc ]
-[; ;main.c: 220: display_data_1[7] = (gBoxCntStruct.MiddleBoxCnt%1000/100)+0x30;
-"220
-[e = *U + &U _display_data_1 * -> -> -> 7 `i `ui `ux -> -> # *U &U _display_data_1 `ui `ux -> + / % . _gBoxCntStruct 7 -> -> 1000 `i `ui -> -> 100 `i `ui -> -> 48 `i `ui `uc ]
-[; ;main.c: 221: display_data_1[8] = (gBoxCntStruct.MiddleBoxCnt%100/10)+0x30;
-"221
-[e = *U + &U _display_data_1 * -> -> -> 8 `i `ui `ux -> -> # *U &U _display_data_1 `ui `ux -> + / % . _gBoxCntStruct 7 -> -> 100 `i `ui -> -> 10 `i `ui -> -> 48 `i `ui `uc ]
-[; ;main.c: 222: display_data_1[9] = (gBoxCntStruct.MiddleBoxCnt%10)+0x30;
+[e = . _gBoxCntStruct 8 -> + << -> *U + &U _HEFBufferData * -> -> -> 11 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux `i -> 8 `i -> *U + &U _HEFBufferData * -> -> -> 12 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux `i `ui ]
+[; ;main.c: 219: gBoxCntStruct.BoxSum = (HEFBufferData[13] << 24) + (HEFBufferData[14] << 16) + (HEFBufferData[15] << 8) + (HEFBufferData[16]);
+"219
+[e = . _gBoxCntStruct 10 -> -> + + + << -> *U + &U _HEFBufferData * -> -> -> 13 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux `i -> 24 `i << -> *U + &U _HEFBufferData * -> -> -> 14 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux `i -> 16 `i << -> *U + &U _HEFBufferData * -> -> -> 15 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux `i -> 8 `i -> *U + &U _HEFBufferData * -> -> -> 16 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux `i `l `ul ]
+[; ;main.c: 222: gBoxCntStruct.JamCnt = (unsigned int)((HEFBufferData[19] << 8) + (HEFBufferData[20]));
 "222
-[e = *U + &U _display_data_1 * -> -> -> 9 `i `ui `ux -> -> # *U &U _display_data_1 `ui `ux -> + % . _gBoxCntStruct 7 -> -> 10 `i `ui -> -> 48 `i `ui `uc ]
-[; ;main.c: 224: display_data_1[12] = (gBoxCntStruct.LargeBoxCnt%1000/100)+0x30;
+[e = . _gBoxCntStruct 9 -> + << -> *U + &U _HEFBufferData * -> -> -> 19 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux `i -> 8 `i -> *U + &U _HEFBufferData * -> -> -> 20 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux `i `ui ]
+[; ;main.c: 224: display_data_1[2] = (gBoxCntStruct.SmallBoxCnt%1000/100)+0x30;
 "224
-[e = *U + &U _display_data_1 * -> -> -> 12 `i `ui `ux -> -> # *U &U _display_data_1 `ui `ux -> + / % . _gBoxCntStruct 8 -> -> 1000 `i `ui -> -> 100 `i `ui -> -> 48 `i `ui `uc ]
-[; ;main.c: 225: display_data_1[13] = (gBoxCntStruct.LargeBoxCnt%100/10)+0x30;
+[e = *U + &U _display_data_1 * -> -> -> 2 `i `ui `ux -> -> # *U &U _display_data_1 `ui `ux -> + / % . _gBoxCntStruct 6 -> -> 1000 `i `ui -> -> 100 `i `ui -> -> 48 `i `ui `uc ]
+[; ;main.c: 225: display_data_1[3] = (gBoxCntStruct.SmallBoxCnt%100/10)+0x30;
 "225
-[e = *U + &U _display_data_1 * -> -> -> 13 `i `ui `ux -> -> # *U &U _display_data_1 `ui `ux -> + / % . _gBoxCntStruct 8 -> -> 100 `i `ui -> -> 10 `i `ui -> -> 48 `i `ui `uc ]
-[; ;main.c: 226: display_data_1[14] = (gBoxCntStruct.LargeBoxCnt%10)+0x30;
+[e = *U + &U _display_data_1 * -> -> -> 3 `i `ui `ux -> -> # *U &U _display_data_1 `ui `ux -> + / % . _gBoxCntStruct 6 -> -> 100 `i `ui -> -> 10 `i `ui -> -> 48 `i `ui `uc ]
+[; ;main.c: 226: display_data_1[4] = (gBoxCntStruct.SmallBoxCnt%10)+0x30;
 "226
-[e = *U + &U _display_data_1 * -> -> -> 14 `i `ui `ux -> -> # *U &U _display_data_1 `ui `ux -> + % . _gBoxCntStruct 8 -> -> 10 `i `ui -> -> 48 `i `ui `uc ]
-[; ;main.c: 228: display_data_2[2] = (gBoxCntStruct.BoxSum%1000/100)+0x30;
-"228
-[e = *U + &U _display_data_2 * -> -> -> 2 `i `ui `ux -> -> # *U &U _display_data_2 `ui `ux -> + / % . _gBoxCntStruct 10 -> -> -> 1000 `i `l `ul -> -> -> 100 `i `l `ul -> -> -> 48 `i `l `ul `uc ]
-[; ;main.c: 229: display_data_2[3] = (gBoxCntStruct.BoxSum%100/10)+0x30;
+[e = *U + &U _display_data_1 * -> -> -> 4 `i `ui `ux -> -> # *U &U _display_data_1 `ui `ux -> + % . _gBoxCntStruct 6 -> -> 10 `i `ui -> -> 48 `i `ui `uc ]
+[; ;main.c: 229: display_data_1[7] = (gBoxCntStruct.MiddleBoxCnt%1000/100)+0x30;
 "229
-[e = *U + &U _display_data_2 * -> -> -> 3 `i `ui `ux -> -> # *U &U _display_data_2 `ui `ux -> + / % . _gBoxCntStruct 10 -> -> -> 100 `i `l `ul -> -> -> 10 `i `l `ul -> -> -> 48 `i `l `ul `uc ]
-[; ;main.c: 230: display_data_2[4] = (gBoxCntStruct.BoxSum%10)+0x30;
+[e = *U + &U _display_data_1 * -> -> -> 7 `i `ui `ux -> -> # *U &U _display_data_1 `ui `ux -> + / % . _gBoxCntStruct 7 -> -> 1000 `i `ui -> -> 100 `i `ui -> -> 48 `i `ui `uc ]
+[; ;main.c: 230: display_data_1[8] = (gBoxCntStruct.MiddleBoxCnt%100/10)+0x30;
 "230
-[e = *U + &U _display_data_2 * -> -> -> 4 `i `ui `ux -> -> # *U &U _display_data_2 `ui `ux -> + % . _gBoxCntStruct 10 -> -> -> 10 `i `l `ul -> -> -> 48 `i `l `ul `uc ]
-[; ;main.c: 232: display_data_2[7] = (gBoxCntStruct.JamCnt%1000/100)+0x30;
-"232
-[e = *U + &U _display_data_2 * -> -> -> 7 `i `ui `ux -> -> # *U &U _display_data_2 `ui `ux -> + / % . _gBoxCntStruct 9 -> -> 1000 `i `ui -> -> 100 `i `ui -> -> 48 `i `ui `uc ]
-[; ;main.c: 233: display_data_2[8] = (gBoxCntStruct.JamCnt%100/10)+0x30;
+[e = *U + &U _display_data_1 * -> -> -> 8 `i `ui `ux -> -> # *U &U _display_data_1 `ui `ux -> + / % . _gBoxCntStruct 7 -> -> 100 `i `ui -> -> 10 `i `ui -> -> 48 `i `ui `uc ]
+[; ;main.c: 231: display_data_1[9] = (gBoxCntStruct.MiddleBoxCnt%10)+0x30;
+"231
+[e = *U + &U _display_data_1 * -> -> -> 9 `i `ui `ux -> -> # *U &U _display_data_1 `ui `ux -> + % . _gBoxCntStruct 7 -> -> 10 `i `ui -> -> 48 `i `ui `uc ]
+[; ;main.c: 233: display_data_1[12] = (gBoxCntStruct.LargeBoxCnt%1000/100)+0x30;
 "233
-[e = *U + &U _display_data_2 * -> -> -> 8 `i `ui `ux -> -> # *U &U _display_data_2 `ui `ux -> + / % . _gBoxCntStruct 9 -> -> 100 `i `ui -> -> 10 `i `ui -> -> 48 `i `ui `uc ]
-[; ;main.c: 234: display_data_2[9] = (gBoxCntStruct.JamCnt%10)+0x30;
+[e = *U + &U _display_data_1 * -> -> -> 12 `i `ui `ux -> -> # *U &U _display_data_1 `ui `ux -> + / % . _gBoxCntStruct 8 -> -> 1000 `i `ui -> -> 100 `i `ui -> -> 48 `i `ui `uc ]
+[; ;main.c: 234: display_data_1[13] = (gBoxCntStruct.LargeBoxCnt%100/10)+0x30;
 "234
-[e = *U + &U _display_data_2 * -> -> -> 9 `i `ui `ux -> -> # *U &U _display_data_2 `ui `ux -> + % . _gBoxCntStruct 9 -> -> 10 `i `ui -> -> 48 `i `ui `uc ]
+[e = *U + &U _display_data_1 * -> -> -> 13 `i `ui `ux -> -> # *U &U _display_data_1 `ui `ux -> + / % . _gBoxCntStruct 8 -> -> 100 `i `ui -> -> 10 `i `ui -> -> 48 `i `ui `uc ]
+[; ;main.c: 235: display_data_1[14] = (gBoxCntStruct.LargeBoxCnt%10)+0x30;
 "235
-}
-[; ;main.c: 235: }
-[e $U 1231  ]
-"236
-[e :U 1230 ]
-[; ;main.c: 236: else
-[; ;main.c: 237: {
+[e = *U + &U _display_data_1 * -> -> -> 14 `i `ui `ux -> -> # *U &U _display_data_1 `ui `ux -> + % . _gBoxCntStruct 8 -> -> 10 `i `ui -> -> 48 `i `ui `uc ]
+[; ;main.c: 237: display_data_2[2] = (gBoxCntStruct.BoxSum%1000/100)+0x30;
 "237
-{
-[; ;main.c: 238: memset(&HEFBufferData, 0, sizeof(HEFBufferData));
+[e = *U + &U _display_data_2 * -> -> -> 2 `i `ui `ux -> -> # *U &U _display_data_2 `ui `ux -> + / % . _gBoxCntStruct 10 -> -> -> 1000 `i `l `ul -> -> -> 100 `i `l `ul -> -> -> 48 `i `l `ul `uc ]
+[; ;main.c: 238: display_data_2[3] = (gBoxCntStruct.BoxSum%100/10)+0x30;
 "238
-[e ( _memset (3 , , -> &U _HEFBufferData `*v -> 0 `i -> # _HEFBufferData `ui ]
-[; ;main.c: 239: HEFBufferData[0] = 0xAA;
+[e = *U + &U _display_data_2 * -> -> -> 3 `i `ui `ux -> -> # *U &U _display_data_2 `ui `ux -> + / % . _gBoxCntStruct 10 -> -> -> 100 `i `l `ul -> -> -> 10 `i `l `ul -> -> -> 48 `i `l `ul `uc ]
+[; ;main.c: 239: display_data_2[4] = (gBoxCntStruct.BoxSum%10)+0x30;
 "239
-[e = *U + &U _HEFBufferData * -> -> -> 0 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux -> -> 170 `i `uc ]
-[; ;main.c: 240: r == HEFLASH_writeBlock(0, (void*)&HEFBufferData,sizeof(HEFBufferData));
-"240
-[e == _r -> ( _HEFLASH_writeBlock (3 , , -> -> 0 `i `uc -> -> &U _HEFBufferData `*v `*uc -> -> # _HEFBufferData `ui `uc `ui ]
-[; ;main.c: 241: if(!(0 == r)) {_fassert(241, "main.c", "0 == r");};
+[e = *U + &U _display_data_2 * -> -> -> 4 `i `ui `ux -> -> # *U &U _display_data_2 `ui `ux -> + % . _gBoxCntStruct 10 -> -> -> 10 `i `l `ul -> -> -> 48 `i `l `ul `uc ]
+[; ;main.c: 241: display_data_2[7] = (gBoxCntStruct.JamCnt%1000/100)+0x30;
 "241
+[e = *U + &U _display_data_2 * -> -> -> 7 `i `ui `ux -> -> # *U &U _display_data_2 `ui `ux -> + / % . _gBoxCntStruct 9 -> -> 1000 `i `ui -> -> 100 `i `ui -> -> 48 `i `ui `uc ]
+[; ;main.c: 242: display_data_2[8] = (gBoxCntStruct.JamCnt%100/10)+0x30;
+"242
+[e = *U + &U _display_data_2 * -> -> -> 8 `i `ui `ux -> -> # *U &U _display_data_2 `ui `ux -> + / % . _gBoxCntStruct 9 -> -> 100 `i `ui -> -> 10 `i `ui -> -> 48 `i `ui `uc ]
+[; ;main.c: 243: display_data_2[9] = (gBoxCntStruct.JamCnt%10)+0x30;
+"243
+[e = *U + &U _display_data_2 * -> -> -> 9 `i `ui `ux -> -> # *U &U _display_data_2 `ui `ux -> + % . _gBoxCntStruct 9 -> -> 10 `i `ui -> -> 48 `i `ui `uc ]
+"244
+}
+[; ;main.c: 244: }
+[e $U 1231  ]
+"245
+[e :U 1230 ]
+[; ;main.c: 245: else
+[; ;main.c: 246: {
+"246
+{
+[; ;main.c: 247: memset(&HEFBufferData, 0, sizeof(HEFBufferData));
+"247
+[e ( _memset (3 , , -> &U _HEFBufferData `*v -> 0 `i -> # _HEFBufferData `ui ]
+[; ;main.c: 248: HEFBufferData[0] = 0xAA;
+"248
+[e = *U + &U _HEFBufferData * -> -> -> 0 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux -> -> 170 `i `uc ]
+[; ;main.c: 249: r == HEFLASH_writeBlock(0, (void*)&HEFBufferData,sizeof(HEFBufferData));
+"249
+[e == _r -> ( _HEFLASH_writeBlock (3 , , -> -> 0 `i `uc -> -> &U _HEFBufferData `*v `*uc -> -> # _HEFBufferData `ui `uc `ui ]
+[; ;main.c: 250: if(!(0 == r)) {_fassert(250, "main.c", "0 == r");};
+"250
 [e $ ! ! == -> -> 0 `i `ui _r 1232  ]
 {
-[e ( __fassert (3 , , -> 241 `i :s 3C :s 4C ]
+[e ( __fassert (3 , , -> 250 `i :s 3C :s 4C ]
 }
 [e :U 1232 ]
-"242
+"251
 }
 [e :U 1231 ]
-[; ;main.c: 242: }
-[; ;main.c: 243: }
-"243
+[; ;main.c: 251: }
+[; ;main.c: 252: }
+"252
 [e :UE 1228 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
-"245
+"254
 [v _main `(v ~T0 @X0 1 ef ]
-"246
+"255
 {
-[; ;main.c: 245: void main(void)
-[; ;main.c: 246: {
+[; ;main.c: 254: void main(void)
+[; ;main.c: 255: {
 [e :U _main ]
 [f ]
-[; ;main.c: 249: SYSTEM_Initialize();
-"249
-[e ( _SYSTEM_Initialize ..  ]
-[; ;main.c: 250: bsp_CounterInit();
-"250
-[e ( _bsp_CounterInit ..  ]
-[; ;main.c: 251: LCDInit();
-"251
-[e ( _LCDInit ..  ]
-[; ;main.c: 255: HEFLASH_checkData();
-"255
-[e ( _HEFLASH_checkData ..  ]
-[; ;main.c: 257: LCDSendData(0, 0b10000000);
-"257
-[e ( _LCDSendData (2 , -> 0 `i -> -> 128 `i `uc ]
-[; ;main.c: 258: Print(display_data_1);
+[; ;main.c: 258: SYSTEM_Initialize();
 "258
-[e ( _Print (1 &U _display_data_1 ]
-[; ;main.c: 259: _delay((unsigned long)((200)*(2000000/4000.0)));
+[e ( _SYSTEM_Initialize ..  ]
+[; ;main.c: 259: bsp_CounterInit();
 "259
-[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 2000000 `l `d .4000.0 `ul ]
-[; ;main.c: 260: LCDSendData(0, 0b11000000);
+[e ( _bsp_CounterInit ..  ]
+[; ;main.c: 260: LCDInit();
 "260
-[e ( _LCDSendData (2 , -> 0 `i -> -> 192 `i `uc ]
-[; ;main.c: 261: Print(display_data_2);
-"261
-[e ( _Print (1 &U _display_data_2 ]
-[; ;main.c: 263: (INTCONbits.GIE = 1);
-"263
-[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
-[; ;main.c: 266: (INTCONbits.PEIE = 1);
+[e ( _LCDInit ..  ]
+[; ;main.c: 264: HEFLASH_checkData();
+"264
+[e ( _HEFLASH_checkData ..  ]
+[; ;main.c: 266: LCDSendData(0, 0b10000000);
 "266
-[e = . . _INTCONbits 0 6 -> -> 1 `i `uc ]
-[; ;main.c: 275: while (1)
+[e ( _LCDSendData (2 , -> 0 `i -> -> 128 `i `uc ]
+[; ;main.c: 267: Print(display_data_1);
+"267
+[e ( _Print (1 &U _display_data_1 ]
+[; ;main.c: 268: _delay((unsigned long)((200)*(2000000/4000.0)));
+"268
+[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 2000000 `l `d .4000.0 `ul ]
+[; ;main.c: 269: LCDSendData(0, 0b11000000);
+"269
+[e ( _LCDSendData (2 , -> 0 `i -> -> 192 `i `uc ]
+[; ;main.c: 270: Print(display_data_2);
+"270
+[e ( _Print (1 &U _display_data_2 ]
+[; ;main.c: 272: (INTCONbits.GIE = 1);
+"272
+[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
+[; ;main.c: 275: (INTCONbits.PEIE = 1);
 "275
-[e :U 1235 ]
-[; ;main.c: 276: {
-"276
-{
-[; ;main.c: 278: if(gInterruptFlag)
-"278
-[e $ ! != -> _gInterruptFlag `i -> -> -> 0 `i `Vuc `i 1237  ]
-[; ;main.c: 279: {
-"279
-{
-[; ;main.c: 281: gInterruptFlag = 0;
-"281
-[e = _gInterruptFlag -> -> 0 `i `uc ]
-"282
-}
-[e :U 1237 ]
-[; ;main.c: 282: }
-[; ;main.c: 284: if(0 == PORTAbits.RA1 )
+[e = . . _INTCONbits 0 6 -> -> 1 `i `uc ]
+[; ;main.c: 284: while (1)
 "284
-[e $ ! == -> 0 `i -> . . _PORTAbits 0 1 `i 1238  ]
+[e :U 1235 ]
 [; ;main.c: 285: {
 "285
 {
-[; ;main.c: 286: _delay((unsigned long)((5)*(2000000/4000.0)));
-"286
-[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 2000000 `l `d .4000.0 `ul ]
-[; ;main.c: 287: if(0 == PORTAbits.RA1 )
+[; ;main.c: 287: if(gInterruptFlag)
 "287
-[e $ ! == -> 0 `i -> . . _PORTAbits 0 1 `i 1239  ]
+[e $ ! != -> _gInterruptFlag `i -> -> -> 0 `i `Vuc `i 1237  ]
 [; ;main.c: 288: {
 "288
 {
-[; ;main.c: 289: gBoxCntStruct.AlarmFlag = 0;
-"289
-[e = . _gBoxCntStruct 2 -> -> 0 `i `uc ]
-[; ;main.c: 290: gBoxCntStruct.JamFlag = 0;
+[; ;main.c: 290: gInterruptFlag = 0;
 "290
-[e = . _gBoxCntStruct 3 -> -> 0 `i `uc ]
+[e = _gInterruptFlag -> -> 0 `i `uc ]
 "291
 }
-[e :U 1239 ]
-"292
-}
-[e :U 1238 ]
+[e :U 1237 ]
 [; ;main.c: 291: }
-[; ;main.c: 292: }
-[; ;main.c: 294: if(gTimer0NormalFlashFlag)
+[; ;main.c: 293: if(0 == PORTAbits.RA1 )
+"293
+[e $ ! == -> 0 `i -> . . _PORTAbits 0 1 `i 1238  ]
+[; ;main.c: 294: {
 "294
-[e $ ! != -> _gTimer0NormalFlashFlag `i -> -> -> 0 `i `Vuc `i 1240  ]
-[; ;main.c: 295: {
+{
+[; ;main.c: 295: _delay((unsigned long)((5)*(2000000/4000.0)));
 "295
-{
-[; ;main.c: 296: gTimer0NormalFlashFlag = 0;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 2000000 `l `d .4000.0 `ul ]
+[; ;main.c: 296: if(0 == PORTAbits.RA1 )
 "296
-[e = _gTimer0NormalFlashFlag -> -> 0 `i `uc ]
-[; ;main.c: 298: do { LATAbits.LATA4 = ~LATAbits.LATA4; } while(0);
-"298
-[e :U 1243 ]
+[e $ ! == -> 0 `i -> . . _PORTAbits 0 1 `i 1239  ]
+[; ;main.c: 297: {
+"297
 {
-[e = . . _LATAbits 0 4 -> ~ -> . . _LATAbits 0 4 `i `uc ]
-}
-[e :U 1242 ]
-[; ;main.c: 299: if(0 == gBoxCntStruct.AlarmFlag)
+[; ;main.c: 298: KeyPushTimeCnt++;
+"298
+[e ++ _KeyPushTimeCnt -> -> -> 1 `i `l `ul ]
+[; ;main.c: 299: if(KeyPushTimeCnt > 600)
 "299
-[e $ ! == -> 0 `i -> . _gBoxCntStruct 2 `i 1244  ]
+[e $ ! > _KeyPushTimeCnt -> -> -> 600 `i `l `ul 1240  ]
 [; ;main.c: 300: {
 "300
 {
-[; ;main.c: 301: LATAbits.LATA5 = ~LATAbits.LATA4;
+[; ;main.c: 301: KeyClearHEFFlag = 1;
 "301
-[e = . . _LATAbits 0 5 -> ~ -> . . _LATAbits 0 4 `i `uc ]
+[e = _KeyClearHEFFlag -> -> 1 `i `uc ]
+[; ;main.c: 302: KeyPushTimeCnt = 0;
 "302
-}
-[e :U 1244 ]
+[e = _KeyPushTimeCnt -> -> -> 0 `i `l `ul ]
+[; ;main.c: 303: LCDSendData(0, 0b10000000);
 "303
+[e ( _LCDSendData (2 , -> 0 `i -> -> 128 `i `uc ]
+[; ;main.c: 304: Print(clearingData);
+"304
+[e ( _Print (1 &U _clearingData ]
+[; ;main.c: 305: _delay((unsigned long)((1000)*(2000000/4000.0)));
+"305
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 2000000 `l `d .4000.0 `ul ]
+"306
 }
 [e :U 1240 ]
-[; ;main.c: 302: }
-[; ;main.c: 303: }
-[; ;main.c: 304: if(1 == gTimer0AlarmFlashFlag)
-"304
-[e $ ! == -> 1 `i -> _gTimer0AlarmFlashFlag `i 1245  ]
-[; ;main.c: 305: {
-"305
-{
-[; ;main.c: 306: gTimer0AlarmFlashFlag = 0;
-"306
-[e = _gTimer0AlarmFlashFlag -> -> 0 `i `uc ]
-[; ;main.c: 307: if(1 == gBoxCntStruct.AlarmFlag)
+[; ;main.c: 306: }
+[; ;main.c: 307: gBoxCntStruct.AlarmFlag = 0;
 "307
-[e $ ! == -> 1 `i -> . _gBoxCntStruct 2 `i 1246  ]
-[; ;main.c: 308: {
+[e = . _gBoxCntStruct 2 -> -> 0 `i `uc ]
+[; ;main.c: 308: gBoxCntStruct.JamFlag = 0;
 "308
-{
-[; ;main.c: 309: LATAbits.LATA5 = ~LATAbits.LATA5;
+[e = . _gBoxCntStruct 3 -> -> 0 `i `uc ]
 "309
-[e = . . _LATAbits 0 5 -> ~ -> . . _LATAbits 0 5 `i `uc ]
+}
+[e :U 1239 ]
 "310
 }
-[e :U 1246 ]
+[; ;main.c: 309: }
+[; ;main.c: 310: }
+[e $U 1241  ]
 "311
+[e :U 1238 ]
+[; ;main.c: 311: else
+[; ;main.c: 312: {
+"312
+{
+[; ;main.c: 313: KeyPushTimeCnt = 0;
+"313
+[e = _KeyPushTimeCnt -> -> -> 0 `i `l `ul ]
+"314
+}
+[e :U 1241 ]
+[; ;main.c: 314: }
+[; ;main.c: 316: if(1 == PORTAbits.RA1 && 1 == KeyClearHEFFlag )
+"316
+[e $ ! && == -> 1 `i -> . . _PORTAbits 0 1 `i == -> 1 `i -> _KeyClearHEFFlag `i 1242  ]
+[; ;main.c: 317: {
+"317
+{
+[; ;main.c: 318: KeyClearHEFFlag = 0;
+"318
+[e = _KeyClearHEFFlag -> -> 0 `i `uc ]
+[; ;main.c: 319: memset(&HEFBufferData, 0, sizeof(HEFBufferData));
+"319
+[e ( _memset (3 , , -> &U _HEFBufferData `*v -> 0 `i -> # _HEFBufferData `ui ]
+[; ;main.c: 320: HEFBufferData[0] = 0xAA;
+"320
+[e = *U + &U _HEFBufferData * -> -> -> 0 `i `ui `ux -> -> # *U &U _HEFBufferData `ui `ux -> -> 170 `i `uc ]
+[; ;main.c: 321: (INTCONbits.GIE = 0);
+"321
+[e = . . _INTCONbits 0 7 -> -> 0 `i `uc ]
+[; ;main.c: 322: HEFLASH_writeBlock(0, (void*)&HEFBufferData,sizeof(HEFBufferData));
+"322
+[e ( _HEFLASH_writeBlock (3 , , -> -> 0 `i `uc -> -> &U _HEFBufferData `*v `*uc -> -> # _HEFBufferData `ui `uc ]
+[; ;main.c: 323: (INTCONbits.GIE = 1);
+"323
+[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
+[; ;main.c: 324: LCDSendData(0, 0b10000000);
+"324
+[e ( _LCDSendData (2 , -> 0 `i -> -> 128 `i `uc ]
+[; ;main.c: 325: Print(clearDataOk_1);
+"325
+[e ( _Print (1 &U _clearDataOk_1 ]
+[; ;main.c: 326: LCDSendData(0, 0b11000000);
+"326
+[e ( _LCDSendData (2 , -> 0 `i -> -> 192 `i `uc ]
+[; ;main.c: 327: Print(clearDataOk_2);
+"327
+[e ( _Print (1 &U _clearDataOk_2 ]
+[; ;main.c: 328: _delay((unsigned long)((800)*(2000000/4000.0)));
+"328
+[e ( __delay (1 -> * -> -> 800 `i `d / -> -> 2000000 `l `d .4000.0 `ul ]
+"329
+}
+[e :U 1242 ]
+[; ;main.c: 329: }
+[; ;main.c: 331: if(gTimer0NormalFlashFlag)
+"331
+[e $ ! != -> _gTimer0NormalFlashFlag `i -> -> -> 0 `i `Vuc `i 1243  ]
+[; ;main.c: 332: {
+"332
+{
+[; ;main.c: 333: gTimer0NormalFlashFlag = 0;
+"333
+[e = _gTimer0NormalFlashFlag -> -> 0 `i `uc ]
+[; ;main.c: 335: do { LATAbits.LATA4 = ~LATAbits.LATA4; } while(0);
+"335
+[e :U 1246 ]
+{
+[e = . . _LATAbits 0 4 -> ~ -> . . _LATAbits 0 4 `i `uc ]
 }
 [e :U 1245 ]
-[; ;main.c: 310: }
-[; ;main.c: 311: }
-[; ;main.c: 320: if(gBoxCntStruct.DisplayReflashFlag)
-"320
-[e $ ! != -> . _gBoxCntStruct 4 `i -> -> -> 0 `i `uc `i 1247  ]
-[; ;main.c: 321: {
-"321
+[; ;main.c: 336: if(0 == gBoxCntStruct.AlarmFlag)
+"336
+[e $ ! == -> 0 `i -> . _gBoxCntStruct 2 `i 1247  ]
+[; ;main.c: 337: {
+"337
 {
-[; ;main.c: 323: gBoxCntStruct.DisplayReflashFlag = 0;
-"323
-[e = . _gBoxCntStruct 4 -> -> 0 `i `uc ]
-[; ;main.c: 324: Data_Toseg();
-"324
-[e ( _Data_Toseg ..  ]
-[; ;main.c: 325: LCDSendData(0, 0b10000000);
-"325
-[e ( _LCDSendData (2 , -> 0 `i -> -> 128 `i `uc ]
-[; ;main.c: 326: Print(display_data_1);
-"326
-[e ( _Print (1 &U _display_data_1 ]
-[; ;main.c: 327: LCDSendData(0, 0b11000000);
-"327
-[e ( _LCDSendData (2 , -> 0 `i -> -> 192 `i `uc ]
-[; ;main.c: 330: Print(display_data_2);
-"330
-[e ( _Print (1 &U _display_data_2 ]
-"342
+[; ;main.c: 338: LATAbits.LATA5 = ~LATAbits.LATA4;
+"338
+[e = . . _LATAbits 0 5 -> ~ -> . . _LATAbits 0 4 `i `uc ]
+"339
 }
 [e :U 1247 ]
+"340
+}
+[e :U 1243 ]
+[; ;main.c: 339: }
+[; ;main.c: 340: }
+[; ;main.c: 341: if(1 == gTimer0AlarmFlashFlag)
+"341
+[e $ ! == -> 1 `i -> _gTimer0AlarmFlashFlag `i 1248  ]
+[; ;main.c: 342: {
+"342
+{
+[; ;main.c: 343: gTimer0AlarmFlashFlag = 0;
+"343
+[e = _gTimer0AlarmFlashFlag -> -> 0 `i `uc ]
+[; ;main.c: 344: if(1 == gBoxCntStruct.AlarmFlag)
 "344
+[e $ ! == -> 1 `i -> . _gBoxCntStruct 2 `i 1249  ]
+[; ;main.c: 345: {
+"345
+{
+[; ;main.c: 346: LATAbits.LATA5 = ~LATAbits.LATA5;
+"346
+[e = . . _LATAbits 0 5 -> ~ -> . . _LATAbits 0 5 `i `uc ]
+"347
+}
+[e :U 1249 ]
+"348
+}
+[e :U 1248 ]
+[; ;main.c: 347: }
+[; ;main.c: 348: }
+[; ;main.c: 357: if(gBoxCntStruct.DisplayReflashFlag)
+"357
+[e $ ! != -> . _gBoxCntStruct 4 `i -> -> -> 0 `i `uc `i 1250  ]
+[; ;main.c: 358: {
+"358
+{
+[; ;main.c: 360: gBoxCntStruct.DisplayReflashFlag = 0;
+"360
+[e = . _gBoxCntStruct 4 -> -> 0 `i `uc ]
+[; ;main.c: 361: Data_Toseg();
+"361
+[e ( _Data_Toseg ..  ]
+[; ;main.c: 362: LCDSendData(0, 0b10000000);
+"362
+[e ( _LCDSendData (2 , -> 0 `i -> -> 128 `i `uc ]
+[; ;main.c: 363: Print(display_data_1);
+"363
+[e ( _Print (1 &U _display_data_1 ]
+[; ;main.c: 364: LCDSendData(0, 0b11000000);
+"364
+[e ( _LCDSendData (2 , -> 0 `i -> -> 192 `i `uc ]
+[; ;main.c: 367: Print(display_data_2);
+"367
+[e ( _Print (1 &U _display_data_2 ]
+"379
+}
+[e :U 1250 ]
+"381
 }
 [e :U 1234 ]
-"275
+"284
 [e $U 1235  ]
 [e :U 1236 ]
-[; ;main.c: 342: }
-[; ;main.c: 344: }
-[; ;main.c: 345: }
-"345
+[; ;main.c: 379: }
+[; ;main.c: 381: }
+[; ;main.c: 382: }
+"382
 [e :UE 1233 ]
 }
 [a 2C 48 32 61 61 32 114 0 ]

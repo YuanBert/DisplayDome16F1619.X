@@ -14954,7 +14954,7 @@ extern char * strrichr(const char *, int);
 # 51 "main.c"
 #pragma __config("__IDLOC", "pic", "4D8A");
 
-# 56
+# 58
 volatile unsigned char gInterruptFlag;
 volatile unsigned char gEnterFlag;
 volatile unsigned char gExitFlag;
@@ -14964,6 +14964,10 @@ volatile unsigned char gTimer0NormalFlashFlag;
 volatile unsigned char gTimer0AlarmFlashFlag;
 
 volatile unsigned char gTimer3Flag;
+
+volatile unsigned long KeyPushTimeCnt;
+volatile unsigned char KeyClearHEFFlag;
+
 
 BoxCntStruct gBoxCntStruct;
 
@@ -15034,6 +15038,9 @@ LCDSendData(0, 0b00000110);
 }
 uint8_t display_data_1[]={"S:000M:000L:000"};
 uint8_t display_data_2[]={"Z:000G:000"};
+uint8_t clearingData[] = {"Clearing Data ..."};
+uint8_t clearDataOk_1[] = {"Data clearing "};
+uint8_t clearDataOk_2[] = {"completed "};
 
 
 
@@ -15100,7 +15107,7 @@ void HEFLASH_checkData(void)
 unsigned r;
 _delay((unsigned long)((200)*(2000000/4000.0)));
 r = HEFLASH_readBlock(HEFBufferData, 0, 32);
-if(!(0 == r)) {_fassert(201, "main.c", "0 == r");};
+if(!(0 == r)) {_fassert(210, "main.c", "0 == r");};
 if(0xAA == HEFBufferData[0])
 {
 gBoxCntStruct.SmallBoxCnt = (unsigned int)((HEFBufferData[3] << 8) + (HEFBufferData[4]));
@@ -15111,7 +15118,7 @@ gBoxCntStruct.LargeBoxCnt = (unsigned int)((HEFBufferData[11] << 8) + (HEFBuffer
 
 gBoxCntStruct.BoxSum = (HEFBufferData[13] << 24) + (HEFBufferData[14] << 16) + (HEFBufferData[15] << 8) + (HEFBufferData[16]);
 
-# 213
+# 222
 gBoxCntStruct.JamCnt = (unsigned int)((HEFBufferData[19] << 8) + (HEFBufferData[20]));
 
 display_data_1[2] = (gBoxCntStruct.SmallBoxCnt%1000/100)+0x30;
@@ -15140,7 +15147,7 @@ else
 memset(&HEFBufferData, 0, sizeof(HEFBufferData));
 HEFBufferData[0] = 0xAA;
 r == HEFLASH_writeBlock(0, (void*)&HEFBufferData,sizeof(HEFBufferData));
-if(!(0 == r)) {_fassert(241, "main.c", "0 == r");};
+if(!(0 == r)) {_fassert(250, "main.c", "0 == r");};
 }
 }
 
@@ -15167,7 +15174,7 @@ Print(display_data_2);
 
 (INTCONbits.PEIE = 1);
 
-# 275
+# 284
 while (1)
 {
 
@@ -15182,9 +15189,37 @@ if(0 == PORTAbits.RA1 )
 _delay((unsigned long)((5)*(2000000/4000.0)));
 if(0 == PORTAbits.RA1 )
 {
+KeyPushTimeCnt++;
+if(KeyPushTimeCnt > 600)
+{
+KeyClearHEFFlag = 1;
+KeyPushTimeCnt = 0;
+LCDSendData(0, 0b10000000);
+Print(clearingData);
+_delay((unsigned long)((1000)*(2000000/4000.0)));
+}
 gBoxCntStruct.AlarmFlag = 0;
 gBoxCntStruct.JamFlag = 0;
 }
+}
+else
+{
+KeyPushTimeCnt = 0;
+}
+
+if(1 == PORTAbits.RA1 && 1 == KeyClearHEFFlag )
+{
+KeyClearHEFFlag = 0;
+memset(&HEFBufferData, 0, sizeof(HEFBufferData));
+HEFBufferData[0] = 0xAA;
+(INTCONbits.GIE = 0);
+HEFLASH_writeBlock(0, (void*)&HEFBufferData,sizeof(HEFBufferData));
+(INTCONbits.GIE = 1);
+LCDSendData(0, 0b10000000);
+Print(clearDataOk_1);
+LCDSendData(0, 0b11000000);
+Print(clearDataOk_2);
+_delay((unsigned long)((800)*(2000000/4000.0)));
 }
 
 if(gTimer0NormalFlashFlag)
@@ -15206,7 +15241,7 @@ LATAbits.LATA5 = ~LATAbits.LATA5;
 }
 }
 
-# 320
+# 357
 if(gBoxCntStruct.DisplayReflashFlag)
 {
 
@@ -15219,7 +15254,7 @@ LCDSendData(0, 0b11000000);
 
 Print(display_data_2);
 
-# 342
+# 379
 }
 
 }
