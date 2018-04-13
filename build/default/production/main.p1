@@ -11709,106 +11709,124 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 328: _delay((unsigned long)((800)*(2000000/4000.0)));
 "328
 [e ( __delay (1 -> * -> -> 800 `i `d / -> -> 2000000 `l `d .4000.0 `ul ]
+[; ;main.c: 329: gBoxCntStruct.BoxSum = 0;
 "329
+[e = . _gBoxCntStruct 10 -> -> -> 0 `i `l `ul ]
+[; ;main.c: 330: gBoxCntStruct.JamCnt = 0;
+"330
+[e = . _gBoxCntStruct 9 -> -> 0 `i `ui ]
+[; ;main.c: 331: gBoxCntStruct.LargeBoxCnt = 0;
+"331
+[e = . _gBoxCntStruct 8 -> -> 0 `i `ui ]
+[; ;main.c: 332: gBoxCntStruct.MiddleBoxCnt = 0;
+"332
+[e = . _gBoxCntStruct 7 -> -> 0 `i `ui ]
+[; ;main.c: 333: gBoxCntStruct.SmallBoxCnt = 0;
+"333
+[e = . _gBoxCntStruct 6 -> -> 0 `i `ui ]
+[; ;main.c: 335: gBoxCntStruct.DisplayReflashFlag = 1;
+"335
+[e = . _gBoxCntStruct 4 -> -> 1 `i `uc ]
+"336
 }
 [e :U 1242 ]
-[; ;main.c: 329: }
-[; ;main.c: 331: if(gTimer0NormalFlashFlag)
-"331
+[; ;main.c: 336: }
+[; ;main.c: 338: if(gTimer0NormalFlashFlag)
+"338
 [e $ ! != -> _gTimer0NormalFlashFlag `i -> -> -> 0 `i `Vuc `i 1243  ]
-[; ;main.c: 332: {
-"332
+[; ;main.c: 339: {
+"339
 {
-[; ;main.c: 333: gTimer0NormalFlashFlag = 0;
-"333
+[; ;main.c: 340: gTimer0NormalFlashFlag = 0;
+"340
 [e = _gTimer0NormalFlashFlag -> -> 0 `i `uc ]
-[; ;main.c: 335: do { LATAbits.LATA4 = ~LATAbits.LATA4; } while(0);
-"335
+[; ;main.c: 342: do { LATAbits.LATA4 = ~LATAbits.LATA4; } while(0);
+"342
 [e :U 1246 ]
 {
 [e = . . _LATAbits 0 4 -> ~ -> . . _LATAbits 0 4 `i `uc ]
 }
 [e :U 1245 ]
-[; ;main.c: 336: if(0 == gBoxCntStruct.AlarmFlag)
-"336
+[; ;main.c: 343: if(0 == gBoxCntStruct.AlarmFlag)
+"343
 [e $ ! == -> 0 `i -> . _gBoxCntStruct 2 `i 1247  ]
-[; ;main.c: 337: {
-"337
+[; ;main.c: 344: {
+"344
 {
-[; ;main.c: 338: LATAbits.LATA5 = ~LATAbits.LATA4;
-"338
+[; ;main.c: 345: LATAbits.LATA5 = ~LATAbits.LATA4;
+"345
 [e = . . _LATAbits 0 5 -> ~ -> . . _LATAbits 0 4 `i `uc ]
-"339
+"346
 }
 [e :U 1247 ]
-"340
-}
-[e :U 1243 ]
-[; ;main.c: 339: }
-[; ;main.c: 340: }
-[; ;main.c: 341: if(1 == gTimer0AlarmFlashFlag)
-"341
-[e $ ! == -> 1 `i -> _gTimer0AlarmFlashFlag `i 1248  ]
-[; ;main.c: 342: {
-"342
-{
-[; ;main.c: 343: gTimer0AlarmFlashFlag = 0;
-"343
-[e = _gTimer0AlarmFlashFlag -> -> 0 `i `uc ]
-[; ;main.c: 344: if(1 == gBoxCntStruct.AlarmFlag)
-"344
-[e $ ! == -> 1 `i -> . _gBoxCntStruct 2 `i 1249  ]
-[; ;main.c: 345: {
-"345
-{
-[; ;main.c: 346: LATAbits.LATA5 = ~LATAbits.LATA5;
-"346
-[e = . . _LATAbits 0 5 -> ~ -> . . _LATAbits 0 5 `i `uc ]
 "347
 }
-[e :U 1249 ]
+[e :U 1243 ]
+[; ;main.c: 346: }
+[; ;main.c: 347: }
+[; ;main.c: 348: if(1 == gTimer0AlarmFlashFlag)
 "348
+[e $ ! == -> 1 `i -> _gTimer0AlarmFlashFlag `i 1248  ]
+[; ;main.c: 349: {
+"349
+{
+[; ;main.c: 350: gTimer0AlarmFlashFlag = 0;
+"350
+[e = _gTimer0AlarmFlashFlag -> -> 0 `i `uc ]
+[; ;main.c: 351: if(1 == gBoxCntStruct.AlarmFlag)
+"351
+[e $ ! == -> 1 `i -> . _gBoxCntStruct 2 `i 1249  ]
+[; ;main.c: 352: {
+"352
+{
+[; ;main.c: 353: LATAbits.LATA5 = ~LATAbits.LATA5;
+"353
+[e = . . _LATAbits 0 5 -> ~ -> . . _LATAbits 0 5 `i `uc ]
+"354
+}
+[e :U 1249 ]
+"355
 }
 [e :U 1248 ]
-[; ;main.c: 347: }
-[; ;main.c: 348: }
-[; ;main.c: 357: if(gBoxCntStruct.DisplayReflashFlag)
-"357
-[e $ ! != -> . _gBoxCntStruct 4 `i -> -> -> 0 `i `uc `i 1250  ]
-[; ;main.c: 358: {
-"358
-{
-[; ;main.c: 360: gBoxCntStruct.DisplayReflashFlag = 0;
-"360
-[e = . _gBoxCntStruct 4 -> -> 0 `i `uc ]
-[; ;main.c: 361: Data_Toseg();
-"361
-[e ( _Data_Toseg ..  ]
-[; ;main.c: 362: LCDSendData(0, 0b10000000);
-"362
-[e ( _LCDSendData (2 , -> 0 `i -> -> 128 `i `uc ]
-[; ;main.c: 363: Print(display_data_1);
-"363
-[e ( _Print (1 &U _display_data_1 ]
-[; ;main.c: 364: LCDSendData(0, 0b11000000);
+[; ;main.c: 354: }
+[; ;main.c: 355: }
+[; ;main.c: 364: if(gBoxCntStruct.DisplayReflashFlag)
 "364
-[e ( _LCDSendData (2 , -> 0 `i -> -> 192 `i `uc ]
-[; ;main.c: 367: Print(display_data_2);
+[e $ ! != -> . _gBoxCntStruct 4 `i -> -> -> 0 `i `uc `i 1250  ]
+[; ;main.c: 365: {
+"365
+{
+[; ;main.c: 367: gBoxCntStruct.DisplayReflashFlag = 0;
 "367
+[e = . _gBoxCntStruct 4 -> -> 0 `i `uc ]
+[; ;main.c: 368: Data_Toseg();
+"368
+[e ( _Data_Toseg ..  ]
+[; ;main.c: 369: LCDSendData(0, 0b10000000);
+"369
+[e ( _LCDSendData (2 , -> 0 `i -> -> 128 `i `uc ]
+[; ;main.c: 370: Print(display_data_1);
+"370
+[e ( _Print (1 &U _display_data_1 ]
+[; ;main.c: 371: LCDSendData(0, 0b11000000);
+"371
+[e ( _LCDSendData (2 , -> 0 `i -> -> 192 `i `uc ]
+[; ;main.c: 374: Print(display_data_2);
+"374
 [e ( _Print (1 &U _display_data_2 ]
-"379
+"386
 }
 [e :U 1250 ]
-"381
+"388
 }
 [e :U 1234 ]
 "284
 [e $U 1235  ]
 [e :U 1236 ]
-[; ;main.c: 379: }
-[; ;main.c: 381: }
-[; ;main.c: 382: }
-"382
+[; ;main.c: 386: }
+[; ;main.c: 388: }
+[; ;main.c: 389: }
+"389
 [e :UE 1233 ]
 }
 [a 2C 48 32 61 61 32 114 0 ]

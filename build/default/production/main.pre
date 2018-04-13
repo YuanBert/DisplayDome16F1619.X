@@ -15220,6 +15220,13 @@ Print(clearDataOk_1);
 LCDSendData(0, 0b11000000);
 Print(clearDataOk_2);
 _delay((unsigned long)((800)*(2000000/4000.0)));
+gBoxCntStruct.BoxSum = 0;
+gBoxCntStruct.JamCnt = 0;
+gBoxCntStruct.LargeBoxCnt = 0;
+gBoxCntStruct.MiddleBoxCnt = 0;
+gBoxCntStruct.SmallBoxCnt = 0;
+
+gBoxCntStruct.DisplayReflashFlag = 1;
 }
 
 if(gTimer0NormalFlashFlag)
@@ -15241,7 +15248,7 @@ LATAbits.LATA5 = ~LATAbits.LATA5;
 }
 }
 
-# 357
+# 364
 if(gBoxCntStruct.DisplayReflashFlag)
 {
 
@@ -15254,7 +15261,7 @@ LCDSendData(0, 0b11000000);
 
 Print(display_data_2);
 
-# 379
+# 386
 }
 
 }

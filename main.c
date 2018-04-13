@@ -326,6 +326,13 @@ void main(void)
             LCDSendData(0, 0b11000000);
             Print(clearDataOk_2);
             __delay_ms(800);
+            gBoxCntStruct.BoxSum = 0;
+            gBoxCntStruct.JamCnt = 0;
+            gBoxCntStruct.LargeBoxCnt = 0;
+            gBoxCntStruct.MiddleBoxCnt = 0;
+            gBoxCntStruct.SmallBoxCnt = 0;
+            
+            gBoxCntStruct.DisplayReflashFlag = 1;
         }
         
         if(gTimer0NormalFlashFlag)

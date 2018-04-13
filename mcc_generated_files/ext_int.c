@@ -47,18 +47,18 @@ void INT_CallBack(void)
 {
     // Add your custom callback code here
     gInterruptFlag = 1;
-    if(0 == OPTION_REGbits.INTEDG && 0 == PORTAbits.RA2)
+    if(1 == OPTION_REGbits.INTEDG && 1 == PORTAbits.RA2)
     {   
         gBoxCntStruct.TimeCntStartFlag = 1;
         gBoxCntStruct.TimeCntEndFlag = 0;
         
-        EXT_INT_risingEdgeSet();
+        EXT_INT_fallingEdgeSet();
     }
-    else if(1 == OPTION_REGbits.INTEDG && 1 == PORTAbits.RA2 )
+    else if(0 == OPTION_REGbits.INTEDG && 0 == PORTAbits.RA2 )
     {
         gBoxCntStruct.TimeCntStartFlag = 0;
         gBoxCntStruct.TimeCntEndFlag = 1;
-        EXT_INT_fallingEdgeSet();
+        EXT_INT_risingEdgeSet();
     }
     if(INT_InterruptHandler)
     {
@@ -81,7 +81,7 @@ void EXT_INT_Initialize(void)
     // Clear the interrupt flag
     // Set the external interrupt edge detect
     EXT_INT_InterruptFlagClear();   
-    EXT_INT_fallingEdgeSet();    
+    EXT_INT_risingEdgeSet();    
     // Set Default Interrupt Handler
     INT_SetInterruptHandler(INT_DefaultInterruptHandler);
     EXT_INT_InterruptEnable();      

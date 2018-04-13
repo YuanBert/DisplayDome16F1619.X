@@ -14882,18 +14882,18 @@ void INT_CallBack(void)
 {
 
 gInterruptFlag = 1;
-if(0 == OPTION_REGbits.INTEDG && 0 == PORTAbits.RA2)
+if(1 == OPTION_REGbits.INTEDG && 1 == PORTAbits.RA2)
 {
 gBoxCntStruct.TimeCntStartFlag = 1;
 gBoxCntStruct.TimeCntEndFlag = 0;
 
-(OPTION_REGbits.INTEDG = 1);
+(OPTION_REGbits.INTEDG = 0);
 }
-else if(1 == OPTION_REGbits.INTEDG && 1 == PORTAbits.RA2 )
+else if(0 == OPTION_REGbits.INTEDG && 0 == PORTAbits.RA2 )
 {
 gBoxCntStruct.TimeCntStartFlag = 0;
 gBoxCntStruct.TimeCntEndFlag = 1;
-(OPTION_REGbits.INTEDG = 0);
+(OPTION_REGbits.INTEDG = 1);
 }
 if(INT_InterruptHandler)
 {
@@ -14916,7 +14916,7 @@ void EXT_INT_Initialize(void)
 
 
 (INTCONbits.INTF = 0);
-(OPTION_REGbits.INTEDG = 0);
+(OPTION_REGbits.INTEDG = 1);
 
 INT_SetInterruptHandler(INT_DefaultInterruptHandler);
 (INTCONbits.INTE = 1);
